@@ -4,6 +4,7 @@
 format: jb-book
 root: intro
 chapters:
+- file: SQL_Review
 - file: markdown
 - file: notebooks
 - file: markdown-notebooks
