@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: Data 101 Course Notes
-author: Michelle Lin
+author: Data 101 Staff
 logo: elephont.png
 
 # Force re-execution of notebooks on each build.
