@@ -2,9 +2,11 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: overview
+options:
+  numbered: true
 chapters:
-- file: SQL_Review
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+- file: SQL/index
+  sections:
+  - file: SQL/SQL_Review
+- file: acks
