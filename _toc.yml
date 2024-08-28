@@ -11,4 +11,7 @@ chapters:
   - file: SQL/SQL_Review
     sections:
     - file: SQL/Aggregation.md
+    - file: SQL/Having_Limit_Offset.md
+    - file: SQL/String_Manipulation.md
+    - file: SQL/Sampling.md
 - file: acks
