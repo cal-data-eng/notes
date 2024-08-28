@@ -10,8 +10,12 @@ chapters:
   sections:
   - file: SQL/SQL_Review
     sections:
-    - file: SQL/Aggregation.md
-    - file: SQL/Having_Limit_Offset.md
-    - file: SQL/String_Manipulation.md
-    - file: SQL/Sampling.md
+    - file: SQL/Aggregation
+    - file: SQL/Having_Limit_Offset
+    - file: SQL/String_Manipulation
+    - file: SQL/Sampling
+  - file: SQL/Views
+    sections:
+    - file: SQL/Views_CTEs
+    - file: SQL/Subqueries
 - file: acks
