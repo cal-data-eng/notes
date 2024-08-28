@@ -9,4 +9,6 @@ chapters:
 - file: SQL/index
   sections:
   - file: SQL/SQL_Review
+    sections:
+    - file: SQL/Aggregation.md
 - file: acks
