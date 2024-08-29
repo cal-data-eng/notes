@@ -13,6 +13,8 @@ structured.
 It shows off a few of the major file types, as well as some sample content.
 It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
 
+## Table of Contents
+
 Chapters are bundled by topic, not by lecture number. This means that content can appear out of order compared to what is presented in lecture. We will try to indicate this where possible.
 
 Navigate with the sidebar or with the links below:
@@ -20,7 +22,7 @@ Navigate with the sidebar or with the links below:
 ```{tableofcontents}
 ```
 
-# Course Acknowledgments
+## Course Acknowledgments
 
 The content and structure of Data Engineering have been designed and developed over the years thanks to many dedicated faculty and instructors at UC Berkeley.
 

@@ -387,11 +387,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#having">1.1.5. HAVING</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#symbols-and-additional-keywords">1.1.6. Symbols and Additional Keywords</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-asterisk">1.1.6.1. The asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cast">1.1.6.2. CAST</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#null">1.1.6.3. NULL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case">1.1.6.4. CASE</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cast">1.1.7. CAST</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#null">1.1.8. NULL</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case">1.1.9. CASE</a></li>
 </ul>
             </nav>
         </div>
@@ -561,16 +561,15 @@ must either be part of the GROUP BY or be aggregated.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code>: Gets all attributes</p></li>
 </ul>
 </section>
-</section>
 <section id="cast">
-<h2><span class="section-number">1.1.7. </span>CAST<a class="headerlink" href="#cast" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">1.1.6.2. </span>CAST<a class="headerlink" href="#cast" title="Permalink to this heading">#</a></h3>
 <p>Casting converts one attribute type to another. For example, to cast the <code class="docutils literal notranslate"><span class="pre">premiered</span></code> attribute from string type to integer:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CAST</span><span class="p">(</span><span class="n">premiered</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="null">
-<h2><span class="section-number">1.1.8. </span>NULL<a class="headerlink" href="#null" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">1.1.6.3. </span>NULL<a class="headerlink" href="#null" title="Permalink to this heading">#</a></h3>
 <p>Tuples can have NULL values for attributes, which we need to take note of when performing queries. Generally, NULLs do not satisfy conditions—for example, if a tuple value is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, <code class="docutils literal notranslate"><span class="pre">born</span> <span class="pre">&lt;</span> <span class="pre">2023</span></code> and <code class="docutils literal notranslate"><span class="pre">born</span> <span class="pre">&gt;=</span> <span class="pre">2023</span></code> will both evaluate to <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>. This leads to some unintuitive behavior, for example:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">born</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">born</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2023</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">born</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2023</span><span class="p">;</span>
 </pre></div>
@@ -582,8 +581,9 @@ must either be part of the GROUP BY or be aggregated.</p>
 <p>For aggregations, <code class="docutils literal notranslate"><span class="pre">NULL</span></code> values are not involved. For example, the average of a column will be the average of all the non-null values in that column. However, if all the values in the column are <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, the aggregation will also return <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
 </section>
 <section id="case">
-<h2><span class="section-number">1.1.9. </span>CASE<a class="headerlink" href="#case" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">1.1.6.4. </span>CASE<a class="headerlink" href="#case" title="Permalink to this heading">#</a></h3>
 <p>The CASE keyword enables condigional expressions. We refer you to the PostgreSQL docs <a class="reference external" href="https://www.postgresql.org/docs/current/functions-conditional.html">Section 9.18</a> for more information.</p>
+</section>
 </section>
 </section>
 
@@ -661,11 +661,11 @@ must either be part of the GROUP BY or be aggregated.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#having">1.1.5. HAVING</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#symbols-and-additional-keywords">1.1.6. Symbols and Additional Keywords</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-asterisk">1.1.6.1. The asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cast">1.1.6.2. CAST</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#null">1.1.6.3. NULL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case">1.1.6.4. CASE</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cast">1.1.7. CAST</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#null">1.1.8. NULL</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case">1.1.9. CASE</a></li>
 </ul>
   </nav></div>
 

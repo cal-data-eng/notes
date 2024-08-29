@@ -177,14 +177,14 @@ The above query effectively gets all tuple and all attributes from the `Title` t
 * `WHERE`: Applies the all-pass filter onto tuples
 * `SELECT *`: Gets all attributes
 
-## CAST
+### CAST
 Casting converts one attribute type to another. For example, to cast the `premiered` attribute from string type to integer:
 
 ```sql
 CAST(premiered AS INTEGER)
 ```
 
-## NULL
+### NULL
 
 Tuples can have NULL values for attributes, which we need to take note of when performing queries. Generally, NULLs do not satisfy conditions—for example, if a tuple value is `NULL`, `born < 2023` and `born >= 2023` will both evaluate to `FALSE`. This leads to some unintuitive behavior, for example:
 
@@ -200,6 +200,6 @@ SELECT born FROM people WHERE born < 2023 OR born IS NULL;
 
 For aggregations, `NULL` values are not involved. For example, the average of a column will be the average of all the non-null values in that column. However, if all the values in the column are `NULL`, the aggregation will also return `NULL`.
 
-## CASE
+### CASE
 
 The CASE keyword enables condigional expressions. We refer you to the PostgreSQL docs [Section 9.18](https://www.postgresql.org/docs/current/functions-conditional.html) for more information.
