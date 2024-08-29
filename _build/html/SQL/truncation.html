@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Overview &#8212; Data 101 Course Notes</title>
+    <title>1.3. Truncating Relations &#8212; Data 101 Course Notes</title>
   
   
   
@@ -18,47 +18,49 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'overview';</script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. SQL Overview" href="SQL/index.html" />
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'SQL/truncation';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="1.2. String Manipulation" href="strings.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -94,7 +96,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="search.html"
+      action="../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -120,8 +122,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -138,7 +138,7 @@
 
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="../overview.html">
   
   
   
@@ -149,8 +149,8 @@
       
     
     
-    <img src="_static/data101-logo.png" class="logo__image only-light" alt="Data 101 Course Notes - Home"/>
-    <script>document.write(`<img src="_static/data101-logo.png" class="logo__image only-dark" alt="Data 101 Course Notes - Home"/>`);</script>
+    <img src="../_static/data101-logo.png" class="logo__image only-light" alt="Data 101 Course Notes - Home"/>
+    <script>document.write(`<img src="../_static/data101-logo.png" class="logo__image only-dark" alt="Data 101 Course Notes - Home"/>`);</script>
   
   
 </a></div>
@@ -169,18 +169,18 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../overview.html">
                     Overview
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">SQL</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="SQL/index.html">1. SQL Overview</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="SQL/review.html">1.1. SQL Review</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SQL/strings.html">1.2. String Manipulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SQL/truncation.html">1.3. Truncating Relations</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">1. SQL Overview</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="review.html">1.1. SQL Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strings.html">1.2. String Manipulation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.3. Truncating Relations</a></li>
 </ul>
 </li>
 </ul>
@@ -254,7 +254,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Foverview.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FSQL/truncation.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -284,7 +284,7 @@
       
       
       
-      <li><a href="_sources/overview.md" target="_blank"
+      <li><a href="../_sources/SQL/truncation.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -368,7 +368,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Overview</h1>
+    <h1>Truncating Relations</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -378,10 +378,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Overview</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#course-acknowledgments">Course Acknowledgments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limit-and-offset">1.3.1. LIMIT and OFFSET</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">1.3.2. Sampling</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -392,33 +391,44 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="overview">
-<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h1>
-<p>This is an in-progress <strong>notes repository</strong> for Data 101: Data Engineering, UC Berkeley (<a class="reference external" href="https://data101.org/">Data 101 homepage</a>).</p>
-<p>This repository is updated semi-weekly and is meant to be used <em>in addition to</em> lecture. In other words, these notes contain core concepts for reference, whereas lecture contains activities and demos for internalizing the concepts.</p>
-<p>This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out <a class="reference external" href="https://jupyterbook.org">the Jupyter Book documentation</a> for more information.</p>
-<p>Chapters are bundled by topic, not by lecture number. This means that content can appear out of order compared to what is presented in lecture. We will try to indicate this where possible.</p>
-<p>Navigate with the sidebar or with the links below:</p>
-<div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">SQL</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="SQL/index.html">1. SQL Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="SQL/review.html">1.1. SQL Review</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SQL/strings.html">1.2. String Manipulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SQL/truncation.html">1.3. Truncating Relations</a></li>
-</ul>
-</li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="truncating-relations">
+<h1><span class="section-number">1.3. </span>Truncating Relations<a class="headerlink" href="#truncating-relations" title="Permalink to this heading">#</a></h1>
+<p><strong>Last updated</strong>: August 27, 2024</p>
+<p>Sometimes you may want just a portion of rows generated by a query.</p>
+<section id="limit-and-offset">
+<h2><span class="section-number">1.3.1. </span>LIMIT and OFFSET<a class="headerlink" href="#limit-and-offset" title="Permalink to this heading">#</a></h2>
+<p>Sometimes we want to limit the result to a few tuples via <code class="docutils literal notranslate"><span class="pre">LIMIT</span> <span class="pre">&lt;val&gt;</span></code>.
+For example, say we want to order Stops by descending age, return top
+15:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>SELECT *
+FROM Stops
+ORDER BY age DESC LIMIT 15;
+</pre></div>
 </div>
+<p>Sometimes we want to start the output at a particular point via
+<code class="docutils literal notranslate"><span class="pre">OFFSET</span> <span class="pre">&lt;val&gt;</span></code>. For example, say we want to order Stops by descending
+age, return positions 11 to 15:</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="course-acknowledgments">
-<h1>Course Acknowledgments<a class="headerlink" href="#course-acknowledgments" title="Permalink to this heading">#</a></h1>
-<p>The content and structure of Data Engineering have been designed and developed over the years thanks to many dedicated faculty and instructors at UC Berkeley.</p>
-<p>Valuable and essential instructional contributors (alphabetical order): Joe Hellerstein, Lakshya Jain, Aditya Parameswaran, and Lisa Yan.</p>
-<p>Course notes in particular were developed over many semesters by many teaching assistants. Thank you!!</p>
+<section id="sampling">
+<h2><span class="section-number">1.3.2. </span>Sampling<a class="headerlink" href="#sampling" title="Permalink to this heading">#</a></h2>
+<p>We can also <em>sample</em> tuples, or select a subset of tuples. This is
+desirable when the original dataset might be too large, and you want to
+experiment quickly before running operations on the full dataset. There
+are 3 sampling methods discussed in this class:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">Table</span> <span class="pre">ORDER</span> <span class="pre">BY</span> <span class="pre">RANDOM()</span> <span class="pre">LIMIT</span> <span class="pre">N</span></code>: randomly sorts the
+rows of the table and takes the first <span class="math notranslate nohighlight">\(n\)</span> rows.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">Table</span> <span class="pre">TABLESAMPLE</span> <span class="pre">BERNOULLI(percentage</span> <span class="pre">p)</span></code>: takes a
+<span class="math notranslate nohighlight">\(p\%\)</span> uniform random sample based on flipping a p%-probability coin</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">Table</span> <span class="pre">TABLESAMPLE</span> <span class="pre">SYSTEM(percentage</span> <span class="pre">p)</span></code>: tuples are
+grouped in pages on disk, so <span class="math notranslate nohighlight">\(p\%\)</span> of pages are uniformly randomly
+selected</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">RANDOM</span></code> is expensive for large tables, due to the sorting of all the
+rows. While <code class="docutils literal notranslate"><span class="pre">BERNOULLI</span></code> is faster than <code class="docutils literal notranslate"><span class="pre">RANDOM</span></code>, it is slower than
+<code class="docutils literal notranslate"><span class="pre">SYSTEM</span></code>, due to more random accesses. <code class="docutils literal notranslate"><span class="pre">SYSTEM</span></code> is therefore the fastest
+method, but the least “random” due to page-level sampling.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -434,7 +444,7 @@ It does not go in-depth into any particular topic - check out <a class="referenc
         },
         kernelOptions: {
             name: "python3",
-            path: "./."
+            path: "./SQL"
         },
         predefinedOutput: true
     }
@@ -451,14 +461,14 @@ It does not go in-depth into any particular topic - check out <a class="referenc
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
-    <a class="right-next"
-       href="SQL/index.html"
-       title="next page">
+    <a class="left-prev"
+       href="strings.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>SQL Overview</p>
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1.2. </span>String Manipulation</p>
       </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -476,10 +486,9 @@ It does not go in-depth into any particular topic - check out <a class="referenc
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Overview</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#course-acknowledgments">Course Acknowledgments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limit-and-offset">1.3.1. LIMIT and OFFSET</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">1.3.2. Sampling</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
@@ -527,8 +536,8 @@ By Data 101 Staff
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

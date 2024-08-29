@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Overview &#8212; Data 101 Course Notes</title>
+    <title>Virtual View, CTE, Materialized View &#8212; Data 101 Course Notes</title>
   
   
   
@@ -18,47 +18,46 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'overview';</script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. SQL Overview" href="SQL/index.html" />
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'SQL_hidden/Views_CTEs';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -94,7 +93,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="search.html"
+      action="../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -138,7 +137,7 @@
 
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="../overview.html">
   
   
   
@@ -149,8 +148,8 @@
       
     
     
-    <img src="_static/data101-logo.png" class="logo__image only-light" alt="Data 101 Course Notes - Home"/>
-    <script>document.write(`<img src="_static/data101-logo.png" class="logo__image only-dark" alt="Data 101 Course Notes - Home"/>`);</script>
+    <img src="../_static/data101-logo.png" class="logo__image only-light" alt="Data 101 Course Notes - Home"/>
+    <script>document.write(`<img src="../_static/data101-logo.png" class="logo__image only-dark" alt="Data 101 Course Notes - Home"/>`);</script>
   
   
 </a></div>
@@ -169,18 +168,18 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../overview.html">
                     Overview
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">SQL</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="SQL/index.html">1. SQL Overview</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="SQL/review.html">1.1. SQL Review</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SQL/strings.html">1.2. String Manipulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SQL/truncation.html">1.3. Truncating Relations</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../SQL/index.html">1. SQL Overview</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../SQL/review.html">1.1. SQL Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SQL/strings.html">1.2. String Manipulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SQL/truncation.html">1.3. Truncating Relations</a></li>
 </ul>
 </li>
 </ul>
@@ -254,7 +253,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Foverview.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FSQL_hidden/Views_CTEs.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -284,7 +283,7 @@
       
       
       
-      <li><a href="_sources/overview.md" target="_blank"
+      <li><a href="../_sources/SQL_hidden/Views_CTEs.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -368,7 +367,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Overview</h1>
+    <h1>Virtual View, CTE, Materialized View</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -378,10 +377,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Overview</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#course-acknowledgments">Course Acknowledgments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-view">Virtual View</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-table-expression-cte">Common Table Expression (CTE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#materialized-view">Materialized View</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -392,33 +391,58 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="overview">
-<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h1>
-<p>This is an in-progress <strong>notes repository</strong> for Data 101: Data Engineering, UC Berkeley (<a class="reference external" href="https://data101.org/">Data 101 homepage</a>).</p>
-<p>This repository is updated semi-weekly and is meant to be used <em>in addition to</em> lecture. In other words, these notes contain core concepts for reference, whereas lecture contains activities and demos for internalizing the concepts.</p>
-<p>This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out <a class="reference external" href="https://jupyterbook.org">the Jupyter Book documentation</a> for more information.</p>
-<p>Chapters are bundled by topic, not by lecture number. This means that content can appear out of order compared to what is presented in lecture. We will try to indicate this where possible.</p>
-<p>Navigate with the sidebar or with the links below:</p>
-<div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">SQL</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="SQL/index.html">1. SQL Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="SQL/review.html">1.1. SQL Review</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SQL/strings.html">1.2. String Manipulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SQL/truncation.html">1.3. Truncating Relations</a></li>
-</ul>
-</li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="virtual-view-cte-materialized-view">
+<h1>Virtual View, CTE, Materialized View<a class="headerlink" href="#virtual-view-cte-materialized-view" title="Permalink to this heading">#</a></h1>
+<p><strong>Last updated</strong>: August 27, 2024</p>
+<section id="virtual-view">
+<h2>Virtual View<a class="headerlink" href="#virtual-view" title="Permalink to this heading">#</a></h2>
+<p>To avoid manually recreating derived tables, we can instead define a
+<strong>view</strong>, as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>CREATE VIEW CitationStops AS
+(SELECT gender, citation
+FROM Stops
+WHERE citation = True)
+</pre></div>
 </div>
+<p>In views (also known as virtual views), outputs are not stored, and any
+time a user queries the view (i.e., <code class="docutils literal notranslate"><span class="pre">CitationStops</span></code>), the output is
+computed on demand. Think of this as a variable or as a virtual relation
+that is more convenient to query than the base table.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="course-acknowledgments">
-<h1>Course Acknowledgments<a class="headerlink" href="#course-acknowledgments" title="Permalink to this heading">#</a></h1>
-<p>The content and structure of Data Engineering have been designed and developed over the years thanks to many dedicated faculty and instructors at UC Berkeley.</p>
-<p>Valuable and essential instructional contributors (alphabetical order): Joe Hellerstein, Lakshya Jain, Aditya Parameswaran, and Lisa Yan.</p>
-<p>Course notes in particular were developed over many semesters by many teaching assistants. Thank you!!</p>
+<section id="common-table-expression-cte">
+<h2>Common Table Expression (CTE)<a class="headerlink" href="#common-table-expression-cte" title="Permalink to this heading">#</a></h2>
+<p>Sometimes, we may only want to create a view and query it once—as part
+of breaking down a larger SQL query. We can define an inline view or
+<strong>common table expression</strong> (CTE), as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>WITH CitationStops AS
+(SELECT gender, citation
+FROM Stops
+WHERE citation = True)
+SELECT * FROM CitationStops
+</pre></div>
+</div>
+<p>Like virtual views, CTEs are computed on demand. But unlike virtual
+views, their lifetime is restricted to the query.</p>
+</section>
+<section id="materialized-view">
+<h2>Materialized View<a class="headerlink" href="#materialized-view" title="Permalink to this heading">#</a></h2>
+<p>On the flip side, suppose we want to create a view and query it a lot.
+The naive method of creating a view might be slow because the view is
+computed on demand every time a query is run. To solve this issue, we
+can define a <strong>materialized view</strong>, as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>CREATE MATERIALIZED VIEW CitationStops AS
+(SELECT gender, citation
+FROM Stops
+WHERE citation = True)
+</pre></div>
+</div>
+<p>In materialized views, outputs are stored just like they are in regular
+tables (but not like in virtual views). Materialized views are typically
+automatically updated as base tables change, but since they must be
+rematerialized frequently, they might add unnecessary overhead to base
+table updates. So, data engineers (you!) must be thoughtful about what
+views to keep materialized and what views to keep virtual.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -434,7 +458,7 @@ It does not go in-depth into any particular topic - check out <a class="referenc
         },
         kernelOptions: {
             name: "python3",
-            path: "./."
+            path: "./SQL_hidden"
         },
         predefinedOutput: true
     }
@@ -451,15 +475,6 @@ It does not go in-depth into any particular topic - check out <a class="referenc
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
-    <a class="right-next"
-       href="SQL/index.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>SQL Overview</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -476,10 +491,10 @@ It does not go in-depth into any particular topic - check out <a class="referenc
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Overview</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#course-acknowledgments">Course Acknowledgments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-view">Virtual View</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-table-expression-cte">Common Table Expression (CTE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#materialized-view">Materialized View</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
@@ -527,8 +542,8 @@ By Data 101 Staff
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

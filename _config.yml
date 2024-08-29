@@ -3,7 +3,7 @@
 
 title: Data 101 Course Notes
 author: Data 101 Staff
-logo: elephont.png
+logo: data101-logo.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html

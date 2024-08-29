@@ -1,7 +1,7 @@
 (structure:index)=
-# SQL
+# SQL Overview
 
-A general overview of PostgreSQL.
+A general overview of PostgreSQL-flavored SQL.
 
 ```{tableofcontents}
 ```
