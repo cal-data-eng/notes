@@ -410,17 +410,79 @@ substitute for one or more characters in a pattern string:</p>
 <section id="advanced-string-functionality">
 <h2><span class="section-number">1.2.2. </span>Advanced string functionality<a class="headerlink" href="#advanced-string-functionality" title="Permalink to this heading">#</a></h2>
 <p>There are many string manipulation functions, such as <code class="docutils literal notranslate"><span class="pre">substring</span></code>,
-<code class="docutils literal notranslate"><span class="pre">strpos</span></code> (starting position of a substring), concatenation and more. For
-example, the <code class="docutils literal notranslate"><span class="pre">substring</span></code> function extracts the substring from a string
+<code class="docutils literal notranslate"><span class="pre">STRPOS</span></code> (starting position of a substring), concatenation (<code class="docutils literal notranslate"><span class="pre">||</span></code>), and more. For
+example, the <code class="docutils literal notranslate"><span class="pre">SUBSTRING</span></code> function extracts the substring from a string
 with start and count parameters.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Unlike in Python, SQL strings are indexed from 1.</p>
 </div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    ?column? | strpos | substring
+-------------+--------+----------
+ Hello World | 2      |       ell
+</pre></div>
+</div>
 </section>
 <section id="regexp-replace">
 <h2><span class="section-number">1.2.3. </span>REGEXP_REPLACE<a class="headerlink" href="#regexp-replace" title="Permalink to this heading">#</a></h2>
-<p>PostgreSQL can also handle regular expressions, e.g., with <code class="docutils literal notranslate"><span class="pre">REGEXP_REPLACE</span></code>.</p>
+<p>PostgreSQL can also handle (POSIX) regular expressions, e.g., with <code class="docutils literal notranslate"><span class="pre">REGEXP_REPLACE</span></code>.</p>
+<p>General syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">REGEXP_REPLACE</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">replacement</span><span class="p">[,</span> <span class="n">flags</span><span class="p">])</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code>: source string, or column name, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pattern</span></code>: POSIX regular expression</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">replacement</span></code>: replacement string when pattern matches</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: Optional parameter. Pass in <code class="docutils literal notranslate"><span class="pre">g</span></code> for to process all matches. See PostgresSQL docs <a class="reference external" href="https://www.postgresql.org/docs/current/functions-matching.html#POSIX-EMBEDDED-OPTIONS-TABLE">Table 9.24</a> for the full list of options.</p></li>
+</ul>
+<p>This follows standard POSIX regular expressions, and therefore you can use capture groups in both <code class="docutils literal notranslate"><span class="pre">pattern</span></code> (with parentheses to denote the subpattern to capture) and <code class="docutils literal notranslate"><span class="pre">replacement</span></code> (with <code class="docutils literal notranslate"><span class="pre">\&lt;number&gt;</span></code>, where number is the one-indexed index of the capture group.</p>
+<p>To refresh on regular expressions, here are some examples:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">source</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">pattern</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">replacement</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">flags</span></code></p></th>
+<th class="head"><p>Return value</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'Hannah</span> <span class="pre">Montana'</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">'(.*)</span> <span class="pre">(.*)'</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">'\1')</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">'Hannah'</span></code></p></td>
+<td><p>Extract the first name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'Hannah</span> <span class="pre">Montana'</span></code></p></td>
+<td><p><code class="docutils literal notranslate"> <span class="pre">'(.*)</span> <span class="pre">(.*)'</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">'\2,</span> <span class="pre">\1')</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">'Montana,</span> <span class="pre">Hannah'</span></code></p></td>
+<td><p>Extract last name, first name.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'Phone</span> <span class="pre">Number</span> <span class="pre">510</span> <span class="pre">642</span> <span class="pre">3214'</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">'[a-zA-Z</span> <span class="pre">]'</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">''</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">hone</span> <span class="pre">Number</span> <span class="pre">510</span> <span class="pre">642</span> <span class="pre">3214</span></code></p></td>
+<td><p>Remove <strong>first</strong> alphanumeric character or space.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'Phone</span> <span class="pre">Number</span> <span class="pre">510</span> <span class="pre">642</span> <span class="pre">3214'</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">'[a-zA-Z</span> <span class="pre">]'</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">''</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">'g'</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">5106423214</span></code></p></td>
+<td><p>Remove <strong>all</strong> alphanumeric characters or spaces.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Here are some example queries:</p>
+<p>Extract first and last name of all people:</p>
+<p>Count number of first names</p>
+<p>Compute length of longest first name</p>
 </section>
 </section>
 

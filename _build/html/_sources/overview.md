@@ -7,12 +7,6 @@ This is an in-progress **notes repository** for Data 101: Data Engineering, UC B
 
 This repository is updated semi-weekly and is meant to be used *in addition to* lecture. In other words, these notes contain core concepts for reference, whereas lecture contains activities and demos for internalizing the concepts.
 
-
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
-
 ## Table of Contents
 
 Chapters are bundled by topic, not by lecture number. This means that content can appear out of order compared to what is presented in lecture. We will try to indicate this where possible.

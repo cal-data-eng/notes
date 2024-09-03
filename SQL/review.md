@@ -62,7 +62,7 @@ title (title_id String, ordering Integer, title String,
 
 An **instance** is a specific instantiation of the relation, i.e., tuples with specific values. This word is used less often, but we define it here to draw attention to the idea that a relation could hold different tuples over time.
 
-In general, think relation as a table of data whose columns (i.e., attributes) are organized according to a specific relational schema. You will hear "relation" and "table" used interchangeably, though the forme ris more specific. A **relational database** is a collection of relations, which are often related to each other according to some **database schema** or **relational schema**.
+In general, think relation as a table of data whose columns (i.e., attributes) are organized according to a specific relational schema. You will hear "relation" and "table" used interchangeably, though the former is more specific (as we will see when we discuss Relational Algebra). A **relational database** is a collection of relations, which are often related to each other according to some **database schema** or **relational schema**.
 
 ## SELECT-FROM-WHERE (SFW)
 
@@ -80,7 +80,40 @@ Remember---SQL is a declarative language! Instead of evaluating the SQL query fr
 1. `WHERE` clause: filters for the matching tuples
 1. `SELECT` clause: filters for the specified attributes.
 
-## Aggregations and Grouping
+### SELECT list of expressions
+
+SELECT can employ:
+* Renamed attributes with AS
+* Expressions
+* Case statements
+* Many more functions (string, date-time…)
+
+### FROM clause
+
+The FROM clause can include either table names separated by commas (implying a cross join, or cross product of all tuples), or expressions involving table JOINs. We cover JOINs in a separate section.
+
+### WHERE clause
+
+The WHERE clause can include logical operators (e.g., AND, OR, NOT) or comparison operators (=, >=, <> equivalently !=, etc.). Postgres documentation:
+* [Section 9.1](https://www.postgresql.org/docs/current/functions-logical.html)
+* [Section 9.2](https://www.postgresql.org/docs/current/functions-comparison.html)
+
+The attributes used in the WHERE clause do not necessarily need to be included in the SELECT list, but they should be discoverable from the tables (or their aliases, if they exist) identified in the `FROM` clause.
+
+**Scalar subquery**: We discuss subqueries in much more detail in a separate section, but note that you can use SELECT-FROM-WHERE subqueries in the WHERE condition, provided that they are **scalar**. A scalar subquery returns a single value (e.g., a single tuple with a single attribute value) and can subsequently be treated as a scalar in a larger expression.
+
+To find the ids of stops with the oldest individuals:
+
+```
+SELECT s1.id
+FROM stops AS s1
+WHERE s1.age >=
+	(SELECT MAX(age) FROM stops AS s2);
+```
+
+Note that we alias the second stops relation.
+
+## Aggregations
 
 We can also **aggregate** a column in a `SELECT` clause according to a particular aggregation function: `SUM`, `MIN`, `MAX`, `AVG`, `COUNT`, etc.
 
@@ -108,7 +141,26 @@ SELECT COUNT(*) FROM stops;
 
 returns the number of tuples in the Stops relation. 
 
-### Grouping
+### Aggregation Examples
+
+Aggregation expression can include SQL keywords and even subqueries (we discuss subqueries in much more detail in a separate section).
+
+**NULL** values are not involved in aggregation:
+The below query counts total rows, counts non-null ages, and computes average age. The first two attributes could have different values if there are NULL ages.
+
+```sql
+SELECT COUNT(*), COUNT(age), AVG(age)
+FROM Stops;
+```
+
+**DISTINCT** removes duplicates prior to aggregation. [Read more](https://www.postgresql.org/about/featurematrix/detail/392/) about how NULL values are considered.
+
+```sql
+SELECT COUNT(DISTINCT location)
+FROM Stops;
+```
+
+## Grouping
 
 In some cases, we may want to compute an aggregate for each "group" of
 tuples as opposed to an overall COUNT, MAX or SUM. To do so, we add a
@@ -145,7 +197,7 @@ for West Oakland and Rockridge individually:
 
 In the above query, we compute the averages using a `CASE` statement.
 
-## HAVING
+### HAVING
 
 Suppose we want to filter a GROUP BY on some condition. We can use a
 HAVING clause, which typically precedes a GROUP BY. The HAVING condition
@@ -177,16 +229,49 @@ The above query effectively gets all tuple and all attributes from the `Title` t
 * `WHERE`: Applies the all-pass filter onto tuples
 * `SELECT *`: Gets all attributes
 
-### CAST
-Casting converts one attribute type to another. For example, to cast the `premiered` attribute from string type to integer:
+It can also be used in aggregations to denote no explicit parameter, e.g., `COUNT(*)`.
+
+Read more in the PostgreSQL docs, [Section 4.1.4](https://www.postgresql.org/docs/current/sql-syntax-lexical.html#SQL-SYNTAX-SPECIAL-CHARS).
+
+### AS
+
+The AS keyword serves several purposes. In the SELECT and FROM clauses, it functions as a renamer, which creates aliases for attributes or tables, respectively. 
 
 ```sql
-CAST(premiered AS INTEGER)
+SELECT
+  a.title_id AS title_id,
+  a.title AS aka_title,
+  t.title AS orig_title
+FROM
+  akas AS a,
+  titles AS t
 ```
+
+As a syntactic shortcut, the AS keyword can sometimes be omitted, as above in the FROM clause. See the "[Omitting the AS keyword](https://www.postgresql.org/docs/current/sql-select.html)" section of the Postgres documentation. Based on the [Mozilla SQL style guide](https://docs.telemetry.mozilla.org/concepts/sql_style), best practices are to prefer explicit use of AS.
+
+Depending on when/where you create an alias using AS, you may need to use that alias throughout the query:
+* In the FROM clause, the table alias completely hides the actual name of the table, and the alias must be used throughout in WHERE, SELECT, etc.
+* In the SELECT clause, the alias is not created until the SELECT list of expressions is computed.
+* For more, read the official [SELECT SQL Command documentation](https://www.postgresql.org/docs/current/sql-select.html#SQL-SELECT-LIST) and search for "alias".
+
+### CAST
+Casting converts one attribute type to another. For example, suppose that `runtime_minutes` were an integer, and we wanted to compute `runtime_hours`, with reasonable precision. Also suppose that `premiered` was a string, but should be interpreted as an integer `year`:
+
+```sql
+SELECT primary_title, type,
+     CAST(premiered AS INTEGER) AS release_year,
+     runtime_minutes,
+     CAST(runtime_minutes AS
+         DOUBLE PRECISION)/60 AS
+         runtime_hours
+FROM titles;
+```
+
+See [Section 15](https://www.postgresql.org/docs/15/datatype.html) of the Postgres documentation for Postgres data types.
 
 ### NULL
 
-Tuples can have NULL values for attributes, which we need to take note of when performing queries. Generally, NULLs do not satisfy conditions—for example, if a tuple value is `NULL`, `born < 2023` and `born >= 2023` will both evaluate to `FALSE`. This leads to some unintuitive behavior, for example:
+Tuples can have NULL values for attributes (e.g., if missing, inapplicable to the current tuple, or unknown), which we need to take note of when performing queries. SQL uses a three-logical system, meaning that NULLs do not satisfy boolean conditions. For example, if a tuple value is `NULL`, `born < 2023` and `born >= 2023` will both evaluate to `FALSE`. This leads to some unintuitive behavior, for example:
 
 ```sql
 SELECT born FROM people WHERE born < 2023 OR born >= 2023;
@@ -198,8 +283,28 @@ The above query will return all tuples that don't have a `NULL` born value, not 
 SELECT born FROM people WHERE born < 2023 OR born IS NULL;
 ```
 
-For aggregations, `NULL` values are not involved. For example, the average of a column will be the average of all the non-null values in that column. However, if all the values in the column are `NULL`, the aggregation will also return `NULL`.
+For aggregations, `NULL` values are generally excluded. For example, the average of a column will be the average of all the non-null values in that column. However, if all the values in the column are `NULL`, the aggregation will also return `NULL`.
+
+Read more about the [three-valued logic system of SQL](https://www.postgresql.org/docs/current/functions-logical.html).
 
 ### CASE
 
-The CASE keyword enables condigional expressions. We refer you to the PostgreSQL docs [Section 9.18](https://www.postgresql.org/docs/current/functions-conditional.html) for more information.
+The CASE keyword enables conditional expressions. We refer you to the PostgreSQL docs [Section 9.18](https://www.postgresql.org/docs/current/functions-conditional.html) for more information.
+
+### DISTINCT
+
+The DISTINCT keyword removes duplicate rows from the current result set. The following query returns all unique `(title, title_id)` tuples from the `titles` table:
+
+```sql
+SELECT DISTINCT primary_title, title_id
+FROM titles;
+```
+
+DISTINCT may also be used in aggregation. The following counts all distinct years by removing duplicates prior to aggregation:
+
+```sql
+SELECT COUNT(DISTINCT premiered)
+FROM titles;
+```
+
+To specify distinctness on a subset of attributes, see the [DISTINCT Postgres documentation](https://www.postgresql.org/docs/16/sql-select.html#SQL-DISTINCT).
