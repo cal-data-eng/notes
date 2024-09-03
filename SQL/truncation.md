@@ -20,6 +20,10 @@ age, return positions 11 to 15:
 
 ## Sampling
 
+```{note}
+[09/02/2024] The full section is here for your convenience, but for Lectures 02 / Project 1 you are likely only expected to know the first option. We will learn more about `TABLESAMPLE` around Lecture 07 once you learn memory structures.
+```
+
 We can also *sample* tuples, or select a subset of tuples. This is
 desirable when the original dataset might be too large, and you want to
 experiment quickly before running operations on the full dataset. There
@@ -35,7 +39,7 @@ are 3 sampling methods discussed in this class:
     grouped in pages on disk, so $p\%$ of pages are uniformly randomly
     selected
 
-`RANDOM` is expensive for large tables, due to the sorting of all the
-rows. While `BERNOULLI` is faster than `RANDOM`, it is slower than
+`RANDOM` is expensive for large tables, because we must first compute all resulting rows, then sort all the rows before returning a truncated subset.
+While `BERNOULLI` is faster than `RANDOM`, it is slower than
 `SYSTEM`, due to more random accesses. `SYSTEM` is therefore the fastest
 method, but the least "random" due to page-level sampling.

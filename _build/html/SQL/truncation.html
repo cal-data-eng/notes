@@ -411,6 +411,10 @@ age, return positions 11 to 15:</p>
 </section>
 <section id="sampling">
 <h2><span class="section-number">1.3.2. </span>Sampling<a class="headerlink" href="#sampling" title="Permalink to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>[09/02/2024] The full section is here for your convenience, but for Lectures 02 / Project 1 you are likely only expected to know the first option. We will learn more about <code class="docutils literal notranslate"><span class="pre">TABLESAMPLE</span></code> around Lecture 07 once you learn memory structures.</p>
+</div>
 <p>We can also <em>sample</em> tuples, or select a subset of tuples. This is
 desirable when the original dataset might be too large, and you want to
 experiment quickly before running operations on the full dataset. There
@@ -424,8 +428,8 @@ rows of the table and takes the first <span class="math notranslate nohighlight"
 grouped in pages on disk, so <span class="math notranslate nohighlight">\(p\%\)</span> of pages are uniformly randomly
 selected</p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">RANDOM</span></code> is expensive for large tables, due to the sorting of all the
-rows. While <code class="docutils literal notranslate"><span class="pre">BERNOULLI</span></code> is faster than <code class="docutils literal notranslate"><span class="pre">RANDOM</span></code>, it is slower than
+<p><code class="docutils literal notranslate"><span class="pre">RANDOM</span></code> is expensive for large tables, because we must first compute all resulting rows, then sort all the rows before returning a truncated subset.
+While <code class="docutils literal notranslate"><span class="pre">BERNOULLI</span></code> is faster than <code class="docutils literal notranslate"><span class="pre">RANDOM</span></code>, it is slower than
 <code class="docutils literal notranslate"><span class="pre">SYSTEM</span></code>, due to more random accesses. <code class="docutils literal notranslate"><span class="pre">SYSTEM</span></code> is therefore the fastest
 method, but the least “random” due to page-level sampling.</p>
 </section>
