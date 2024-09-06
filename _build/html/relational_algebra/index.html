@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Relational Algebra &#8212; Data 101 Course Notes</title>
+    <title>Relational Algebra Overview &#8212; Data 101 Course Notes</title>
   
   
   
@@ -55,9 +55,7 @@
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'RA/RA';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'relational_algebra/index';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -255,7 +253,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FRA/RA.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Frelational_algebra/index.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -285,7 +283,7 @@
       
       
       
-      <li><a href="../_sources/RA/RA.md" target="_blank"
+      <li><a href="../_sources/relational_algebra/index.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -356,9 +354,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -369,28 +365,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Relational Algebra</h1>
+    <h1>Relational Algebra Overview</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Relational Algebra</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Relational Algebra</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-selection-renaming">Projection, Selection, Renaming</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-product">Cross-Product</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-operations">Set Operations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derived-operations">Derived Operations</a></li>
-</ul>
-</li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -400,91 +379,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="relational-algebra">
-<h1>Relational Algebra<a class="headerlink" href="#relational-algebra" title="Permalink to this heading">#</a></h1>
-<p><strong>Last updated</strong>: September 5, 2024</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
-<p>In the last note, we briefly touched on the relational data model and
-introduced some basic SQL syntax in the <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">FROM</span> <span class="pre">WHERE</span></code> format. In
-this note, we’ll revisit the relational data model in more depth, focus
-on common relational algebra operations, and see some more advanced SQL
-commands.</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>Relational Algebra<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
-<p>The operations that help us transform relations are known as relational
-algebra. A set is an unordered collection with no duplicates. Since a
-relation has a set of attributes and a set of tuples, we can reorder
-both and not change the relation. In lecture, we covered set operations,
-such as union and difference. But let’s first focus on unary operators:
-Operators that take in exactly one operand, a relation <span class="math notranslate nohighlight">\(R\)</span>, and output
-the relation <span class="math notranslate nohighlight">\(S\)</span>.</p>
-<section id="projection-selection-renaming">
-<h2>Projection, Selection, Renaming<a class="headerlink" href="#projection-selection-renaming" title="Permalink to this heading">#</a></h2>
-<p>Suppose we have relations <span class="math notranslate nohighlight">\(R\)</span> and <span class="math notranslate nohighlight">\(S\)</span>, where each relation is a set of
-tuples as previously defined. The <strong>projection</strong> operator returns
-columns specified for all tuples in a relation. We use the notation
-<span class="math notranslate nohighlight">\(\pi_{A_1, A_2, \dots, A_n}(R)
-\)</span>to represent values for columns <span class="math notranslate nohighlight">\(A_1, A_2, \dots, A_n\)</span> in <span class="math notranslate nohighlight">\(R\)</span>.</p>
-<p>The <strong>selection</strong> operator selects or returns all tuples that satisfy
-some condition; in other words, it keeps only rows that satisfy some
-condition. We use the notation <span class="math notranslate nohighlight">\(\sigma_c(R)\)</span> to represent the selection
-of tuples in <span class="math notranslate nohighlight">\(R\)</span> that satisfy condition <span class="math notranslate nohighlight">\(c\)</span>.</p>
-<p>We could also perform a <strong>renaming</strong> operation, where we change the
-schema of a relation. This operator can rename two types of things:
-attributes, and/or the relation name itself. To rename attributes, we
-denote this as either
-<span class="math notranslate nohighlight">\(\rho_{S(A_{i1} \rightarrow B_{i1}, \dots, A_{in} \rightarrow B_{in})}(R)\)</span>,
-where <span class="math notranslate nohighlight">\(R\)</span> is the input relation and <span class="math notranslate nohighlight">\(S\)</span> is the output relation, or by
-relisting all attributes in the schema, while renaming certain columns.
-We will cover renaming relations in a few lectures. Projection and
-renaming changes the metadata (schema), while selection does not.</p>
-<div class="example docutils">
-<p>Say we want to rename two columns in the people relation, born to birth
-and died to death, respectively. We express this as either:
-<span class="math notranslate nohighlight">\(\rho_{Persons(person\_id, name, birth, death)}(People)\)</span> or simply
-<span class="math notranslate nohighlight">\(\rho_{Persons(born \rightarrow birth, died \rightarrow death}(People)\)</span>.</p>
-</div>
-<p>In terms of a <code class="docutils literal notranslate"><span class="pre">SFW</span></code> SQL query, the selection operator maps to <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>,
-the projection operator maps to <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, and the renaming operator maps
-to <code class="docutils literal notranslate"><span class="pre">AS</span></code>.</p>
-</section>
-<section id="cross-product">
-<h2>Cross-Product<a class="headerlink" href="#cross-product" title="Permalink to this heading">#</a></h2>
-<p>Another operation—the <strong>Cartesian product</strong>, or cross product—is a
-binary operation that associates each tuple in the left relation with
-each tuple in the right operation. We represent the Cartesian product
-between relations <span class="math notranslate nohighlight">\(R\)</span> and <span class="math notranslate nohighlight">\(S\)</span> as <span class="math notranslate nohighlight">\(R \times S\)</span>. If the schema for <span class="math notranslate nohighlight">\(R\)</span> is
-<span class="math notranslate nohighlight">\(R(A_1, A_2, \dots, A_n)\)</span> and the schema for <span class="math notranslate nohighlight">\(S\)</span> is
-<span class="math notranslate nohighlight">\(S(B_1, B_2, \dots, B_m)\)</span>, then the resulting schema for <span class="math notranslate nohighlight">\(R \times S\)</span>
-will be <span class="math notranslate nohighlight">\(R \times S (A_1, A_2, \dots, A_n, B_1, B_2, \dots, B_m)\)</span>. The
-resulting schema has <span class="math notranslate nohighlight">\(n \times m\)</span> number of rows.</p>
-</section>
-<section id="set-operations">
-<h2>Set Operations<a class="headerlink" href="#set-operations" title="Permalink to this heading">#</a></h2>
-<p>If relations are sets, then the union and difference operators work just
-like in set algebra. To <strong>union</strong> the relations (<span class="math notranslate nohighlight">\(R \cup S\)</span>), the
-relations must have the same schema, and the result of the union will
-also have the same schema as the individual relations. The result yields
-all tuples that are in <span class="math notranslate nohighlight">\(R\)</span> or in <span class="math notranslate nohighlight">\(S\)</span>, where there is one copy of each
-tuple in the output relation. <strong>Difference</strong>-ing the relations (<span class="math notranslate nohighlight">\(R - S\)</span>)
-yields tuples in <span class="math notranslate nohighlight">\(R\)</span> that are not in <span class="math notranslate nohighlight">\(S\)</span>.</p>
-</section>
-<section id="derived-operations">
-<h2>Derived Operations<a class="headerlink" href="#derived-operations" title="Permalink to this heading">#</a></h2>
-<p>Other operations can be expressed as derivations of the operations we’ve
-listed above. For example, how might you derive the intersection
-operator from union and difference operators? Moreover, joins can be
-expressed as a special case of Cartesian product and selection: the
-<strong>theta join</strong> is a Cartesian product followed by a selection, i.e.,
-<span class="math notranslate nohighlight">\(R \Join_\theta S = \sigma_\theta (R \times S)\)</span>. You can think of a
-theta join as performing the cross-product, and then removing tuples
-that don’t satisfy <span class="math notranslate nohighlight">\(\theta\)</span>; in other words, a SQL inner join. <strong>Natural
-Join</strong> is a join of two relations such that rows are matched on shared
-attributes, but without resulting in duplicate attributes.</p>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="relational-algebra-overview">
+<span id="structure-index"></span><h1>Relational Algebra Overview<a class="headerlink" href="#relational-algebra-overview" title="Permalink to this heading">#</a></h1>
+<p>A general overview of Relational Algebra (RA).</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -500,7 +397,7 @@ attributes, but without resulting in duplicate attributes.</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./RA"
+            path: "./relational_algebra"
         },
         predefinedOutput: true
     }
@@ -524,29 +421,7 @@ attributes, but without resulting in duplicate attributes.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Relational Algebra</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Relational Algebra</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-selection-renaming">Projection, Selection, Renaming</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-product">Cross-Product</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-operations">Set Operations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derived-operations">Derived Operations</a></li>
-</ul>
-</li>
-</ul>
-
-  </nav></div>
-
-</div></div>
+                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
