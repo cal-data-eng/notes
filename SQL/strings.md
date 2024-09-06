@@ -66,9 +66,9 @@ To refresh on regular expressions, here are some examples:
 
 Here are some example queries:
 
-Extract first and last name of all people:
+1. Extract first and last name of all people:
 
-```{sql}
+```sql
 SELECT REGEXP_REPLACE(name, '(.*) (.*)', '\2')
          as lastname,
        REGEXP_REPLACE(name, '(.*) (.*)', '\1')
@@ -76,8 +76,8 @@ SELECT REGEXP_REPLACE(name, '(.*) (.*)', '\2')
 FROM people;
 ```
 
-Count number of first names
-```{sql}
+2. Count number of first names
+```sql
 SELECT REGEXP_REPLACE(name, '(.*) (.*)', '\1')
          as firstname,
        COUNT(*) as countname
@@ -86,8 +86,8 @@ GROUP BY firstname
 ORDER BY countname desc;
 ```
 
-Compute length of longest first name
-```{sql}
+3. Compute length of longest first name
+```sql
 WITH firstnames AS (
     SELECT REGEXP_REPLACE(name, '(.*) (.*)', '\1')
              as firstname
@@ -95,3 +95,5 @@ WITH firstnames AS (
 SELECT MAX(LENGTH(firstname)), firstname
 FROM firstnames;
 ```
+
+
