@@ -1,5 +1,5 @@
 (structure:index)=
-# SQL Overview
+# SQL
 
 A general overview of PostgreSQL-flavored SQL.
 

@@ -12,3 +12,10 @@ parts:
       - file: SQL/review
       - file: SQL/strings
       - file: SQL/truncation
+  - caption: Relational Algebra
+    numbered: True
+    chapters:
+    - file: relational_algebra/index
+      sections:
+      - file: relational_algebra/primitives
+      - file: relational_algebra/extended

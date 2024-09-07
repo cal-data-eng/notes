@@ -58,7 +58,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'overview';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. SQL Overview" href="SQL/index.html" />
+    <link rel="next" title="1. SQL" href="SQL/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -177,10 +177,18 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">SQL</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="SQL/index.html">1. SQL Overview</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="SQL/index.html">1. SQL</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="SQL/review.html">1.1. SQL Review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SQL/strings.html">1.2. String Manipulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SQL/truncation.html">1.3. Truncating Relations</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Relational Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="relational_algebra/index.html">2. Relational Algebra</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="relational_algebra/primitives.html">2.1. Relational Algebra Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relational_algebra/extended.html">2.2. Extended RA Operators</a></li>
 </ul>
 </li>
 </ul>
@@ -378,7 +386,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a><ul class="nav section-nav flex-column">
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-acknowledgments">Course Acknowledgments</a></li>
 </ul>
             </nav>
@@ -402,10 +412,20 @@ document.write(`
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">SQL</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="SQL/index.html">1. SQL Overview</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="SQL/index.html">1. SQL</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="SQL/review.html">1.1. SQL Review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SQL/strings.html">1.2. String Manipulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SQL/truncation.html">1.3. Truncating Relations</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Relational Algebra</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="relational_algebra/index.html">2. Relational Algebra</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="relational_algebra/primitives.html">2.1. Relational Algebra Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relational_algebra/extended.html">2.2. Extended RA Operators</a></li>
 </ul>
 </li>
 </ul>
@@ -454,7 +474,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>SQL Overview</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>SQL</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -474,7 +494,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a><ul class="nav section-nav flex-column">
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-acknowledgments">Course Acknowledgments</a></li>
 </ul>
   </nav></div>
@@ -497,13 +519,6 @@ By Data 101 Staff
   
   <div class="footer-item">
     
-
-  <p class="copyright">
-    
-      © Copyright 2023.
-      <br/>
-    
-  </p>
 
   </div>
   

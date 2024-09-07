@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Extended RA Operators &#8212; Data 101 Course Notes</title>
+    <title>2.2. Extended RA Operators &#8212; Data 101 Course Notes</title>
   
   
   
@@ -55,9 +55,12 @@
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'relational_algebra/extended';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="2.1. Relational Algebra Overview" href="primitives.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -119,8 +122,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -176,10 +177,18 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">SQL</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../SQL/index.html">1. SQL Overview</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../SQL/index.html">1. SQL</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../SQL/review.html">1.1. SQL Review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../SQL/strings.html">1.2. String Manipulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../SQL/truncation.html">1.3. Truncating Relations</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Relational Algebra</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">2. Relational Algebra</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="primitives.html">2.1. Relational Algebra Overview</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.2. Extended RA Operators</a></li>
 </ul>
 </li>
 </ul>
@@ -377,7 +386,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grouping-and-aggregation">2.2.1. Grouping and Aggregation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-query-to-relational-algebra">2.2.2. SQL query to Relational Algebra</a></li>
 </ul>
             </nav>
         </div>
@@ -390,11 +400,33 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="extended-ra-operators">
-<h1>Extended RA Operators<a class="headerlink" href="#extended-ra-operators" title="Permalink to this heading">#</a></h1>
-<p><strong>Last updated</strong>: September 5, 2024</p>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
-<p>Test</p>
+<h1><span class="section-number">2.2. </span>Extended RA Operators<a class="headerlink" href="#extended-ra-operators" title="Permalink to this heading">#</a></h1>
+<p><strong>Last updated</strong>: September 6, 2024</p>
+<p>While the six primitive operators can compose many of the relational operations used in SQL and other relational data systems, you may have noticed that very few of them operate on changing the data themselves (beyond adding and removing tuples). To encompass other sorts of data operations, we turn to <strong>extended RA operators</strong>, that manipulate data values themselves, e.g., outer joins to include null values, aggregations to group data values, and so on.</p>
+<p>For now, we cover precisely one extended RA operator, the grouping/aggregation operator, <span class="math notranslate nohighlight">\(\gamma\)</span>.</p>
+<section id="grouping-and-aggregation">
+<h2><span class="section-number">2.2.1. </span>Grouping and Aggregation<a class="headerlink" href="#grouping-and-aggregation" title="Permalink to this heading">#</a></h2>
+<p>Suppose we had input relation <span class="math notranslate nohighlight">\(R\)</span> with schema <span class="math notranslate nohighlight">\((C_1, \dots, C_n)\)</span>. The output relation resulting from grouping on attributes <span class="math notranslate nohighlight">\((B_1, \dots, B_n)\)</span> where <span class="math notranslate nohighlight">\(\{B_1, \dots, B_n\} \subset \{C_1, \dots, C_n\}\)</span> and computing aggregations <span class="math notranslate nohighlight">\(agg_1, \dots, agg_k\)</span> can be written as <span class="math notranslate nohighlight">\(\gamma_{A_1, \dots, A_n, agg_1, \dots, agg_k}(R)\)</span>. By convention, the grouped attributes come first, followed by the aggregations. Yes, it’s unwieldy. Good times.</p>
+</section>
+<section id="sql-query-to-relational-algebra">
+<h2><span class="section-number">2.2.2. </span>SQL query to Relational Algebra<a class="headerlink" href="#sql-query-to-relational-algebra" title="Permalink to this heading">#</a></h2>
+<p>Suppose that we have the following query:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>SELECT a1, a2, …, an, agg1(d1), agg2(d2), …, aggp(dp)
+FROM R1, R2, …, Rk
+WHERE C
+GROUP BY b1, b2, …, bm
+HAVING H
+</pre></div>
+</div>
+<p>We could write the SQL order of execution of the above query using extended relational algebra as follows:</p>
+<p><span class="math notranslate nohighlight">\(\pi_{list} \biggl( \sigma_H \biggl( \gamma_{b1, \dots, bm, agg1(d1), \dots, aggp(dk)} \bigl( \sigma_C (R1 \times \dots Rk ) \bigr) \biggr) \biggr)\)</span>, where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(list\)</span> is the list of expressions in <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, e.g., <span class="math notranslate nohighlight">\(a1, \dots, an, agg1(d1), \dots, aggp(dp)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(agg1(d1), \dots aggp(dp)\)</span> are aggregation functions on specific attributes <span class="math notranslate nohighlight">\(d1, \dots, dp\)</span> in the cross product of <span class="math notranslate nohighlight">\(R1 \times \dots \times Rk\)</span>, and</p></li>
+<li><p><span class="math notranslate nohighlight">\(a1, \dots, an\)</span> is a subset of the grouped attributes <span class="math notranslate nohighlight">\(b1, \dots, bm\)</span>.</p></li>
+</ul>
+<p>A more formal definition of this grouping/aggregation operator is available on <a class="reference external" href="https://en.wikipedia.org/wiki/Relational_algebra#Aggregation">Wikipedia</a>, though we note that their notation is slightly different.</p>
+<p>We leave your practice of this operator to homework.</p>
 </section>
 </section>
 
@@ -428,6 +460,15 @@ document.write(`
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="primitives.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2.1. </span>Relational Algebra Overview</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -444,7 +485,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grouping-and-aggregation">2.2.1. Grouping and Aggregation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-query-to-relational-algebra">2.2.2. SQL query to Relational Algebra</a></li>
 </ul>
   </nav></div>
 
@@ -466,13 +508,6 @@ By Data 101 Staff
   
   <div class="footer-item">
     
-
-  <p class="copyright">
-    
-      © Copyright 2023.
-      <br/>
-    
-  </p>
 
   </div>
   

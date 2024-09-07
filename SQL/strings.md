@@ -1,6 +1,6 @@
 # String Manipulation
 
-**Last updated**: August 27, 2024
+**Last updated**: September 5, 2024
 
 See the Postgres docs [Section 9.7](https://www.postgresql.org/docs/current/functions-matching.html) for a more in-depth description of the below.
 
