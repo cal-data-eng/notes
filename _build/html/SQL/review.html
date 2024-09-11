@@ -385,29 +385,30 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-query-order-of-execution">1.1.1. SQL Query Order of Execution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-relational-data-model">1.1.2. The Relational Data Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-from-where-sfw">1.1.3. SELECT-FROM-WHERE (SFW)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-list-of-expressions">1.1.3.1. SELECT list of expressions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-clause">1.1.3.2. FROM clause</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-clause">1.1.3.3. WHERE clause</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postgresql">1.1.1. PostgreSQL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-query-order-of-execution">1.1.2. SQL Query Order of Execution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-relational-data-model">1.1.3. The Relational Data Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-from-where-sfw">1.1.4. SELECT-FROM-WHERE (SFW)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-list-of-expressions">1.1.4.1. SELECT list of expressions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-clause">1.1.4.2. FROM clause</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-clause">1.1.4.3. WHERE clause</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregations">1.1.4. Aggregations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-examples">1.1.4.1. Aggregation Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregations">1.1.5. Aggregations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-examples">1.1.5.1. Aggregation Examples</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grouping">1.1.5. Grouping</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#having">1.1.5.1. HAVING</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grouping">1.1.6. Grouping</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#having">1.1.6.1. HAVING</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#symbols-and-additional-keywords">1.1.6. Symbols and Additional Keywords</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-asterisk">1.1.6.1. The asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#as">1.1.6.2. AS</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cast">1.1.6.3. CAST</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#null">1.1.6.4. NULL</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case">1.1.6.5. CASE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distinct">1.1.6.6. DISTINCT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#symbols-and-additional-keywords">1.1.7. Symbols and Additional Keywords</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-asterisk">1.1.7.1. The asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#as">1.1.7.2. AS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cast">1.1.7.3. CAST</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#null">1.1.7.4. NULL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case">1.1.7.5. CASE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distinct">1.1.7.6. DISTINCT</a></li>
 </ul>
 </li>
 </ul>
@@ -431,10 +432,13 @@ document.write(`
 <li><p>Describes what rather than how</p></li>
 <li><p>It’s query-centric rather than code-centric</p></li>
 </ul>
+<section id="postgresql">
+<h2><span class="section-number">1.1.1. </span>PostgreSQL<a class="headerlink" href="#postgresql" title="Permalink to this heading">#</a></h2>
 <p>This course uses a dialect or flavor of SQL called <strong>PostgreSQL</strong> (also known as Postgres; <a class="reference external" href="https://wiki.postgresql.org/wiki/FAQ#What_is_PostgreSQL.3F_How_is_it_pronounced.3F_What_is_Postgres.3F">see pronunciation</a>). PostgreSQL is also the eponymous free, open-source <strong>database management system (DBMS)</strong> that is SQL-compliant. We’ll discuss DBMSes thoroughly throughout this course.</p>
 <p>We draw broadly from the <a class="reference external" href="https://www.postgresql.org/docs/current/index.html">PostgreSQL documentation</a> for much of the SQL syntax, conventions, and concepts in this course. When in doubt, clarify with the official documentation. If there is an inconsistency between the documentation and the course notes, please post on our course forums so we can update the course notes. Thanks!</p>
+</section>
 <section id="sql-query-order-of-execution">
-<h2><span class="section-number">1.1.1. </span>SQL Query Order of Execution<a class="headerlink" href="#sql-query-order-of-execution" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.1.2. </span>SQL Query Order of Execution<a class="headerlink" href="#sql-query-order-of-execution" title="Permalink to this heading">#</a></h2>
 <p>You have likely had some experience with other SQL dialects—perhaps duckDB, or SQLite. This note therefore starts with a quick refresher of the <strong>SQL query structure</strong>, to make for easy reference. The rest of this note follows with conceptual explanations and details.</p>
 <p>As a declarative language, SQL statements are not evaluated left-to-right, top-to-bottom.
 Instead, each SQL query is meant to read like English. The execution order, however, evaluates certain <em>clauses</em> in the query before other clauses in the query. Conceptually:</p>
@@ -465,7 +469,7 @@ whereas <code class="docutils literal notranslate"><span class="pre">HAVING</spa
 </div>
 </section>
 <section id="the-relational-data-model">
-<h2><span class="section-number">1.1.2. </span>The Relational Data Model<a class="headerlink" href="#the-relational-data-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.1.3. </span>The Relational Data Model<a class="headerlink" href="#the-relational-data-model" title="Permalink to this heading">#</a></h2>
 <p>Let’s start with terminology drawn from the <strong>relational data model</strong>.
 The relational data model is the primary abstraction of the SQL landscape.</p>
 <p>A <strong>relation</strong> is a collection of tuples, each with a predefined collection of <strong>attributes</strong>. Each attribute has a type, called a domain, which must be atomic (e.g., string or integer). The order of the tuples in a relation does not matter. Relational algebra, the theoretical foundation of SQL, assumes that relations are sets of tuples. Generally, SQL relations allow for duplicate tuples, but also does not guarantee that tuples are stored in a particular order.</p>
@@ -478,7 +482,7 @@ The relational data model is the primary abstraction of the SQL landscape.</p>
 <p>In general, think relation as a table of data whose columns (i.e., attributes) are organized according to a specific relational schema. You will hear “relation” and “table” used interchangeably, though the former is more specific (as we will see when we discuss Relational Algebra). A <strong>relational database</strong> is a collection of relations, which are often related to each other according to some <strong>database schema</strong> or <strong>relational schema</strong>.</p>
 </section>
 <section id="select-from-where-sfw">
-<h2><span class="section-number">1.1.3. </span>SELECT-FROM-WHERE (SFW)<a class="headerlink" href="#select-from-where-sfw" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.1.4. </span>SELECT-FROM-WHERE (SFW)<a class="headerlink" href="#select-from-where-sfw" title="Permalink to this heading">#</a></h2>
 <p>Let’s start simple. Below is the <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">FROM</span> <span class="pre">WHERE</span></code> (<strong>SFW</strong>) query structure, the most standard SQL query structure to extract records from a relation:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">attributes</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">tables</span>
@@ -492,7 +496,7 @@ The relational data model is the primary abstraction of the SQL landscape.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">SELECT</span></code> clause: filters for the specified attributes.</p></li>
 </ol>
 <section id="select-list-of-expressions">
-<h3><span class="section-number">1.1.3.1. </span>SELECT list of expressions<a class="headerlink" href="#select-list-of-expressions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.1.4.1. </span>SELECT list of expressions<a class="headerlink" href="#select-list-of-expressions" title="Permalink to this heading">#</a></h3>
 <p>SELECT can employ:</p>
 <ul class="simple">
 <li><p>Renamed attributes with AS</p></li>
@@ -502,11 +506,11 @@ The relational data model is the primary abstraction of the SQL landscape.</p>
 </ul>
 </section>
 <section id="from-clause">
-<h3><span class="section-number">1.1.3.2. </span>FROM clause<a class="headerlink" href="#from-clause" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.1.4.2. </span>FROM clause<a class="headerlink" href="#from-clause" title="Permalink to this heading">#</a></h3>
 <p>The FROM clause can include either table names separated by commas (implying a cross join, or cross product of all tuples), or expressions involving table JOINs. We cover JOINs in a separate section.</p>
 </section>
 <section id="where-clause">
-<h3><span class="section-number">1.1.3.3. </span>WHERE clause<a class="headerlink" href="#where-clause" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.1.4.3. </span>WHERE clause<a class="headerlink" href="#where-clause" title="Permalink to this heading">#</a></h3>
 <p>The WHERE clause can include logical operators (e.g., AND, OR, NOT) or comparison operators (=, &gt;=, &lt;&gt; equivalently !=, etc.). Postgres documentation:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.postgresql.org/docs/current/functions-logical.html">Section 9.1</a></p></li>
@@ -525,7 +529,7 @@ The relational data model is the primary abstraction of the SQL landscape.</p>
 </section>
 </section>
 <section id="aggregations">
-<h2><span class="section-number">1.1.4. </span>Aggregations<a class="headerlink" href="#aggregations" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.1.5. </span>Aggregations<a class="headerlink" href="#aggregations" title="Permalink to this heading">#</a></h2>
 <p>We can also <strong>aggregate</strong> a column in a <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> clause according to a particular aggregation function: <code class="docutils literal notranslate"><span class="pre">SUM</span></code>, <code class="docutils literal notranslate"><span class="pre">MIN</span></code>, <code class="docutils literal notranslate"><span class="pre">MAX</span></code>, <code class="docutils literal notranslate"><span class="pre">AVG</span></code>, <code class="docutils literal notranslate"><span class="pre">COUNT</span></code>, etc.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">MAX</span><span class="p">(</span><span class="n">age</span><span class="p">),</span> <span class="n">AVG</span> <span class="p">(</span><span class="n">age</span><span class="p">)</span>
 <span class="n">FROM</span> <span class="n">stops</span><span class="p">;</span>
@@ -545,7 +549,7 @@ The relational data model is the primary abstraction of the SQL landscape.</p>
 </div>
 <p>returns the number of tuples in the Stops relation.</p>
 <section id="aggregation-examples">
-<h3><span class="section-number">1.1.4.1. </span>Aggregation Examples<a class="headerlink" href="#aggregation-examples" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.1.5.1. </span>Aggregation Examples<a class="headerlink" href="#aggregation-examples" title="Permalink to this heading">#</a></h3>
 <p>Aggregation expression can include SQL keywords and even subqueries (we discuss subqueries in much more detail in a separate section).</p>
 <p><strong>NULL</strong> values are not involved in aggregation:
 The below query counts total rows, counts non-null ages, and computes average age. The first two attributes could have different values if there are NULL ages.</p>
@@ -561,7 +565,7 @@ The below query counts total rows, counts non-null ages, and computes average ag
 </section>
 </section>
 <section id="grouping">
-<h2><span class="section-number">1.1.5. </span>Grouping<a class="headerlink" href="#grouping" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.1.6. </span>Grouping<a class="headerlink" href="#grouping" title="Permalink to this heading">#</a></h2>
 <p>In some cases, we may want to compute an aggregate for each “group” of
 tuples as opposed to an overall COUNT, MAX or SUM. To do so, we add a
 <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clause after the SELECT-FROM-WHERE. For example, say we
@@ -595,7 +599,7 @@ FROM stops GROUP BY days
 </div>
 <p>In the above query, we compute the averages using a <code class="docutils literal notranslate"><span class="pre">CASE</span></code> statement.</p>
 <section id="having">
-<h3><span class="section-number">1.1.5.1. </span>HAVING<a class="headerlink" href="#having" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.1.6.1. </span>HAVING<a class="headerlink" href="#having" title="Permalink to this heading">#</a></h3>
 <p>Suppose we want to filter a GROUP BY on some condition. We can use a
 HAVING clause, which typically precedes a GROUP BY. The HAVING condition
 is applied to each group, and groups not satisfying the condition are
@@ -612,9 +616,9 @@ must either be part of the GROUP BY or be aggregated.</p>
 </section>
 </section>
 <section id="symbols-and-additional-keywords">
-<h2><span class="section-number">1.1.6. </span>Symbols and Additional Keywords<a class="headerlink" href="#symbols-and-additional-keywords" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.1.7. </span>Symbols and Additional Keywords<a class="headerlink" href="#symbols-and-additional-keywords" title="Permalink to this heading">#</a></h2>
 <section id="the-asterisk">
-<h3><span class="section-number">1.1.6.1. </span>The asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>)<a class="headerlink" href="#the-asterisk" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.1.7.1. </span>The asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>)<a class="headerlink" href="#the-asterisk" title="Permalink to this heading">#</a></h3>
 <p>The asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) is a wildcard character that selects all attributes from the table. It can be used in place of any explicit parameter. For example:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Title</span><span class="p">;</span>
@@ -630,7 +634,7 @@ must either be part of the GROUP BY or be aggregated.</p>
 <p>Read more in the PostgreSQL docs, <a class="reference external" href="https://www.postgresql.org/docs/current/sql-syntax-lexical.html#SQL-SYNTAX-SPECIAL-CHARS">Section 4.1.4</a>.</p>
 </section>
 <section id="as">
-<h3><span class="section-number">1.1.6.2. </span>AS<a class="headerlink" href="#as" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.1.7.2. </span>AS<a class="headerlink" href="#as" title="Permalink to this heading">#</a></h3>
 <p>The AS keyword serves several purposes. In the SELECT and FROM clauses, it functions as a renamer, which creates aliases for attributes or tables, respectively.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
 <span class="w">  </span><span class="n">a</span><span class="p">.</span><span class="n">title_id</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">title_id</span><span class="p">,</span>
@@ -650,7 +654,7 @@ must either be part of the GROUP BY or be aggregated.</p>
 </ul>
 </section>
 <section id="cast">
-<h3><span class="section-number">1.1.6.3. </span>CAST<a class="headerlink" href="#cast" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.1.7.3. </span>CAST<a class="headerlink" href="#cast" title="Permalink to this heading">#</a></h3>
 <p>Casting converts one attribute type to another. For example, suppose that <code class="docutils literal notranslate"><span class="pre">runtime_minutes</span></code> were an integer, and we wanted to compute <code class="docutils literal notranslate"><span class="pre">runtime_hours</span></code>, with reasonable precision. Also suppose that <code class="docutils literal notranslate"><span class="pre">premiered</span></code> was a string, but should be interpreted as an integer <code class="docutils literal notranslate"><span class="pre">year</span></code>:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">primary_title</span><span class="p">,</span><span class="w"> </span><span class="k">type</span><span class="p">,</span>
 <span class="w">     </span><span class="k">CAST</span><span class="p">(</span><span class="n">premiered</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">release_year</span><span class="p">,</span>
@@ -664,7 +668,7 @@ must either be part of the GROUP BY or be aggregated.</p>
 <p>See <a class="reference external" href="https://www.postgresql.org/docs/15/datatype.html">Section 15</a> of the Postgres documentation for Postgres data types.</p>
 </section>
 <section id="null">
-<h3><span class="section-number">1.1.6.4. </span>NULL<a class="headerlink" href="#null" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.1.7.4. </span>NULL<a class="headerlink" href="#null" title="Permalink to this heading">#</a></h3>
 <p>Tuples can have NULL values for attributes (e.g., if missing, inapplicable to the current tuple, or unknown), which we need to take note of when performing queries. SQL uses a three-logical system, meaning that NULLs do not satisfy boolean conditions. For example, if a tuple value is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, <code class="docutils literal notranslate"><span class="pre">born</span> <span class="pre">&lt;</span> <span class="pre">2023</span></code> and <code class="docutils literal notranslate"><span class="pre">born</span> <span class="pre">&gt;=</span> <span class="pre">2023</span></code> will both evaluate to <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>. This leads to some unintuitive behavior, for example:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">born</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">born</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2023</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">born</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2023</span><span class="p">;</span>
 </pre></div>
@@ -677,11 +681,11 @@ must either be part of the GROUP BY or be aggregated.</p>
 <p>Read more about the <a class="reference external" href="https://www.postgresql.org/docs/current/functions-logical.html">three-valued logic system of SQL</a>.</p>
 </section>
 <section id="case">
-<h3><span class="section-number">1.1.6.5. </span>CASE<a class="headerlink" href="#case" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.1.7.5. </span>CASE<a class="headerlink" href="#case" title="Permalink to this heading">#</a></h3>
 <p>The CASE keyword enables conditional expressions. We refer you to the PostgreSQL docs <a class="reference external" href="https://www.postgresql.org/docs/current/functions-conditional.html">Section 9.18</a> for more information.</p>
 </section>
 <section id="distinct">
-<h3><span class="section-number">1.1.6.6. </span>DISTINCT<a class="headerlink" href="#distinct" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.1.7.6. </span>DISTINCT<a class="headerlink" href="#distinct" title="Permalink to this heading">#</a></h3>
 <p>The DISTINCT keyword removes duplicate rows from the current result set. The following query returns all unique <code class="docutils literal notranslate"><span class="pre">(title,</span> <span class="pre">title_id)</span></code> tuples from the <code class="docutils literal notranslate"><span class="pre">titles</span></code> table:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">primary_title</span><span class="p">,</span><span class="w"> </span><span class="n">title_id</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">titles</span><span class="p">;</span>
@@ -761,29 +765,30 @@ must either be part of the GROUP BY or be aggregated.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-query-order-of-execution">1.1.1. SQL Query Order of Execution</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-relational-data-model">1.1.2. The Relational Data Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-from-where-sfw">1.1.3. SELECT-FROM-WHERE (SFW)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-list-of-expressions">1.1.3.1. SELECT list of expressions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-clause">1.1.3.2. FROM clause</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-clause">1.1.3.3. WHERE clause</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postgresql">1.1.1. PostgreSQL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-query-order-of-execution">1.1.2. SQL Query Order of Execution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-relational-data-model">1.1.3. The Relational Data Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-from-where-sfw">1.1.4. SELECT-FROM-WHERE (SFW)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-list-of-expressions">1.1.4.1. SELECT list of expressions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-clause">1.1.4.2. FROM clause</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-clause">1.1.4.3. WHERE clause</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregations">1.1.4. Aggregations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-examples">1.1.4.1. Aggregation Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregations">1.1.5. Aggregations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-examples">1.1.5.1. Aggregation Examples</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grouping">1.1.5. Grouping</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#having">1.1.5.1. HAVING</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grouping">1.1.6. Grouping</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#having">1.1.6.1. HAVING</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#symbols-and-additional-keywords">1.1.6. Symbols and Additional Keywords</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-asterisk">1.1.6.1. The asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#as">1.1.6.2. AS</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cast">1.1.6.3. CAST</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#null">1.1.6.4. NULL</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case">1.1.6.5. CASE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distinct">1.1.6.6. DISTINCT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#symbols-and-additional-keywords">1.1.7. Symbols and Additional Keywords</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-asterisk">1.1.7.1. The asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#as">1.1.7.2. AS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cast">1.1.7.3. CAST</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#null">1.1.7.4. NULL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case">1.1.7.5. CASE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distinct">1.1.7.6. DISTINCT</a></li>
 </ul>
 </li>
 </ul>
