@@ -11,7 +11,7 @@ In this course, we'll cover three types of data systems in this course—datafra
 *   Describes what rather than how
 *   It's query-centric rather than code-centric
 
-This course uses a dialect or flavor of SQL called **PostgreSQL** (shortened as Postgres, pronounced "POST-gress"). PostgreSQL is also the eponymous free, open-source **database management system (DBMS)** that is SQL-compliant. We'll discuss DBMSes thoroughly throughout this course.
+This course uses a dialect or flavor of SQL called **PostgreSQL** (also known as Postgres; [see pronunciation](https://wiki.postgresql.org/wiki/FAQ#What_is_PostgreSQL.3F_How_is_it_pronounced.3F_What_is_Postgres.3F)). PostgreSQL is also the eponymous free, open-source **database management system (DBMS)** that is SQL-compliant. We'll discuss DBMSes thoroughly throughout this course.
 
 ## SQL Query Order of Execution
 
