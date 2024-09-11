@@ -9,7 +9,7 @@ which provides the foundation for many data systems, such as SQL.
 
 ## Set Relational Algebra
 
-An algebra is a mathematical theory that defines formulaic operations on variables of specific domains, thereby determining mathematical properties in those domains. For example, elementary algebra defines operations on arithmetic variables, linear algebra defines operations on vectors and matrices, and set algebra defines operations on sets. **Relational algebra** algebra defines operations on **relations**. 
+An algebra is a mathematical theory that defines formulaic operations on variables of specific domains, thereby determining mathematical properties in those domains. For example, elementary algebra defines operations on arithmetic variables, linear algebra defines operations on vectors and matrices, and set algebra defines operations on sets. **Relational algebra** defines operations on **relations**. 
 
 The relational algebra theory was popularized by Edgar F. Codd's 1970 work \[1] in defining the relational model, which formed the theoretical basis for relational databases and informed the concurrent development of relational database management systems (rDBMSes).
 
@@ -82,6 +82,10 @@ each tuple in the right operand.  The output schema is therefore $(A_1, A_2, \do
 
     The difference operator outputs a relation that has the set difference of rows in $R_1$ and $R_2$. In other words, $R_1 - R_2$ contains one of every tuple that is in $R_1$ but not in $R_2$ and is the empty relation if no such tuples exist. As with unions, the input relations and output relation must share the same schema.
 
+```{note}
+Remember, relational algebra describes precise operations on relations, not tables in a database. While the SQL Standard (and consequently most DBMSs) are designed to conform to these rules and expectations, sometimes specific implementations (like PostgreSQL) will bend the rules of relational algebra for practical purposes. As an example, see the [Postgres docs on UNION](https://www.postgresql.org/docs/current/typeconv-union-case.html).
+```
+
 ## Derived Operations
 
 Other operations can be expressed as derivations of the operations we've
@@ -140,9 +144,3 @@ The below table is a brief comparison of bag RA and set RA operators. We define 
 | Difference | Subtract # of occurrences | Roughly as fast 
 | Renaming | - | - | Unchanged |
 
-
-
-
-## References
-
-\[1] E. F. Codd. 1970. A relational model of data for large shared data banks. Communications of the ACM: 13 (6), 377–387. June 1970. https://doi.org/10.1145/362384.362685

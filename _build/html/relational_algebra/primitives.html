@@ -397,7 +397,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derived-operations">2.1.5. Derived Operations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joins">2.1.6. Joins</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-relational-algebra">2.1.7. Bag Relational Algebra</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">2.1.8. References</a></li>
 </ul>
             </nav>
         </div>
@@ -418,7 +417,7 @@ this note, we’ll revisit the relational data model more formally with relation
 which provides the foundation for many data systems, such as SQL.</p>
 <section id="set-relational-algebra">
 <h2><span class="section-number">2.1.1. </span>Set Relational Algebra<a class="headerlink" href="#set-relational-algebra" title="Permalink to this heading">#</a></h2>
-<p>An algebra is a mathematical theory that defines formulaic operations on variables of specific domains, thereby determining mathematical properties in those domains. For example, elementary algebra defines operations on arithmetic variables, linear algebra defines operations on vectors and matrices, and set algebra defines operations on sets. <strong>Relational algebra</strong> algebra defines operations on <strong>relations</strong>.</p>
+<p>An algebra is a mathematical theory that defines formulaic operations on variables of specific domains, thereby determining mathematical properties in those domains. For example, elementary algebra defines operations on arithmetic variables, linear algebra defines operations on vectors and matrices, and set algebra defines operations on sets. <strong>Relational algebra</strong> defines operations on <strong>relations</strong>.</p>
 <p>The relational algebra theory was popularized by Edgar F. Codd’s 1970 work [1] in defining the relational model, which formed the theoretical basis for relational databases and informed the concurrent development of relational database management systems (rDBMSes).</p>
 <p>We will introduce relational algebra in the context of <strong>set</strong> relational algebra (set RA). This means we assume that each relation has a <strong>set</strong> of attributes (unordered, no duplicates) and an unordered <strong>set</strong> of tuples (unordered, no duplicates).
 At the conclusion of this chapter, we extend our discussion to <strong>bag</strong> RA and why operations on bags are generally preferred in rDBMSes.</p>
@@ -484,6 +483,10 @@ each tuple in the right operand.  The output schema is therefore <span class="ma
 <p>The difference operator outputs a relation that has the set difference of rows in <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_2\)</span>. In other words, <span class="math notranslate nohighlight">\(R_1 - R_2\)</span> contains one of every tuple that is in <span class="math notranslate nohighlight">\(R_1\)</span> but not in <span class="math notranslate nohighlight">\(R_2\)</span> and is the empty relation if no such tuples exist. As with unions, the input relations and output relation must share the same schema.</p>
 </li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember, relational algebra describes precise operations on relations, not tables in a database. While the SQL Standard (and consequently most DBMSs) are designed to conform to these rules and expectations, sometimes specific implementations (like PostgreSQL) will bend the rules of relational algebra for practical purposes. As an example, see the <a class="reference external" href="https://www.postgresql.org/docs/current/typeconv-union-case.html">Postgres docs on UNION</a>.</p>
+</div>
 </section>
 <section id="derived-operations">
 <h2><span class="section-number">2.1.5. </span>Derived Operations<a class="headerlink" href="#derived-operations" title="Permalink to this heading">#</a></h2>
@@ -568,10 +571,6 @@ listed above.</p>
 </tbody>
 </table>
 </section>
-<section id="references">
-<h2><span class="section-number">2.1.8. </span>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
-<p>[1] E. F. Codd. 1970. A relational model of data for large shared data banks. Communications of the ACM: 13 (6), 377–387. June 1970. <a class="reference external" href="https://doi.org/10.1145/362384.362685">https://doi.org/10.1145/362384.362685</a></p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -648,7 +647,6 @@ listed above.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derived-operations">2.1.5. Derived Operations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joins">2.1.6. Joins</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-relational-algebra">2.1.7. Bag Relational Algebra</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">2.1.8. References</a></li>
 </ul>
   </nav></div>
 
