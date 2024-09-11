@@ -13,6 +13,8 @@ In this course, we'll cover three types of data systems in this course—datafra
 
 This course uses a dialect or flavor of SQL called **PostgreSQL** (also known as Postgres; [see pronunciation](https://wiki.postgresql.org/wiki/FAQ#What_is_PostgreSQL.3F_How_is_it_pronounced.3F_What_is_Postgres.3F)). PostgreSQL is also the eponymous free, open-source **database management system (DBMS)** that is SQL-compliant. We'll discuss DBMSes thoroughly throughout this course.
 
+We draw broadly from the [PostgreSQL documentation](https://www.postgresql.org/docs/current/index.html) for much of the SQL syntax, conventions, and concepts in this course. When in doubt, clarify with the official documentation. If there is an inconsistency between the documentation and the course notes, please post on our course forums so we can update the course notes. Thanks!
+
 ## SQL Query Order of Execution
 
 You have likely had some experience with other SQL dialects---perhaps duckDB, or SQLite. This note therefore starts with a quick refresher of the **SQL query structure**, to make for easy reference. The rest of this note follows with conceptual explanations and details.
