@@ -10,13 +10,23 @@ Sometimes we want to limit the result to a few tuples via `LIMIT <val>`.
 For example, say we want to order Stops by descending age, return top
 15:
 
-    SELECT *
-    FROM Stops
-    ORDER BY age DESC LIMIT 15;
+```sql
+SELECT *
+FROM Stops
+ORDER BY age DESC LIMIT 15;
+```
 
 Sometimes we want to start the output at a particular point via
 `OFFSET <val>`. For example, say we want to order Stops by descending
 age, return positions 11 to 15:
+
+```sql
+SELECT *
+FROM Stops
+ORDER BY age DESC
+LIMIT 5
+OFFSET 10;
+```
 
 ## Sampling
 

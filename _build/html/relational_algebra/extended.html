@@ -419,7 +419,7 @@ HAVING H
 </pre></div>
 </div>
 <p>We could write the SQL order of execution of the above query using extended relational algebra as follows:</p>
-<p><span class="math notranslate nohighlight">\(\pi_{list} \biggl( \sigma_H \biggl( \gamma_{b1, \dots, bm, agg1(d1), \dots, aggp(dk)} \bigl( \sigma_C (R1 \times \dots Rk ) \bigr) \biggr) \biggr)\)</span>, where</p>
+<p><span class="math notranslate nohighlight">\(\pi_{list} \biggl( \sigma_H \biggl( \gamma_{b1, \dots, bm, agg1(d1), \dots, aggp(dp)} \bigl( \sigma_C (R1 \times \dots Rk ) \bigr) \biggr) \biggr)\)</span>, where</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(list\)</span> is the list of expressions in <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, e.g., <span class="math notranslate nohighlight">\(a1, \dots, an, agg1(d1), \dots, aggp(dp)\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(agg1(d1), \dots aggp(dp)\)</span> are aggregation functions on specific attributes <span class="math notranslate nohighlight">\(d1, \dots, dp\)</span> in the cross product of <span class="math notranslate nohighlight">\(R1 \times \dots \times Rk\)</span>, and</p></li>

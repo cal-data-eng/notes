@@ -27,7 +27,7 @@ with start and count parameters.
 Unlike in Python, SQL strings are indexed from 1.
 ```
 
-```{sql}
+```sql
 SELECT 'Hello' || 'World',
        STRPOS('Hello', 'el'),
        SUBSTRING('Hello', 2, 3);
@@ -59,8 +59,8 @@ To refresh on regular expressions, here are some examples:
 
 | `source` | `pattern` | `replacement` | `flags` | Return value | Meaning |
 | --- | --- | --- | --- | --- | --- | 
-| `'Hannah Montana'` | `'(.*) (.*)'` |`'\1')` | | `'Hannah'` | Extract the first name. |
-| `'Hannah Montana'` | ` '(.*) (.*)'` | `'\2, \1')` | | `'Montana, Hannah'` | Extract last name, first name. |
+| `'Hannah Montana'` | `'(.*) (.*)'` |`'\1'` | | `'Hannah'` | Extract the first name. |
+| `'Hannah Montana'` | ` '(.*) (.*)'` | `'\2, \1'` | | `'Montana, Hannah'` | Extract last name, first name. |
 | `'Phone Number 510 642 3214'` | `'[a-zA-Z ]'` | `''` | | `hone Number 510 642 3214` | Remove **first** alphanumeric character or space. | 
 | `'Phone Number 510 642 3214'` | `'[a-zA-Z ]'` | `''` | `'g'` | `5106423214` | Remove **all** alphanumeric characters or spaces. |
 

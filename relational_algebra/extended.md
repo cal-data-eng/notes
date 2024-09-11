@@ -23,7 +23,7 @@ HAVING H
 
 We could write the SQL order of execution of the above query using extended relational algebra as follows:
 
-$\pi_{list} \biggl( \sigma_H \biggl( \gamma_{b1, \dots, bm, agg1(d1), \dots, aggp(dk)} \bigl( \sigma_C (R1 \times \dots Rk ) \bigr) \biggr) \biggr)$, where
+$\pi_{list} \biggl( \sigma_H \biggl( \gamma_{b1, \dots, bm, agg1(d1), \dots, aggp(dp)} \bigl( \sigma_C (R1 \times \dots Rk ) \bigr) \biggr) \biggr)$, where
 
 * $list$ is the list of expressions in `SELECT`, e.g., $a1, \dots, an, agg1(d1), \dots, aggp(dp)$
 * $agg1(d1), \dots aggp(dp)$ are aggregation functions on specific attributes $d1, \dots, dp$ in the cross product of $R1 \times \dots \times Rk$, and

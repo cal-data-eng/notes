@@ -425,6 +425,11 @@ with start and count parameters.</p>
 <p class="admonition-title">Note</p>
 <p>Unlike in Python, SQL strings are indexed from 1.</p>
 </div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;World&#39;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">STRPOS</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;el&#39;</span><span class="p">),</span>
+<span class="w">       </span><span class="k">SUBSTRING</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+</pre></div>
+</div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    ?column? | strpos | substring
 -------------+--------+----------
  Hello World | 2      |       ell
@@ -459,14 +464,14 @@ with start and count parameters.</p>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'Hannah</span> <span class="pre">Montana'</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">'(.*)</span> <span class="pre">(.*)'</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">'\1')</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">'\1'</span></code></p></td>
 <td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">'Hannah'</span></code></p></td>
 <td><p>Extract the first name.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'Hannah</span> <span class="pre">Montana'</span></code></p></td>
 <td><p><code class="docutils literal notranslate"> <span class="pre">'(.*)</span> <span class="pre">(.*)'</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">'\2,</span> <span class="pre">\1')</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">'\2,</span> <span class="pre">\1'</span></code></p></td>
 <td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">'Montana,</span> <span class="pre">Hannah'</span></code></p></td>
 <td><p>Extract last name, first name.</p></td>
