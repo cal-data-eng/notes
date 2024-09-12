@@ -6,7 +6,7 @@ Indexes allow a user to perform queries that look for data matching certain char
 
 To declare an index, use the following syntax:
 ```sql
-CREATE INDEX nameIdIndex ON Actor(name,id);
+CREATE INDEX nameIdIndex ON actor(name,id);
 ```
 
 Similarly, to drop an index:
