@@ -1,3 +1,9 @@
 .*.swo
 .*.swp
 .DS_Store
+
+# JupyterBook dependencies
+_build/
+
+# environments
+env/
