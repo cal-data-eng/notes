@@ -33,7 +33,7 @@ HAVING C2;              -- 4
 ```
 
 Order of evaluation:
-1. `FROM`: Fetch the tables and compute the cross product of the relations R1, R2, … 
+1. `FROM`: Fetch the tables and compute the cross product of the relations R1, R2, …
 1. `WHERE`: For each tuple from 1, keep only those that satisfy condition C1
 1. `GROUP BY`: Create groups of tuples by A1, A2, etc. At this time, for each group, compute all aggregates needed for C2 and S (below).
 1. `HAVING`: For each group, check if condition C2 is satisfied.
@@ -86,8 +86,8 @@ Remember---SQL is a declarative language! Instead of evaluating the SQL query fr
 
 ### SELECT list of expressions
 
-SELECT can employ:
-* Renamed attributes with AS
+`SELECT` can employ:
+* Renamed attributes with `AS`
 * Expressions
 * Case statements
 * Many more functions (string, date-time…)
@@ -129,9 +129,9 @@ FROM stops;
 The above query computes the minimum and maximum values of the `age` attribute from the `stops` relation. To be more specific, the return value of the above SQL query is an unnamed relation with a single tuple; the relation schema contains two numeric types:
 
 ```
- max | avg 
+ max | avg
 -----+------
- 32  | 25.3 
+ 32  | 25.3
 
 ```
 
@@ -143,7 +143,7 @@ The precise attribute names (above, "max" and "avg") varies based on SQL flavor 
 SELECT COUNT(*) FROM stops;
 ```
 
-returns the number of tuples in the Stops relation. 
+returns the number of tuples in the Stops relation.
 
 ### Aggregation Examples
 
@@ -186,17 +186,17 @@ Postgres supports many aggregate statistics: standard deviation,
 covariance, regression slope/intercept, correlation coefficient, and
 more. Say we wanted to find the median age of stopped people:
 
-    SELECT zip, PERCENTAGE_DISC(0.5) 
-    WITHIN GROUP (ORDER BY age) 
+    SELECT zip, PERCENTAGE_DISC(0.5)
+    WITHIN GROUP (ORDER BY age)
     FROM stops
 
 We can also use more sophisticated syntax in GROUP BYs; for example, the
 following query computes the average ages of stops across various days
 for West Oakland and Rockridge individually:
 
-    SELECT days, 
-    AVG (CASE WHEN location = 'West Oakland' THEN age ELSE NULL END) AS west_oakland_avg, 
-    AVG (CASE WHEN location = 'Rockridge' THEN age ELSE NULL END) AS rockridge_avg 
+    SELECT days,
+    AVG (CASE WHEN location = 'West Oakland' THEN age ELSE NULL END) AS west_oakland_avg,
+    AVG (CASE WHEN location = 'Rockridge' THEN age ELSE NULL END) AS rockridge_avg
     FROM stops GROUP BY days
 
 In the above query, we compute the averages using a `CASE` statement.
@@ -239,7 +239,7 @@ Read more in the PostgreSQL docs, [Section 4.1.4](https://www.postgresql.org/doc
 
 ### AS
 
-The AS keyword serves several purposes. In the SELECT and FROM clauses, it functions as a renamer, which creates aliases for attributes or tables, respectively. 
+The AS keyword serves several purposes. In the SELECT and FROM clauses, it functions as a renamer, which creates aliases for attributes or tables, respectively.
 
 ```sql
 SELECT

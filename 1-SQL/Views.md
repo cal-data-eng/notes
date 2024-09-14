@@ -1,17 +1,22 @@
-# Views
+# Creating Alternate Representations of Data
 
-**Last updated**: August 27, 2024
+**Last updated**: September 13, 2024
+
+## Copting Data to new Tables
 
 Suppose we want the result of a SQL query to act as a new table that we
-can query. For example, the following query turns a SELECT statement
+can query. For example, the following query turns a `SELECT` statement
 into another table:
 
-    CREATE TABLE CitationStops AS
-    (SELECT gender, citation
-    FROM Stops
-    WHERE citation = True)
+```sql
+    CREATE TABLE citation_stops AS (
+        SELECT gender, citation
+        FROM stops
+        WHERE citation = True
+    );
+```
 
-After running this command, we now can query `CitationStops` directly.
-But if the **base table**, or the `Stops` table changes (e.g., gets new
-records), we have to recreate `CitationStops` to reflect the new
+After running this command, we now can query `citation_stops` directly.
+But if the **base table**, or the `stops` table changes (e.g., gets new
+records), we have to recreate `citation_stops` to reflect the new
 changes!

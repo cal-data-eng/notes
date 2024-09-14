@@ -4,7 +4,8 @@
 ## Data Modification Language (DML)
 Just as we want to be able to query from a relation, we also need to be able to modify the data in relation. A modification command doesn’t return the result in the same way a query does, but it changes the relational instance. Suppose we want to update a table---e.g., insert tuples, delete tuples, modify or update existing tuples.
 
-The syntax to insert is: 
+The syntax to insert is:
+
 ```sql
 -- Inserts multiple values, in order
 INSERT INTO titles VALUES
@@ -14,9 +15,9 @@ INSERT INTO titles VALUES
    0, 2010, NULL, 95, 'Action,Adventure,Comedy');
 ```
 
-Note that each tuple is specified by parentheses and separated by commas, with all attributes in the schema in order. We can also, however, insert attributes out of order, by specifying which attributes to insert. This allows the system to fill in NULL values for attributes we don't have. 
+Note that each tuple is specified by parentheses and separated by commas, with all attributes in the schema in order. We can also, however, insert attributes out of order, by specifying which attributes to insert. This allows the system to fill in NULL values for attributes we don't have.
 
-```sql 
+```sql
 -- Inserts multiple values, out of order
 INSERT INTO titles (title_id, type, premiered, primary_title) VALUES
   ('tt11737520', 'tvSeries', 2023, 'One Piece');
@@ -85,8 +86,8 @@ ALTER TABLE zips
 ```sql
 -- Delete old columns to the relation
 ALTER TABLE zips
-    DROP area, 
+    DROP area,
     DROP timezone;
 ```
 
-If you want to add an existing column, you will need to drop the column before adding it again. 
+If you want to add an existing column, you will need to drop the column before adding it again.

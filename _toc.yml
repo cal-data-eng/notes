@@ -12,6 +12,9 @@ parts:
       - file: 1-SQL/review
       - file: 1-SQL/strings
       - file: 1-SQL/truncation
+      - file: 1-SQL/Views
+      - file: 1-SQL/CTEs
+      -
   - caption: Relational Algebra
     numbered: True
     chapters:
