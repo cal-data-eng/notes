@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+function open-book() {
+  if [[ which -z open ]];
+    open http://localhost:8000/;
+}
+
+# Wait a few seconds before opeing a book in the backgorund.
+(sleep 5 && open-book) &;
+# Start an autobuild server.
+sphinx-autobuild . _build/html -b html
