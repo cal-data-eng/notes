@@ -62,74 +62,22 @@ This follows standard POSIX regular expressions, and therefore you can use captu
 
 To refresh on regular expressions, here are some examples:
 
-<style>
-table {
-    width: 100%;
-    
-    border-collapse: collapse;
-}
-th, td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid black;    
-}
-th {
-   background-color: #f2f2f2;  
-}
-th.no-wrap, td.no-wrap {
-    white-space: nowrap;           
-}
-</style>
 
-<table>
-    <tr>
-        <th class="no-wrap">Source</th>
-        <th class="no-wrap">Pattern</th>
-        <th class="no-wrap">Replacement</th>
-        <th>Flags</th>
-        <th class="no-wrap">Return Value</th>
-        <th>Meaning</th>
-    </tr>
-    <tr>
-        <td class="no-wrap">'Hannah Montana'</td>
-        <td class="no-wrap">'(.*) (.*)'</td>
-        <td class="no-wrap">'\1'</td>
-        <td></td>
-        <td class="no-wrap">'Hannah'</td>
-        <td>Extract the first name.</td>
-    </tr>
-    <tr>
-        <td class="no-wrap">'Hannah Montana'</td>
-        <td class="no-wrap">'(.*) (.*)'</td>
-        <td class="no-wrap">'\2, \1'</td>
-        <td></td>
-        <td class="no-wrap">'Montana, Hannah'</td>
-        <td>Extract last name, first name.</td>
-    </tr>
-    <tr>
-        <td class="no-wrap">'Phone Number 510 642 3214'</td>
-        <td class="no-wrap">'[a-zA-Z ]'</td>
-        <td class="no-wrap">''</td>
-        <td></td>
-        <td class="no-wrap">'hone Number 510 642 3214'</td>
-        <td>Remove **first** alphanumeric character or space.</td>
-    </tr>
-    <tr>
-        <td class="no-wrap">'Phone Number 510 642 3214'</td>
-        <td class="no-wrap">'[a-zA-Z ]'</td>
-        <td class="no-wrap">''</td>
-        <td >'g'</td>
-        <td class="no-wrap">'5106423214'</td>
-        <td>Remove **all** alphanumeric characters or spaces.</td>
-    </tr>
-</table>
-
-<!-- | `source` | `pattern` | `replacement` | `flags` | Return value | Meaning |
-| --- | --- | --- | --- | --- | --- |
+| `source` | `pattern` | `replacement` | `flags` | Return value | Meaning |
+|:--- |:---:|:---:|:---:|:---:|:---:|
 | `'Hannah Montana'` | `'(.*) (.*)'` |`'\1'` | | `'Hannah'` | Extract the first name. |
 | `'Hannah Montana'` | ` '(.*) (.*)'` | `'\2, \1'` | | `'Montana, Hannah'` | Extract last name, first name. |
 | `'Phone Number 510 642 3214'` | `'[a-zA-Z ]'` | `''` | | `hone Number 510 642 3214` | Remove **first** alphanumeric character or space. |
-| `'Phone Number 510 642 3214'` | `'[a-zA-Z ]'` | `''` | `'g'` | `5106423214` | Remove **all** alphanumeric characters or spaces. | -->
+| `'Phone Number 510 642 3214'` | `'[a-zA-Z ]'` | `''` | `'g'` | `5106423214` | Remove **all** alphanumeric characters or spaces. |
+
+<style type="text/css">
+/* Pattern and Return Value columns */
+table tr > th:nth-child(2),
+table tr > th:nth-child(5) {
+  min-width: 12ch;
+}
+</style>
+
 
 Here are some example queries:
 
