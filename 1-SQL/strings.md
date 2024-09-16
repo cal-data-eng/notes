@@ -32,6 +32,9 @@ SELECT 'Hello' || 'World',
        STRPOS('Hello', 'el'),
        SUBSTRING('Hello', 2, 3);
 ```
+In SQL the [`||` operator][concat_op] means concatenation.
+
+[concat_op]: https://www.postgresql.org/docs/current/functions-string.html#FUNCTIONS-STRING-SQL
 
 ```
     ?column? | strpos | substring
@@ -41,10 +44,12 @@ SELECT 'Hello' || 'World',
 
 
 ## REGEXP_REPLACE
-PostgreSQL can also handle (POSIX) regular expressions, e.g., with `REGEXP_REPLACE`. 
+
+PostgreSQL can also handle (POSIX) regular expressions, e.g., with `REGEXP_REPLACE`.
 
 General syntax:
-```
+
+```sql
 REGEXP_REPLACE(source, pattern, replacement[, flags])
 ```
 
@@ -58,10 +63,10 @@ This follows standard POSIX regular expressions, and therefore you can use captu
 To refresh on regular expressions, here are some examples:
 
 | `source` | `pattern` | `replacement` | `flags` | Return value | Meaning |
-| --- | --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- | --- | --- |
 | `'Hannah Montana'` | `'(.*) (.*)'` |`'\1'` | | `'Hannah'` | Extract the first name. |
 | `'Hannah Montana'` | ` '(.*) (.*)'` | `'\2, \1'` | | `'Montana, Hannah'` | Extract last name, first name. |
-| `'Phone Number 510 642 3214'` | `'[a-zA-Z ]'` | `''` | | `hone Number 510 642 3214` | Remove **first** alphanumeric character or space. | 
+| `'Phone Number 510 642 3214'` | `'[a-zA-Z ]'` | `''` | | `hone Number 510 642 3214` | Remove **first** alphanumeric character or space. |
 | `'Phone Number 510 642 3214'` | `'[a-zA-Z ]'` | `''` | `'g'` | `5106423214` | Remove **all** alphanumeric characters or spaces. |
 
 Here are some example queries:
@@ -91,9 +96,8 @@ ORDER BY countname desc;
 WITH firstnames AS (
     SELECT REGEXP_REPLACE(name, '(.*) (.*)', '\1')
              as firstname
-    FROM people )
+    FROM people
+)
 SELECT MAX(LENGTH(firstname)), firstname
 FROM firstnames;
 ```
-
-

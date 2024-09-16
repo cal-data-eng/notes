@@ -108,11 +108,12 @@ The attributes used in the WHERE clause do not necessarily need to be included i
 
 To find the ids of stops with the oldest individuals:
 
-```
+```sql
 SELECT s1.id
 FROM stops AS s1
-WHERE s1.age >=
-	(SELECT MAX(age) FROM stops AS s2);
+WHERE s1.age >= (
+    SELECT MAX(age) FROM stops AS s2
+);
 ```
 
 Note that we alias the second stops relation.
@@ -121,7 +122,7 @@ Note that we alias the second stops relation.
 
 We can also **aggregate** a column in a `SELECT` clause according to a particular aggregation function: `SUM`, `MIN`, `MAX`, `AVG`, `COUNT`, etc.
 
-```
+```sql
 SELECT MAX(age), AVG (age)
 FROM stops;
 ```
@@ -154,14 +155,14 @@ The below query counts total rows, counts non-null ages, and computes average ag
 
 ```sql
 SELECT COUNT(*), COUNT(age), AVG(age)
-FROM Stops;
+FROM stops;
 ```
 
 **DISTINCT** removes duplicates prior to aggregation. [Read more](https://www.postgresql.org/about/featurematrix/detail/392/) about how NULL values are considered.
 
 ```sql
 SELECT COUNT(DISTINCT location)
-FROM Stops;
+FROM stops;
 ```
 
 ## Grouping
@@ -171,9 +172,11 @@ tuples as opposed to an overall COUNT, MAX or SUM. To do so, we add a
 `GROUP BY` clause after the SELECT-FROM-WHERE. For example, say we
 wanted to find average and minimum ages for each location:
 
-    SELECT location, AVG(age) AS avgage, MIN (age) as minage
-    FROM stops
-    GROUP BY location
+```sql
+SELECT location, AVG(age) AS avgage, MIN (age) as minage
+FROM stops
+GROUP BY location;
+```
 
 Notably, if aggregation is used, then each element
 of the SELECT clause **must either be an aggregate or an attribute in the
@@ -186,18 +189,23 @@ Postgres supports many aggregate statistics: standard deviation,
 covariance, regression slope/intercept, correlation coefficient, and
 more. Say we wanted to find the median age of stopped people:
 
-    SELECT zip, PERCENTAGE_DISC(0.5)
-    WITHIN GROUP (ORDER BY age)
-    FROM stops
+```
+SELECT zip, PERCENTAGE_DISC(0.5)
+WITHIN GROUP (ORDER BY age)
+FROM stops;
+```
 
 We can also use more sophisticated syntax in GROUP BYs; for example, the
 following query computes the average ages of stops across various days
 for West Oakland and Rockridge individually:
 
-    SELECT days,
+```sql
+SELECT days,
     AVG (CASE WHEN location = 'West Oakland' THEN age ELSE NULL END) AS west_oakland_avg,
     AVG (CASE WHEN location = 'Rockridge' THEN age ELSE NULL END) AS rockridge_avg
-    FROM stops GROUP BY days
+FROM stops
+GROUP BY days;
+```
 
 In the above query, we compute the averages using a `CASE` statement.
 
@@ -209,10 +217,12 @@ is applied to each group, and groups not satisfying the condition are
 eliminated. For example, say we wanted to compute the locations with at
 least 30 stops:
 
-    SELECT location, COUNT (*)
-    FROM Stops
-    GROUP BY location
-    HAVING COUNT (*) > 30
+```sql
+SELECT location, COUNT (*)
+FROM stops
+GROUP BY location
+HAVING COUNT (*) > 30;
+```
 
 Similarly to SELECT clauses, each attribute mentioned in a HAVING clause
 must either be part of the GROUP BY or be aggregated.
@@ -248,7 +258,7 @@ SELECT
   t.title AS orig_title
 FROM
   akas AS a,
-  titles AS t
+  titles AS t;
 ```
 
 As a syntactic shortcut, the AS keyword can sometimes be omitted, as above in the FROM clause. See the "[Omitting the AS keyword](https://www.postgresql.org/docs/current/sql-select.html)" section of the Postgres documentation. Based on the [Mozilla SQL style guide](https://docs.telemetry.mozilla.org/concepts/sql_style), best practices are to prefer explicit use of AS.
@@ -259,6 +269,7 @@ Depending on when/where you create an alias using AS, you may need to use that a
 * For more, read the official [SELECT SQL Command documentation](https://www.postgresql.org/docs/current/sql-select.html#SQL-SELECT-LIST) and search for "alias".
 
 ### CAST
+
 Casting converts one attribute type to another. For example, suppose that `runtime_minutes` were an integer, and we wanted to compute `runtime_hours`, with reasonable precision. Also suppose that `premiered` was a string, but should be interpreted as an integer `year`:
 
 ```sql
