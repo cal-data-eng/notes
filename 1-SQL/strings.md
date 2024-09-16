@@ -71,9 +71,27 @@ To refresh on regular expressions, here are some examples:
 | `'Phone Number 510 642 3214'` | `'[a-zA-Z ]'` | `''` | `'g'` | `5106423214` | Remove **all** alphanumeric characters or spaces. |
 
 <style type="text/css">
+/* This CSS affects all tables on a page, but so far it's fine..
+Use `.table:nth-child(X) to affect only one table */
+.table>:not(caption)>*>* {
+  /* Slightly reduce padding because this table is large... */
+  padding: 0.25rem;
+}
+/*  */
+.table thead > tr > th > p > code {
+  background: none;
+  border: none;
+}
+
+.table thead > tr > th > p > code > span.pre {
+  color: black;
+  background: none;
+  border: none;
+}
+
 /* Pattern and Return Value columns */
-table tr > th:nth-child(2),
-table tr > th:nth-child(5) {
+.table tr > th:nth-child(2),
+.table tr > th:nth-child(5) {
   min-width: 12ch;
 }
 </style>
