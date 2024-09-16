@@ -282,7 +282,7 @@ SELECT primary_title, type,
 FROM titles;
 ```
 
-See [Section 15](https://www.postgresql.org/docs/15/datatype.html) of the Postgres documentation for Postgres data types.
+See [Chapter 8](https://www.postgresql.org/docs/current/datatype.html) of the Postgres documentation for a list of valid data types.
 
 ### NULL
 
@@ -322,4 +322,4 @@ SELECT COUNT(DISTINCT premiered)
 FROM titles;
 ```
 
-To specify distinctness on a subset of attributes, see the [DISTINCT Postgres documentation](https://www.postgresql.org/docs/16/sql-select.html#SQL-DISTINCT).
+To specify distinctness on a subset of attributes, see the [DISTINCT Postgres documentation](https://www.postgresql.org/docs/current/sql-select.html#SQL-DISTINCT).
