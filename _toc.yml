@@ -7,15 +7,22 @@ parts:
   - caption: SQL
     numbered: True
     chapters:
-    - file: SQL/index
+    - file: 1-SQL/index
       sections:
-      - file: SQL/review
-      - file: SQL/strings
-      - file: SQL/truncation
+      - file: 1-SQL/review
+      - file: 1-SQL/strings
+      - file: 1-SQL/truncation
+      - file: 1-SQL/views
+      - file: 1-SQL/CTEs
+      - file: 1-SQL/subqueries
+      - file: 1-SQL/DML
+      - file: 1-SQL/DDL
+      - file: 1-SQL/keys-constraints
+      - file: 1-SQL/indexes
   - caption: Relational Algebra
     numbered: True
     chapters:
-    - file: relational_algebra/index
+    - file: 2-relational_algebra/index
       sections:
-      - file: relational_algebra/primitives
-      - file: relational_algebra/extended
+      - file: 2-relational_algebra/primitives
+      - file: 2-relational_algebra/extended

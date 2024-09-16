@@ -1,9 +1,10 @@
 ---
 title: Data 101 Course Notes
 ---
+
 # Overview
 
-This is an in-progress **notes repository** for Data 101: Data Engineering, UC Berkeley ([Data 101 homepage](https://data101.org/)).
+This is an in-progress set of **course notes** for [Data 101: Data Engineering, UC Berkeley](https://data101.org/).
 
 This repository is updated semi-weekly and is meant to be used *in addition to* lecture. In other words, these notes contain core concepts for reference, whereas lecture contains activities and demos for internalizing the concepts.
 
