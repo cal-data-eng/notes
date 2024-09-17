@@ -77,7 +77,6 @@ Use `.table:nth-child(X) to affect only one table */
   /* Slightly reduce padding because this table is large... */
   padding: 0.25rem;
 }
-/*  */
 .table thead > tr > th > p > code {
   background: none;
   border: none;
