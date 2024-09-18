@@ -18,7 +18,6 @@ parts:
       - file: 1-SQL/DML
       - file: 1-SQL/DDL
       - file: 1-SQL/keys-constraints
-      - file: 1-SQL/indexes
   - caption: Relational Algebra
     numbered: True
     chapters:
@@ -26,3 +25,7 @@ parts:
       sections:
       - file: 2-relational_algebra/primitives
       - file: 2-relational_algebra/extended
+  - caption: Query Performance
+    numbered: True
+    chapters:
+      - file: 3-query_perf/indexes

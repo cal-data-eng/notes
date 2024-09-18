@@ -1,4 +1,4 @@
-# DDL–Data Definition Langauge
+# DDL–Data Definition Language
 **Last updated**: September 12, 2024
 
 ## DDL
