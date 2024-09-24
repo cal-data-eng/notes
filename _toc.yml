@@ -29,3 +29,7 @@ parts:
     numbered: True
     chapters:
       - file: 3-query_perf/indexes
+  - caption: Appendix
+    numbered: False
+    chapters:
+      - file: appendix/sql-style
