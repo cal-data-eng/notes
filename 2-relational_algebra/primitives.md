@@ -4,12 +4,12 @@
 
 In the last note, we briefly touched on the relational data model and
 introduced some basic SQL syntax in the `SELECT FROM WHERE` format. In
-this note, we'll revisit the relational data model more formally with relational algebra, 
+this note, we'll revisit the relational data model more formally with relational algebra,
 which provides the foundation for many data systems, such as SQL.
 
 ## Set Relational Algebra
 
-An algebra is a mathematical theory that defines formulaic operations on variables of specific domains, thereby determining mathematical properties in those domains. For example, elementary algebra defines operations on arithmetic variables, linear algebra defines operations on vectors and matrices, and set algebra defines operations on sets. **Relational algebra** defines operations on **relations**. 
+An algebra is a mathematical theory that defines formulaic operations on variables of specific domains, thereby determining mathematical properties in those domains. For example, elementary algebra defines operations on arithmetic variables, linear algebra defines operations on vectors and matrices, and set algebra defines operations on sets. **Relational algebra** defines operations on **relations**.
 
 The relational algebra theory was popularized by Edgar F. Codd's 1970 work \[1] in defining the relational model, which formed the theoretical basis for relational databases and informed the concurrent development of relational database management systems (rDBMSes).
 
@@ -89,7 +89,7 @@ Remember, relational algebra describes precise operations on relations, not tabl
 ## Derived Operations
 
 Other operations can be expressed as derivations of the operations we've
-listed above. 
+listed above.
 
 **Intersection**, $R_1 \cap R_2$: Defined as the set intersection of rows in $R_1$ and $R_2$. This is a composition of union and difference; we leave the derivation as an exercise for you.
 
@@ -123,7 +123,7 @@ The natural join of crew and people would then satisfy:
 
 $crew \bowtie people = \pi_{tid, pid, c, j, n, b, d}\bigl(\rho_{crew.pid \rightarrow pid} \bigl( \sigma_{crew.pid = people.pid} (crew \times people) \bigr) \bigr)$.
 
-In special cases, the natural join reduces to other operators. Suppose we have the three relations $R(A, B), S(A, B), T(C, D)$. Then $R \bowtie S = R \cup S$, and $R \bowtie T = R \times T$.
+In special cases, the natural join reduces to other operators. Suppose we have the three relations $R(A, B), S(A, B), T(C, D)$. Then $R \bowtie S = R \cap S$, and $R \bowtie T = R \times T$.
 
 ## Bag Relational Algebra
 
@@ -135,12 +135,11 @@ Operations on bags are generally easier to implement than the equivalent operati
 
 The below table is a brief comparison of bag RA and set RA operators. We define "# of occurrences" as the sum total of duplicate tuples in the output relation.
 
-| Operator | Bag operation | Performance compared to Set RA | Comments | 
+| Operator | Bag operation | Performance compared to Set RA | Comments |
 | ---- | --- | --- | --- |
 | Selection | Preserve # of occurrences | Roughly as fast |
 | Projection | Preserve #  of occurrences | Faster than set | SQL SELECT is a common operation |
 | Product | Preserve # of occurrences | Roughly as fast |
 | Union | Add # of occurrences | Faster than sets |
-| Difference | Subtract # of occurrences | Roughly as fast 
+| Difference | Subtract # of occurrences | Roughly as fast
 | Renaming | - | - | Unchanged |
-
