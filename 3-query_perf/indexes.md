@@ -8,13 +8,15 @@ Indexes allow a user to perform queries that look for data matching certain char
 To declare an index, use the following syntax:
 
 ```sql
-CREATE INDEX nameIdIndex ON actor(name,id);
+CREATE INDEX actors_name_id_idx ON actors(name, id);
 ```
 
 Similarly, to drop an index:
 ```sql
-DROP INDEX idNameIndex;
+DROP INDEX actors_name_id_idx;
 ```
+
+We can pick any reasonable name for our indexes, but typically it's best to include both the table name, and any column names in the index. `_idx`, `_key`, and `_pkey` are common suffixes used to identify indexes.
 
 PostgreSQL (by default) chooses which type of scan to use! In lecture, we saw how PostgreSQL chose between an index scan, sequential scan, and bitmap heap scan. A command, `EXPLAIN ANALYZE`, runs and shows the execution plan of a statement and displays actual run-time statistics. Use this to understand what a query is actually doing, i.e., how the system interacts and fetches records:
 

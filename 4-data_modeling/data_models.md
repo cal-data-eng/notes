@@ -2,10 +2,10 @@
 
 **Last Updated**: September 29, 2024
 
-We will look at the three data models we commonly see in data systems. We see matrices used in linear algebra and relations used in relational algebra. Dataframes are another common way to represent data. 
+We will look at the three data models we commonly see in data systems. We see matrices used in linear algebra and relations used in relational algebra. Dataframes are another common way to represent data.
 
 ## Tensors & Matrices
-Matrices are defined to be an array of values that may be dense or sparse. Sparse matrices are matrices with many NaN (Not a Number) values, which is a value we use when we want to allow a value to be "missing" in the matrix. On the other hand, dense matrices are matrices with very few NaN values, if any. 
+Matrices are defined to be an array of values that may be dense or sparse. Sparse matrices are matrices with many `NaN` (Not a Number) values, which is a value we use when we want to allow a value to be "missing" in the matrix. On the other hand, dense matrices are matrices with very few NaN values, if any.
 
 Common operators and arithmetic properties apply to matrices as they do with arithmetic expressions. Just as the laws of commutativity, associativity, additive and multiplicative identity, additive inverse, multiplicative inverse, and distribution apply to some arithmetic expression, the same laws hold when working with matrices. Matrices are also symmetric across dimensions, meaning that we can transpose rows and columns without losing information.
 
@@ -40,7 +40,6 @@ Dataframes have a type induction operator $S(A_i)$ that takes in a column of val
 
 However, dataframes are still mathematically inelegant. After transposing a given dataframe, each column is of type `object`, and we lose information on the datatype a cell once was. Moreover, if we attempt to take the transpose of this transposed dataframe, we are unable to get the original dataframe back due to the data loss on datatype.
 
-Dataframes can be further described as tidy or messy. Tidy dataframes are formed when we have tidy data, which is when each variable or attribute in our data forms a column, each observation or recorded entry forms a row, and each type of observational unit forms a table. In other words, a tidy dataframe is a relation. 
+Dataframes can be further described as tidy or messy. Tidy dataframes are formed when we have tidy data, which is when each variable or attribute in our data forms a column, each observation or recorded entry forms a row, and each type of observational unit forms a table. In other words, a tidy dataframe is a relation.
 
 On the other hand, messy dataframes are useful when we want to transition data from one form to another; it is a useful way to handle messy or unclean input data during a transient stage in data processing and analysis.
-

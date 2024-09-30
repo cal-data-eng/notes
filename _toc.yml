@@ -28,7 +28,15 @@ parts:
   - caption: Query Performance
     numbered: True
     chapters:
-      - file: 3-query_perf/indexes
+      - file: 3-query_perf/index
+        sections:
+        - file: 3-query_perf/indexes
+        - file: 3-query_perf/query-planning
+        - file: 3-query_perf/rules_of_thumb
+  - caption: Data Modeling
+    numbered: True
+    chapters:
+      - file: 4-data_modeling/data_models
   - caption: Appendix
     numbered: False
     chapters:
