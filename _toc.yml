@@ -36,7 +36,18 @@ parts:
   - caption: Data Modeling
     numbered: True
     chapters:
-      - file: 4-data_modeling/data_models
+      - file: 4-data_modeling/index
+        sections:
+        - file: 4-data_modeling/data_models
+  - caption: Data Preparation
+    numbered: True
+    chapters:
+      - file: 5-data_prep/index
+        sections:
+        - file: 5-data_prep/structural
+        - file: 5-data_prep/granularity
+        - file: 5-data_prep/outliers
+        - file: 5-data_prep/imputation
   - caption: Appendix
     numbered: False
     chapters:

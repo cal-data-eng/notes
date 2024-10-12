@@ -10,7 +10,7 @@ Data preparation is a very broad subject, covering everything from data models t
 Take a look at some rows or records in your data. Most files will run into one of these categories: 
 - Record per line: newline-delimited rows of uniform, symbol-delimited data (e.g., csv, tsv)
 - Dictionaries/objects: can be represented as object-per-line or as a complex object, where the entire dataset is one fully-nested JSON, XML, or YAML object (e.g., JSON, XMl, YAML)
-- Unions: a mixture of rows from \textit{k} distinct schemas. Tagged unions have a ID or name for each row while untagged unions must be classified by its content. 
+- Unions: a mixture of rows from _k_ distinct schemas. Tagged unions have a ID or name for each row while untagged unions must be classified by its content. 
 - Natural language: prose, images, and more. 
 
 Here are some common command-line tools to unbox the data and gain a better understanding of the files you are working with. 
