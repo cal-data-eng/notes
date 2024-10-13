@@ -1,6 +1,6 @@
 # Relational Algebra Overview
 
-**Last updated**: September 6, 2024
+**Last updated**: October 13, 2024
 
 In the last note, we briefly touched on the relational data model and
 introduced some basic SQL syntax in the `SELECT FROM WHERE` format. In
@@ -53,16 +53,16 @@ to `AS`.
 
 Suppose that we have two relations with the following schema:
 
-* $titles(title\_id, type, primary\_title, runtime\_minutes)$
-* $people(person\_id, name, born, died)$
+* $\text{titles(title\_id, type, primary\_title, runtime\_minutes)}$
+* $\text{people(person\_id, name, born, died)}$
 
-1. $\pi_{title\_id, primary\_title}(titles)$ outputs a relation with tuples of $titles$ that are restricted to the attributes $title\_id$ and $primary\_title$. In other words, we "drop" the other attributes $type$ and $runtime\_minutes$.
+1. $\pi_{\text{title\_id, primary\_title}}(\text{titles})$ outputs a relation with tuples of $\text{titles}$ that are restricted to the attributes $\text{title\_id}$ and $\text{primary\_title}$. In other words, we "drop" the other attributes $\text{type}$ and $\text{runtime\_minutes}$.
 
-1. $\sigma_{born > 1980}(people)$ outputs a relation with tuples of $people$ that satisfy the condition where $born > 1980$.
+2. $\sigma_{\text{born} > 1980}(\text{people})$ outputs a relation with tuples of $\text{people}$ that satisfy the condition where $\text{born} > 1980$.
 
-1. $\rho_{persons(person\_id, name, birth, death)}(people)$ outputs a relation named $persons$ that has the tuples of $people$ but renames attributes $born$ and $died$ to $birth$ and $death, respectively, and keeps $person\_id$ and $name$ unchanged.
+3. $\rho_{\text{persons(person\_id, name, birth, death)}}(\text{people})$ outputs a relation named $\text{persons}$ that has the tuples of $\text{people}$ but renames attributes $\text{born}$ and $\text{died}$ to $\text{birth}$ and $\text{death}$, respectively, and keeps $\text{person\_id}$ and $\text{name}$ unchanged.
 
-1. $\rho_{persons(born \rightarrow birth, died \rightarrow death}(people)$ does the same as the previous example but is more concise.
+4. $\rho_{\text{persons}(\text{born} \rightarrow \text{birth}, \text{died} \rightarrow \text{death}}(\text{people})$ does the same as the previous example but is more concise.
 
 ## Binary Operators: Cartesian Product, Union, and Difference
 
@@ -78,7 +78,7 @@ each tuple in the right operand.  The output schema is therefore $(A_1, A_2, \do
 
     The union operator outputs a relation that has the set union of rows in $R_1$ and $R_2$. In other words, $R_1 \cup R_2$ contains one of every tuple that is in either $R_1$ and/or $R_2$. For the union to be defined, the two input relations must have the same schema, i.e., $n = m$ and there exists some distinct mapping $A_i = B_j$ for $i = 1, \dots, n, j = 1, \dots, n$. The output relation therefore also shares the schema $(A_1, \dots, A_n)$.
 
-1. **Difference**, $ R_1 - R_2$.
+1. **Difference**, $R_1 - R_2$.
 
     The difference operator outputs a relation that has the set difference of rows in $R_1$ and $R_2$. In other words, $R_1 - R_2$ contains one of every tuple that is in $R_1$ but not in $R_2$ and is the empty relation if no such tuples exist. As with unions, the input relations and output relation must share the same schema.
 
@@ -116,18 +116,18 @@ Several joins can be expressed as a special case of Cartesian product and the th
 
 Here, it is easier to illustrate the natural join with an example. Suppose we have the two relations:
 
-* $crew(tid, pid, c, j)$
-* $people(pid, n, b, d)$
+* $\text{crew(tid, pid, c, j)}$
+* $\text{people(pid, n, b, d)}$
 
 The natural join of crew and people would then satisfy:
 
-$crew \bowtie people = \pi_{tid, pid, c, j, n, b, d}\bigl(\rho_{crew.pid \rightarrow pid} \bigl( \sigma_{crew.pid = people.pid} (crew \times people) \bigr) \bigr)$.
+$\text{crew} \bowtie \text{people} = \pi_{\text{tid, pid, c, j, n, b, d}}\bigl(\rho_{\text{crew.pid} \rightarrow \text{pid}} \bigl( \sigma_{\text{crew.pid = people.pid}} (\text{crew} \times \text{people}) \bigr) \bigr)$.
 
 In special cases, the natural join reduces to other operators. Suppose we have the three relations $R(A, B), S(A, B), T(C, D)$. Then $R \bowtie S = R \cap S$, and $R \bowtie T = R \times T$.
 
 ## Bag Relational Algebra
 
-Relational Algebra provides a common set of operations that can be used to compare the utility of different data systems. For example, Python pandas does not directly support theta join; only equi join. SQL supports most operations, but implements projection with the SELECT keyword (and selection with the WHERE keyword).
+Relational Algebra provides a common set of operations that can be used to compare the utility of different data systems. For example, Python pandas does not directly support theta join; only equijoin. SQL supports most operations, but implements projection with the `SELECT` keyword (and selection with the `WHERE` keyword).
 
 While we have defined relational algebra operations above using *set* relational algebra, in reality many data systems use a relational data model defined on **bags**, where both attributes and tuples are unordered collections that could contain duplicates.
 
@@ -138,7 +138,7 @@ The below table is a brief comparison of bag RA and set RA operators. We define 
 | Operator | Bag operation | Performance compared to Set RA | Comments |
 | ---- | --- | --- | --- |
 | Selection | Preserve # of occurrences | Roughly as fast |
-| Projection | Preserve #  of occurrences | Faster than set | SQL SELECT is a common operation |
+| Projection | Preserve #  of occurrences | Faster than set | SQL `SELECT` is a common operation |
 | Product | Preserve # of occurrences | Roughly as fast |
 | Union | Add # of occurrences | Faster than sets |
 | Difference | Subtract # of occurrences | Roughly as fast
