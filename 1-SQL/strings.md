@@ -11,13 +11,14 @@ used in `WHERE` clauses to find matches between a string and a given
 pattern. Using this keyword, two specific characters are used to
 substitute for one or more characters in a pattern string:
 
--   `%` matches zero or more characters
+- `%` matches zero or more characters
 
--   `_` matches a single character
+- `_` matches a single character
 
 If the pattern does not contain any percent sign (`%`) or underscore (`_`), then `LIKE/NOT LIKE` function as exact match.
 
 ## Advanced string functionality
+
 There are many string manipulation functions, such as `substring`,
 `STRPOS` (starting position of a substring), concatenation (`||`), and more. For
 example, the `SUBSTRING` function extracts the substring from a string
@@ -32,16 +33,16 @@ SELECT 'Hello' || 'World',
        STRPOS('Hello', 'el'),
        SUBSTRING('Hello', 2, 3);
 ```
+
 In SQL the [`||` operator][concat_op] means concatenation.
 
 [concat_op]: https://www.postgresql.org/docs/current/functions-string.html#FUNCTIONS-STRING-SQL
 
 ```
-    ?column? | strpos | substring
--------------+--------+----------
- Hello World | 2      |       ell
+  ?column?  | strpos | substring 
+------------+--------+-----------
+ HelloWorld |      2 | ell
 ```
-
 
 ## REGEXP_REPLACE
 
@@ -61,7 +62,6 @@ REGEXP_REPLACE(source, pattern, replacement[, flags])
 This follows standard POSIX regular expressions, and therefore you can use capture groups in both `pattern` (with parentheses to denote the subpattern to capture) and `replacement` (with `\<number>`, where number is the one-indexed index of the capture group.
 
 To refresh on regular expressions, here are some examples:
-
 
 | `source` | `pattern` | `replacement` | `flags` | Return value | Meaning |
 |:--- |:---:|:---:|:---:|:---:|:---:|
@@ -95,7 +95,6 @@ Use `.table:nth-child(X) to affect only one table */
 }
 </style>
 
-
 Here are some example queries:
 
 1. Extract first and last name of all people:
@@ -109,6 +108,7 @@ FROM people;
 ```
 
 2. Count number of first names
+
 ```sql
 SELECT REGEXP_REPLACE(name, '(.*) (.*)', '\1')
          as firstname,
@@ -119,6 +119,7 @@ ORDER BY countname desc;
 ```
 
 3. Compute length of longest first name
+
 ```sql
 WITH firstnames AS (
     SELECT REGEXP_REPLACE(name, '(.*) (.*)', '\1')
