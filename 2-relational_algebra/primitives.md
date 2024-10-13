@@ -1,6 +1,6 @@
 # Relational Algebra Overview
 
-**Last updated**: September 6, 2024
+**Last updated**: October 13, 2024
 
 In the last note, we briefly touched on the relational data model and
 introduced some basic SQL syntax in the `SELECT FROM WHERE` format. In
