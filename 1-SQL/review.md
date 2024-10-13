@@ -1,6 +1,6 @@
 # SQL Review
 
-**Last updated**: August 27, 2024
+**Last updated**: October 12, 2024
 
 This is a review of Data 100 SQL syntax, plus more.
 
@@ -33,11 +33,11 @@ HAVING C2;              -- 4
 ```
 
 Order of evaluation:
-1. `FROM`: Fetch the tables and compute the cross product of the relations R1, R2, …
-1. `WHERE`: For each tuple from 1, keep only those that satisfy condition C1
-1. `GROUP BY`: Create groups of tuples by A1, A2, etc. At this time, for each group, compute all aggregates needed for C2 and S (below).
-1. `HAVING`: For each group, check if condition C2 is satisfied.
-1. `SELECT`: Add to output based on attribute set S.
+1. `FROM`: Fetch the tables and compute the cross product of the relations `R1, R2, …`
+1. `WHERE`: For each tuple from 1, keep only those that satisfy condition `C1`
+1. `GROUP BY`: Create groups of tuples by `A1`, `A2`, etc. At this time, for each group, compute all aggregates needed for `C2` and `S` (below).
+1. `HAVING`: For each group, check if condition `C2` is satisfied.
+1. `SELECT`: Add to output based on attribute set `S`.
 
 Note that `WHERE` is therefore a row filter that happens **before** groups are made,
 whereas `HAVING` is a group filter that happens **after** groups are made.
@@ -94,17 +94,17 @@ Remember---SQL is a declarative language! Instead of evaluating the SQL query fr
 
 ### FROM clause
 
-The FROM clause can include either table names separated by commas (implying a cross join, or cross product of all tuples), or expressions involving table JOINs. We cover JOINs in a separate section.
+The `FROM` clause can include either table names separated by commas (implying a cross join, or cross product of all tuples), or expressions involving table `JOIN`s. We cover `JOIN`s in a separate section.
 
 ### WHERE clause
 
-The WHERE clause can include logical operators (e.g., AND, OR, NOT) or comparison operators (=, >=, <> equivalently !=, etc.). Postgres documentation:
+The `WHERE` clause can include logical operators (e.g., `AND`, `OR`, `NOT`) or comparison operators (`=`, `>=`, `<>` equivalently `!=`, etc.). Postgres documentation:
 * [Section 9.1](https://www.postgresql.org/docs/current/functions-logical.html)
 * [Section 9.2](https://www.postgresql.org/docs/current/functions-comparison.html)
 
-The attributes used in the WHERE clause do not necessarily need to be included in the SELECT list, but they should be discoverable from the tables (or their aliases, if they exist) identified in the `FROM` clause.
+The attributes used in the `WHERE` clause do not necessarily need to be included in the `SELECT` list, but they should be discoverable from the tables (or their aliases, if they exist) identified in the `FROM` clause.
 
-**Scalar subquery**: We discuss subqueries in much more detail in a separate section, but note that you can use SELECT-FROM-WHERE subqueries in the WHERE condition, provided that they are **scalar**. A scalar subquery returns a single value (e.g., a single tuple with a single attribute value) and can subsequently be treated as a scalar in a larger expression.
+**Scalar subquery**: We discuss subqueries in much more detail in a separate section, but note that you can use `SELECT-FROM-WHERE` subqueries in the `WHERE` condition, provided that they are **scalar**. A scalar subquery returns a single value (e.g., a single tuple with a single attribute value) and can subsequently be treated as a scalar in a larger expression.
 
 To find the ids of stops with the oldest individuals:
 
@@ -123,7 +123,7 @@ Note that we alias the second stops relation.
 We can also **aggregate** a column in a `SELECT` clause according to a particular aggregation function: `SUM`, `MIN`, `MAX`, `AVG`, `COUNT`, etc.
 
 ```sql
-SELECT MAX(age), AVG (age)
+SELECT MAX(age), AVG(age)
 FROM stops;
 ```
 
@@ -136,7 +136,7 @@ The above query computes the minimum and maximum values of the `age` attribute f
 
 ```
 
-The precise attribute names (above, "max" and "avg") varies based on SQL flavor and may contain the atribute itself (e.g., "MAX(age)", "avg(age)", etc.).
+The precise attribute names (above, `max` and `avg`) varies based on SQL flavor and may contain the atribute itself (e.g., `MAX(age)`, `avg(age)`, etc.).
 
 `COUNT(*)` uses the special asterisk symbol (`*`) to count the number of tuples.
 
@@ -144,13 +144,13 @@ The precise attribute names (above, "max" and "avg") varies based on SQL flavor 
 SELECT COUNT(*) FROM stops;
 ```
 
-returns the number of tuples in the Stops relation.
+returns the number of tuples in the `stops` relation.
 
 ### Aggregation Examples
 
 Aggregation expression can include SQL keywords and even subqueries (we discuss subqueries in much more detail in a separate section).
 
-**NULL** values are not involved in aggregation:
+**`NULL`** values are not involved in aggregation:
 The below query counts total rows, counts non-null ages, and computes average age. The first two attributes could have different values if there are NULL ages.
 
 ```sql
@@ -158,7 +158,7 @@ SELECT COUNT(*), COUNT(age), AVG(age)
 FROM stops;
 ```
 
-**DISTINCT** removes duplicates prior to aggregation. [Read more](https://www.postgresql.org/about/featurematrix/detail/392/) about how NULL values are considered.
+**`DISTINCT`** removes duplicates prior to aggregation. [Read more](https://www.postgresql.org/about/featurematrix/detail/392/) about how NULL values are considered.
 
 ```sql
 SELECT COUNT(DISTINCT location)
@@ -168,8 +168,8 @@ FROM stops;
 ## Grouping
 
 In some cases, we may want to compute an aggregate for each "group" of
-tuples as opposed to an overall COUNT, MAX or SUM. To do so, we add a
-`GROUP BY` clause after the SELECT-FROM-WHERE. For example, say we
+tuples as opposed to an overall `COUNT`, `MAX` or `SUM`. To do so, we add a
+`GROUP BY` clause after the `SELECT-FROM-WHERE`. For example, say we
 wanted to find average and minimum ages for each location:
 
 ```sql
@@ -179,7 +179,7 @@ GROUP BY location;
 ```
 
 Notably, if aggregation is used, then each element
-of the SELECT clause **must either be an aggregate or an attribute in the
+of the `SELECT` clause **must either be an aggregate or an attribute in the
 GROUP BY list**. This is because if an attribute is not being aggregated
 or being grouped, we have no way to "squish" the values down per group.
 
@@ -195,7 +195,7 @@ WITHIN GROUP (ORDER BY age)
 FROM stops;
 ```
 
-We can also use more sophisticated syntax in GROUP BYs; for example, the
+We can also use more sophisticated syntax in `GROUP BY`s; for example, the
 following query computes the average ages of stops across various days
 for West Oakland and Rockridge individually:
 
@@ -211,8 +211,8 @@ In the above query, we compute the averages using a `CASE` statement.
 
 ### HAVING
 
-Suppose we want to filter a GROUP BY on some condition. We can use a
-HAVING clause, which typically precedes a GROUP BY. The HAVING condition
+Suppose we want to filter a `GROUP BY` on some condition. We can use a
+`HAVING` clause, which typically precedes a `GROUP BY`. The `HAVING` condition
 is applied to each group, and groups not satisfying the condition are
 eliminated. For example, say we wanted to compute the locations with at
 least 30 stops:
@@ -224,8 +224,8 @@ GROUP BY location
 HAVING COUNT (*) > 30;
 ```
 
-Similarly to SELECT clauses, each attribute mentioned in a HAVING clause
-must either be part of the GROUP BY or be aggregated.
+Similarly to `SELECT` clauses, each attribute mentioned in a `HAVING` clause
+must either be part of the `GROUP BY` or be aggregated.
 
 ## Symbols and Additional Keywords
 
@@ -249,7 +249,7 @@ Read more in the PostgreSQL docs, [Section 4.1.4](https://www.postgresql.org/doc
 
 ### AS
 
-The AS keyword serves several purposes. In the SELECT and FROM clauses, it functions as a renamer, which creates aliases for attributes or tables, respectively.
+The `AS` keyword serves several purposes. In the `SELECT` and `FROM` clauses, it functions as a renamer, which creates aliases for attributes or tables, respectively.
 
 ```sql
 SELECT
@@ -257,15 +257,15 @@ SELECT
   a.title AS aka_title,
   t.title AS orig_title
 FROM
-  akas AS a,
-  titles AS t;
+  akas a,
+  titles t;
 ```
 
-As a syntactic shortcut, the AS keyword can sometimes be omitted, as above in the FROM clause. See the "[Omitting the AS keyword](https://www.postgresql.org/docs/current/sql-select.html)" section of the Postgres documentation. Based on the [Mozilla SQL style guide](https://docs.telemetry.mozilla.org/concepts/sql_style), best practices are to prefer explicit use of AS.
+As a syntactic shortcut, the `AS` keyword can sometimes be omitted, as above in the `FROM` clause. See the "[Omitting the AS keyword](https://www.postgresql.org/docs/current/sql-select.html)" section of the Postgres documentation. Based on the [Mozilla SQL style guide](https://docs.telemetry.mozilla.org/concepts/sql_style), best practices are to prefer explicit use of `AS`.
 
-Depending on when/where you create an alias using AS, you may need to use that alias throughout the query:
-* In the FROM clause, the table alias completely hides the actual name of the table, and the alias must be used throughout in WHERE, SELECT, etc.
-* In the SELECT clause, the alias is not created until the SELECT list of expressions is computed.
+Depending on when/where you create an alias using `AS`, you may need to use that alias throughout the query:
+* In the `FROM` clause, the table alias completely hides the actual name of the table, and the alias must be used throughout in `WHERE`, `SELECT`, etc.
+* In the `SELECT` clause, the alias is not created until the `SELECT` list of expressions is computed.
 * For more, read the official [SELECT SQL Command documentation](https://www.postgresql.org/docs/current/sql-select.html#SQL-SELECT-LIST) and search for "alias".
 
 ### CAST
@@ -286,7 +286,7 @@ See [Chapter 8](https://www.postgresql.org/docs/current/datatype.html) of the Po
 
 ### NULL
 
-Tuples can have NULL values for attributes (e.g., if missing, inapplicable to the current tuple, or unknown), which we need to take note of when performing queries. SQL uses a three-logical system, meaning that NULLs do not satisfy boolean conditions. For example, if a tuple value is `NULL`, `born < 2023` and `born >= 2023` will both evaluate to `FALSE`. This leads to some unintuitive behavior, for example:
+Tuples can have `NULL` values for attributes (e.g., if missing, inapplicable to the current tuple, or unknown), which we need to take note of when performing queries. SQL uses a three-logical system, meaning that NULLs do not satisfy boolean conditions. For example, if a tuple value is `NULL`, `born < 2023` and `born >= 2023` will both evaluate to `FALSE`. This leads to some unintuitive behavior, for example:
 
 ```sql
 SELECT born FROM people WHERE born < 2023 OR born >= 2023;
@@ -304,18 +304,18 @@ Read more about the [three-valued logic system of SQL](https://www.postgresql.or
 
 ### CASE
 
-The CASE keyword enables conditional expressions. We refer you to the PostgreSQL docs [Section 9.18](https://www.postgresql.org/docs/current/functions-conditional.html) for more information.
+The `CASE` keyword enables conditional expressions. We refer you to the PostgreSQL docs [Section 9.18](https://www.postgresql.org/docs/current/functions-conditional.html) for more information.
 
 ### DISTINCT
 
-The DISTINCT keyword removes duplicate rows from the current result set. The following query returns all unique `(title, title_id)` tuples from the `titles` table:
+The `DISTINCT` keyword removes duplicate rows from the current result set. The following query returns all unique `(title, title_id)` tuples from the `titles` table:
 
 ```sql
 SELECT DISTINCT primary_title, title_id
 FROM titles;
 ```
 
-DISTINCT may also be used in aggregation. The following counts all distinct years by removing duplicates prior to aggregation:
+`DISTINCT` may also be used in aggregation. The following counts all distinct years by removing duplicates prior to aggregation:
 
 ```sql
 SELECT COUNT(DISTINCT premiered)
