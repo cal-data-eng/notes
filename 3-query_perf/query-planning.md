@@ -1,7 +1,9 @@
 # Query Planning
-**Last updated**: September 23, 2024
+
+**Last updated**: October 13, 2024
 
 ## Indexes, continued
+
 We will continue to explore indexes, specifically B+ Trees and Hash Indexes.
 
 Indexes can be stored in a variety of formats. The most popular type of index in data systems are B+ trees, which are essentially an extension of a generic binary search tree. Unlike binary search trees, B+ trees have a high fanout, meaning they are likely to have many children at each level. B+ trees are self-balancing and maintain certain fill-factor (usually half). They have logarithmic complexity for all operations. B+ trees are advantageous because they can very quickly find index keys with fast lookup times, i.e., $O(d)$ where d is depth of tree.
@@ -33,9 +35,9 @@ We'll now cover how we covert a logical query plan into a physical one. There ar
 ### Logical and Physical Operators
 
 The query execution plan lays out how to proceed. We can think of plans at two levels:
+
 - The logical level: the logical operators describe "what" is done: union, select, grouping, project, etc.
 - The physical level: the operator implementations describe "how" to do it
-
 
 In code-centric data systems, the user can supply both the logical query plan, and parts of the physical implementation or leave the physical implementation to the system.
 
@@ -44,29 +46,34 @@ Now, we'll cover different physical implementation of logical operators. A simpl
 ## Relational Algebra Laws
 
 Let us examine properties of union and joins through sets (no duplicates).
-- Commutative ($R \cup S = S \cup R$, $R \Join S = S \Join R$)
-- Associative ($R \cup (S \cup T) = (R \cup S) \cup T$, $R \Join (S \Join T) = (R \Join S) \Join T$)
-- Distributive Property ($R \Join (S \cup T) = (R \Join S) \cup (R \Join T)$)
+
+- Commutative: $R \cup S = S \cup R$, $R \Join S = S \Join R$
+- Associative:
+    - $R \cup (S \cup T) = (R \cup S) \cup T$
+    - $R \Join (S \Join T) = (R \Join S) \Join T$
+- Distributive: $R \Join (S \cup T) = (R \Join S) \cup (R \Join T)$
 
 ### Laws involving Selection
+
 - Cascading: $\sigma_{C\: AND\: C'}(R) = \sigma_C(\sigma_{C'}(R))$
-- istributive with union: $\sigma_{C}(R \cup S) = \sigma_C(R) \cup \sigma_{C}(S)$
+- Distributive with union: $\sigma_{C}(R \cup S) = \sigma_C(R) \cup \sigma_{C}(S)$
 - Predicate Pushdown:  $\sigma_{C}(R \bowtie S) = \sigma_D(\sigma_E(R)) \bowtie \sigma_F(S))$
 
-For selection, a simplifying law called predicate pushdown is important to know. This rule states that the predicate can be applied before / after SELECT without impacting the final result. The performance implication of this rule is that the earlier we process selections, the more we reduce data “at source”, and the less we need to manipulate later for more expensive operations (e.g. joins). There is also a similar simplifying law for projection called projection pushdown.
+For selection, a simplifying law called predicate pushdown is important to know. This rule states that the predicate can be applied before / after `SELECT` without impacting the final result. The performance implication of this rule is that the earlier we process selections, the more we reduce data "at source", and the less we need to manipulate later for more expensive operations (e.g. joins). There is also a similar simplifying law for projection called projection pushdown.
 
 ### Laws involving Projection
+
 - Cascading: $\pi_M(\pi_N(R)) = \pi_M(R)$ we can drop $\pi_N$ beause it is redundant
 - Projection Pushdown:  $\pi_M(R \bowtie S) = \pi_M(\pi_P(R) \bowtie \pi_Q(S))$ where $\pi_P(R)$ is just the columns of M in R plus the necessary columns of R needed to do a natural join and $\pi_Q(S)$ is just the columns of M in S plus the necessary columns of S needed to do a natural joins, so that we can obtain only the necessary columns "earlier"
 
-
 ## Query Processing for Joins
-Joins are often the hardest part in the query process and optimization since they are the only operators that “multiply”. There are many different join orders and trees, leading to a very large exponential search space. For example, with n many relations, there are n! ways to order the join. Furthermore, there are a lot of bad join orders that can lead to giant intermediate relations (e.g., first joining larger relations before smaller ones). A variety of approaches have been developed for optimization. One notable one is the “Selinger” algorithm, which only considers left deep trees. The top-down approach, exemplified by the Cascade query optimizer, is also a popular choice.
+
+Joins are often the hardest part in the query process and optimization since they are the only operators that "multiply". There are many different join orders and trees, leading to a very large exponential search space. For example, with n many relations, there are n! ways to order the join. Furthermore, there are a lot of bad join orders that can lead to giant intermediate relations (e.g., first joining larger relations before smaller ones). A variety of approaches have been developed for optimization. One notable one is the "Selinger" algorithm, which only considers left deep trees. The top-down approach, exemplified by the Cascade query optimizer, is also a popular choice.
 
  We will now explore three different ways to join using example tables R and S.
 
 
-**Nested Loop Joins.** The nested loop join is straightforward: for every tuple of R and S, check if it matches. If it does, add it to the output! There are variants of this method, including index-nested loop which uses an index in the “inner” loop to look up only blocks of S that can match the k blocks of R.
+**Nested Loop Joins.** The nested loop join is straightforward: for every tuple of R and S, check if it matches. If it does, add it to the output! There are variants of this method, including index-nested loop which uses an index in the "inner" loop to look up only blocks of S that can match the k blocks of R.
 
 **Sort-Merge Joins.** This method involves two phases. The first phase is the sort phase: sort portions of R on the join attribute, and write out the sorted runs of blocks. Do the same thing for S. The second phase is the merge phase: merge and match tuples across the runs from the first phase by walking down the runs in sorted order. There are also variants that can use indexes and take advantage of relations that are already sorted.
 
