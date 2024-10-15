@@ -212,7 +212,7 @@ In the above query, we compute the averages using a `CASE` statement.
 ### HAVING
 
 Suppose we want to filter a `GROUP BY` on some condition. We can use a
-`HAVING` clause, which typically precedes a `GROUP BY`. The `HAVING` condition
+`HAVING` clause, which typically comes after a `GROUP BY`. The `HAVING` condition
 is applied to each group, and groups not satisfying the condition are
 eliminated. For example, say we wanted to compute the locations with at
 least 30 stops:
