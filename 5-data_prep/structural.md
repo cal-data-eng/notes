@@ -1,4 +1,4 @@
-# Data Preparation I: Structural
+# Structural
 
 **Last Updated:** October 6th, 2024
 

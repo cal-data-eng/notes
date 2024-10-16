@@ -53,16 +53,27 @@ to `AS`.
 
 Suppose that we have two relations with the following schema:
 
-* $\text{titles(title\_id, type, primary\_title, runtime\_minutes)}$
-* $\text{people(person\_id, name, born, died)}$
+* $titles(title\_id, type, primary\_title, runtime\_minutes)$
+* $people(person\_id, name, born, died)$
 
-1. $\pi_{\text{title\_id, primary\_title}}(\text{titles})$ outputs a relation with tuples of $\text{titles}$ that are restricted to the attributes $\text{title\_id}$ and $\text{primary\_title}$. In other words, we "drop" the other attributes $\text{type}$ and $\text{runtime\_minutes}$.
+
+1. $\pi_{title\_id, primary\_title}(titles)$ outputs a relation with tuples of `titles` that are restricted to the attributes `title_id` and `primary_title`. In other words, we "drop" the other attributes `type` and `runtime_minutes`.
+
+2. $\sigma_{born > 1980}(people)$ outputs a relation with tuples of `people` that satisfy the condition where `born > 1980`.
+
+3. $\rho_{persons(person\_id, name, birth, death)}(people)$ outputs a relation named `persons` that has the tuples of `people` but renames attributes `born` and `died` to `birth` and `death`, respectively, and keeps `person_id` and `name` unchanged.
+
+4. $\rho_{persons}(born \rightarrow birth, died \rightarrow death)(people)$ does the same as the previous example but is more concise.
+
+
+
+<!-- 1. $\pi_{\text{title\_id, primary\_title}}(\text{titles})$ outputs a relation with tuples of $\text{titles}$ that are restricted to the attributes $\text{title\_id}$ and $\text{primary\_title}$. In other words, we "drop" the other attributes $\text{type}$ and $\text{runtime\_minutes}$.
 
 2. $\sigma_{\text{born} > 1980}(\text{people})$ outputs a relation with tuples of $\text{people}$ that satisfy the condition where $\text{born} > 1980$.
 
 3. $\rho_{\text{persons(person\_id, name, birth, death)}}(\text{people})$ outputs a relation named $\text{persons}$ that has the tuples of $\text{people}$ but renames attributes $\text{born}$ and $\text{died}$ to $\text{birth}$ and $\text{death}$, respectively, and keeps $\text{person\_id}$ and $\text{name}$ unchanged.
 
-4. $\rho_{\text{persons}(\text{born} \rightarrow \text{birth}, \text{died} \rightarrow \text{death}}(\text{people})$ does the same as the previous example but is more concise.
+4. $\rho_{\text{persons}(\text{born} \rightarrow \text{birth}, \text{died} \rightarrow \text{death}}(\text{people})$ does the same as the previous example but is more concise. -->
 
 ## Binary Operators: Cartesian Product, Union, and Difference
 

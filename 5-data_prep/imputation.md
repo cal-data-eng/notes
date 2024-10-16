@@ -1,6 +1,6 @@
-# Data Preparation  IV: Imputation and Entity Resolution
+# Imputation and Entity Resolution
 
-**Last Updated:** October 10th, 2024
+**Last Updated:** October 16th, 2024
 
 ## Data Preparation
 
@@ -22,10 +22,11 @@ Here is an example of methods 1 and 2. Consider a scenario where we are tracking
 We start by computing the averages for each TA:
 
 ```sql
-WITH avg_attendance AS
-SELECT id, AVG(num_students) AS avg
-FROM discussion_metrics
-GROUP BY id
+WITH avg_attendance AS (
+    SELECT id, AVG(num_students) AS avg
+    FROM discussion_metrics
+    GROUP BY id
+)
 ```
 
 Then, we can compute a version of the original table with null values replaced by the corresponding average:
@@ -36,7 +37,7 @@ SELECT attendance.id,
     THEN attendance.num_students
     ELSE a.avg END
 FROM discussion_metrics AS attendance INNER JOIN avg_attendance AS a
-ON attendance.id = a.id
+ON attendance.id = a.id;
 ```
 
 But this may not be a good model for attendance, which (unfortunately) has a tendency to drop off over the semester. We can handle this by using linear regression to create a model of attendance over time.
@@ -44,12 +45,13 @@ But this may not be a good model for attendance, which (unfortunately) has a ten
 First, we compute slopes and intercepts for each TA:
 
 ```sql
-WITH avg_attendance AS
-SELECT id,
-    regr_slope(num_students, date) AS slope, 
-    regr_intercept(num_students, date) AS intercept
-FROM discussion_metrics
-GROUP BY id
+WITH avg_attendance AS (
+    SELECT id, 
+        regr_slope(num_students, date) AS slope, 
+        regr_intercept(num_students, date) AS intercept
+    FROM discussion_metrics
+    GROUP BY id
+)
 ```
 
 And then we can use this to replace NULLs:
@@ -60,7 +62,7 @@ SELECT attendance.id,
     THEN attendance.num_students
     ELSE (a.slope * attendance.date + a.intercept)::int END
 FROM discussion_metrics AS attendance INNER JOIN avg_attendance AS a
-ON attendance.id = a.id
+ON attendance.id = a.id;
 ```
 This covers the basics of imputation, but there are even fancier techniques for better models, such as interpolating over chunks of NULL values in ordered rows.
 
@@ -100,7 +102,7 @@ For example, consider a dataset with two tables consisting of human-entered data
 ```sql
 SELECT a.name, a.price, b.popularity
 FROM prices AS a INNER JOIN popularity AS b
-ON a.name = b.name
+ON a.name = b.name;
 ```
 But because these tables have been entered by humans, there may be slight differences in the names used to identify equivalent products. For example, the prices table may have a row with the name "Off The Record (Single)", but the popularity table may instead use the name "Off The Record [Single]". Small differences like this will fail the equality condition in our join, resulting in many pairs missing from the query result.
 
@@ -115,7 +117,7 @@ With a function to compute the Levenshtein distance (which is available in many 
 ```sql
 SELECT a.name, a.price, b.popularity
 FROM prices AS a, popularity AS b
-WHERE levenshtein(a.name, b.name) < 5
+WHERE levenshtein(a.name, b.name) < 5;
 ```
 
 Note that because we are performing an advanced calculation on every pair of tuples from the input tables, we cannot optimize this query using strategies such as a hash join. Instead, this query will perform a nested iteration over both tables and compute the distance for each pair, which will be _extremely slow_ as this is a full cross join. Thankfully, there are smarter indexing strategies that can optimize this, which we will learn about later in this course.

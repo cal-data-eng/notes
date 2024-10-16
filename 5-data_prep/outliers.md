@@ -1,6 +1,6 @@
-# Data Preparation III: Outliers 
+# Outliers 
 
-**Last Updated:** October 10th, 2024
+**Last Updated:** October 16th, 2024
 
 ## Outliers
 
@@ -32,9 +32,10 @@ Finally, let's discuss how we decide _how much_ data to preserve when removing o
 The **breakdown point** of an estimator is the smallest fraction of corrupted values an estimator can handle before an incorrect result. For example, the breakdown point of the mean is **0**. One outlier value can change our entire dataset's mean given that it is large or small enough, so it can handle a total fraction of 0 corrupted values before breaking down. On the other hand, the 1% trimmed mean can handle **1%** of corrupted values before breaking down since those values will be trimmed out and not affect the mean.
 
 We started with means and standard deviations, but as we saw earlier this model of distributions is especially susceptible to outliers. But if we start with medians, we can define the median absolute deviation (MAD) as the equivalent to standard deviations: 
-$$
+
+$
 MAD(X) = \text{median}(|X_i - \tilde{X}|)
-$$
+$
 
 Now, let's map this back to the percentiles we used when picking our z-score ranges. We find that 1 standard deviation is equivalent to 1.4826 MADs (when evaluated on a standard normal distribution with mean 0 and stddev 1). So to compute an equivalent range to 2 standard deviations with more robust MADs, we can filter values that are $2 * 1.4826$ MADs from the median of the dataset. This strategy is called Hampel x84.
 

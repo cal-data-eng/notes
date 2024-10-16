@@ -1,4 +1,4 @@
-# Data Preparation II: Numerical, Granularity
+# Numerical, Granularity
 
 **Last Updated:** October 6th, 2024
 
