@@ -38,7 +38,7 @@ Dataframes, our third data model, borrow a mix of characteristics from relations
 
 ![Dataframes](./dataframes.jpeg)
 
-Dataframes have a type induction operator $S(A_i)$ that takes in a column of values and infers a type, allowing us to define the output schema of a transpose operation. This induction operator enables dataframes to be symmetric.
+Dataframes have a type induction opererator $S(A_i)$ that takes in a column of values and infers a type, allowing us to define the output schema of a transpose operation. This induction operator enables dataframes to be symmetric.
 
 However, dataframes are still mathematically inelegant. After transposing a given dataframe, each column is of type `object`, and we lose information on the datatype a cell once was. Moreover, if we attempt to take the transpose of this transposed dataframe, we are unable to get the original dataframe back due to the data loss on datatype.
 
