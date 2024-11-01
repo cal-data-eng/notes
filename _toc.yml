@@ -39,6 +39,7 @@ parts:
       - file: 4-data_modeling/index
         sections:
         - file: 4-data_modeling/data_models
+        - file: 4-data_modeling/ER_diagrams
   - caption: Data Preparation
     numbered: True
     chapters:
