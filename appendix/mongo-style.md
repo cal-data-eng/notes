@@ -49,7 +49,7 @@ In MongoDB’s aggregation framework, `$` is often used to refer to specific sta
     * `$match`, `$group`, `$sort`, `$project`, etc.
 
 3. **Referencing entire \<field\>s as an array** \
-Depending on the operators used, you might want to use an entire \<field\> as an value array in the key-value pair operators. Then you would use `$<field>` instead of just `<field>`.
+Depending on the operators used, you might want to use an entire \<field\> as an **value** array in the key-value pair operators. Then you would use `$<field>` instead of just `<field>`.
     * For example:
 
     ```python
@@ -64,7 +64,7 @@ Depending on the operators used, you might want to use an entire \<field\> as an
     ```
     The query above wants to sum the `price` field for each unique `cust_id` with `status` `A`. So, the pipeline first filters out documents where the `status` field is `A` then groups based on the `cust_id` field to sum the `price` field.
 
-    Notice how when we are referring to the `status` field as a key to be filtered through we don't use `$`. However, when we want to use the `cust_id` and `price` fields as values to be grouped on or summed, we use `$cust_id` and `$price`.
+    Notice how when we are referring to the `status` field as a **key** to be filtered through we don't use `$`. However, when we want to use the `cust_id` and `price` fields as **values** to be grouped on or summed, we use `$cust_id` and `$price`.
 
     Below is the equivalent query in SQL:
     ```sql
