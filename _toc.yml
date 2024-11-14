@@ -55,6 +55,7 @@ parts:
       - file: 6-semi_data/index
         sections:
         - file: 6-semi_data/semistructured
+        - file: 6-semi_data/mongodb
   - caption: Appendix
     numbered: False
     chapters:
