@@ -49,7 +49,14 @@ parts:
         - file: 5-data_prep/granularity
         - file: 5-data_prep/outliers
         - file: 5-data_prep/imputation
+  - caption: Semistructured Data
+    numbered: True
+    chapters:
+      - file: 6-semi_data/index
+        sections:
+        - file: 6-semi_Data/semistructured
   - caption: Appendix
     numbered: False
     chapters:
       - file: appendix/sql-style
+      - file: appendix/mongo-style
