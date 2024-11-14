@@ -54,7 +54,7 @@ parts:
     chapters:
       - file: 6-semi_data/index
         sections:
-        - file: 6-semi_Data/semistructured
+        - file: 6-semi_data/semistructured
   - caption: Appendix
     numbered: False
     chapters:
