@@ -28,7 +28,7 @@ db.orders.insertMany( [
 ### PyMongo
 PyMongo is a Python library that provides an interface for interacting with MongoDB from Python code.
 
-* All field names must be wrapped in double-quotations (`" "`) when using PyMongo because all field names are strings.
+* **STRONG SUGGESTION** : Wrap all field names in double-quotations (`" "`) to avoid syntax errors while working with PyMongo.
 
 * **Note that because of this rule, the distiction between a \<field\> `"name"` and a string `"Pepperoni"` can be often difficult to find.**
 
