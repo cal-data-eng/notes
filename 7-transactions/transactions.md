@@ -3,7 +3,7 @@
 **Last Updated:** December 4th, 2024
 
 ## Transactions
-In most situations, many users can query \& update a database simultaneously, causing concurrency issues. One user can write to the database while another user reads from the same resource, or both users may try to write to the same resource. We use transactions to address these problems. A transaction is a sequence of multiple actions to be executed as a single, logical, atomic unit. From SQL view, a transaction is in the form of: 
+In most situations, many users can query and update a database simultaneously, causing concurrency issues. One user can write to the database while another user reads from the same resource, or both users may try to write to the same resource. We use transactions to address these problems. A transaction is a sequence of multiple actions to be executed as a single, logical, atomic unit. From SQL view, a transaction is in the form of: 
 - Begin transaction 
 - equence of SQL statements
 - End transaction
@@ -41,3 +41,14 @@ One way to check if a schedule is serializable is to build a conflict graph. Con
 A **cycle** corresponds to a schedule that is not **conflict serializable**. A schedule is conflict serializable if and only if its dependency graph is **acyclic**. Every conflict serializable schedule is serializable. An example of a schedule that is not conflict serializable is shown below. 
 
 ![Conflict Graph](./conflict-graph.png)
+
+###  Snapshot Isolation 
+Serializable transactions satisfy the isolation property in ACID. However, sometimes we want to trade correctness for performance: We can use weak isolation to allow a transaction to choose to be a "bit sloppy," as long as it doesn’t mess up other transactions’ choices to do so. 
+
+The "best" version of this is called snapshot isolation:
+- In a snapshot isolated system, each transaction appears to operate on an independent, consistent snapshot of the database. At transaction start: Take a “snapshot” of the database, off which to do reads/writes.
+- All the reads of a transaction are from the same snapshot. 
+- A transaction can commit if the values updated by this transaction have not been changed externally since the snapshot was taken.
+- If transaction T1 has modified an object x, and another transaction T2 committed a write to x after T1’s snapshot began, and before T1’s commit, then T1 must abort.
+    
+It's a much weaker property of isolation than serialized transactions, but it’s good enough when we prefer more concurrency/higher performance. Isolation levels (both default and maximum) vary in support across different database engines. Because of this, data engineers need to look at different databases and then consider the tradeoff between correctness and performance when choosing the one that matches their application. 
