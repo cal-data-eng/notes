@@ -57,6 +57,29 @@ be adapted for parallel processing in a distributed environment. Similar
 delegation occurs for update and insert operations. The manager assigns
 these tasks to the relevant worker nodes based on data partitioning.
 
+## CAP Theorem 
+Any distributed data store can deliver at most two of the three properties.
+
+**Consistency**:
+All clients see the same data at the same time, no matter which node they connect to.  Data is either instantly accessible on all partitions, or a write is not confirmed until copies are made to all partitions (Consistency here is different from the consistency defined in the ACID transaction properties).
+
+**Availability**:
+Any client making a request for data gets a response, even if one or more nodes are down. All working nodes in the distributed system return a valid response for any request, without exception.
+
+**Partition-Tolerance**:
+A communications break within a distributed system—a lost connection between two nodes. Partition tolerance means that the cluster must continue to work despite any number of communication breakdowns between nodes in the system.
+
+### "Pick Two" - Trade-Offs!
+![CAP Theorem](./CAP.PNG)
+**CP**: consistency and partition tolerance. When a partition occurs between any two nodes, the system has to shut down the non-consistent node (i.e., make it unavailable) until the partition is resolved.
+
+**AP**: availability and partition tolerance. When a partition occurs, all nodes remain available but those at the wrong end of a partition might return an older version of data than others. (e.g. stale reads)
+
+**CA**: consistency and availability. 
+❌ This is impossible in a network with partitions.
+Network and hardware failures mean a partition can disappear or become disconnected.
+
+
 ## MapReduce
 MapReduce is a programing framework introduced in 2004 at Google to handle parallel/distributed computing!
 
