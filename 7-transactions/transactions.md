@@ -23,7 +23,7 @@ Transactions guarantee the ACID properties to avoid the concurrency problems dis
 - Serializable Schedules: a schedule that has results equivalent to a serial schedule.
 
 ### Conflict Dependency Graph 
-How do we know if a schedule is serializable?
+We like serializable schedules because they follow isolation property of ACID. How do we know if a schedule is serializable?
 We define a notion of conflicting actions, and two actions conflict if:
 - They are from two different, concurrent transactions
 - They reference the same object
