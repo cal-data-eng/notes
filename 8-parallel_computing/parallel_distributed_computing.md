@@ -71,6 +71,7 @@ A communications break within a distributed system—a lost connection between t
 
 ### "Pick Two" - Trade-Offs!
 ![CAP Theorem](./CAP.png)
+
 **CP**: consistency and partition tolerance. When a partition occurs between any two nodes, the system has to shut down the non-consistent node (i.e., make it unavailable) until the partition is resolved.
 
 **AP**: availability and partition tolerance. When a partition occurs, all nodes remain available but those at the wrong end of a partition might return an older version of data than others. (e.g. stale reads)
