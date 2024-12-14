@@ -56,6 +56,30 @@ parts:
         sections:
         - file: 6-semi_data/semistructured
         - file: 6-semi_data/mongodb
+  - caption: Transactions
+    numbered: True
+    chapters:
+      - file: 7-transactions/index
+        sections:
+        - file: 7-transactions/transactions
+  - caption: Parallel/distributed Computing
+    numbered: True
+    chapters:
+      - file: 8-parallel_computing/index
+        sections:
+        - file: 8-parallel_computing/parallel_distributed_computing
+  - caption: Data Pipelines
+    numbered: True
+    chapters:
+      - file: 9-data_pipelines/index
+        sections:
+        - file: 9-data_pipelines/data-pipelines
+  - caption: BI
+    numbered: True
+    chapters:
+      - file: 10-BI/index
+        sections:
+        - file: 10-BI/BI
   - caption: Appendix
     numbered: False
     chapters:
