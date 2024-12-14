@@ -94,6 +94,12 @@ parts:
         - file: 11-graph_db/property_graph
         - file: 11-graph_db/triplestores
         - file: 11-graph_db/ontologies 
+  - caption: Spreadsheets
+    numbered: True
+    chapters:
+      - file: 13-spreadsheets/index
+        sections:
+        - file: 13-spreadsheets/spreadsheets
   - caption: Appendix
     numbered: False
     chapters:
