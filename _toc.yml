@@ -56,6 +56,12 @@ parts:
         sections:
         - file: 6-semi_data/semistructured
         - file: 6-semi_data/mongodb
+  - caption: Sampling
+    numbered: True
+    chapters:
+      - file: 12-sampling/index
+        sections:
+        - file: 12-sampling/sampling
   - caption: Transactions
     numbered: True
     chapters:
@@ -80,6 +86,14 @@ parts:
       - file: 10-BI/index
         sections:
         - file: 10-BI/BI
+  - caption: Graph Databases
+    numbered: True
+    chapters:
+      - file: 11-graph_db/index
+        sections:
+        - file: 11-graph_db/property_graph
+        - file: 11-graph_db/triplestores
+        - file: 11-graph_db/ontologies 
   - caption: Appendix
     numbered: False
     chapters:
