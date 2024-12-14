@@ -3,10 +3,40 @@
 **Last Updated:** December 4th, 2024
 
 ## Transactions
-In most situations, many users can query and update a database simultaneously, causing concurrency issues. One user can write to the database while another user reads from the same resource, or both users may try to write to the same resource. We use transactions to address these problems. A transaction is a sequence of multiple actions to be executed as a single, logical, atomic unit. From SQL view, a transaction is in the form of: 
+ A transaction is a sequence of multiple actions to be executed as "a unit of work". From SQL view, a transaction is in the form of: 
 - Begin transaction 
 - equence of SQL statements
 - End transaction
+
+### Classic Example: Bank Transfer
+Imagine moving $1,000 from one account (1111) to another (9999). This involves two updates:
+1. **Debit** $1,000 from account 1111.
+2. **Credit** $1,000 to account 9999.
+
+The entire operation must either **fully succeed** or **fully fail**—you can't debit without crediting or vice versa.
+
+**TCL (Transaction Control Language)**
+
+SQL provides commands to ensure that all operations within a transaction are treated as a single unit. These commands include:
+- **`BEGIN`**: Starts the transaction.
+- **`COMMIT`**: Saves the transaction permanently.
+- **`ROLLBACK`**: Cancels the transaction if something goes wrong.
+
+**Example Code**
+```sql
+BEGIN
+-- "Debit" one account
+UPDATE checking
+    SET amount = amount - 1000
+    WHERE acctId = 1111;
+
+-- "Credit" the other account
+UPDATE savings
+    SET amount = amount + 1000
+    WHERE acctId = 9999;
+
+COMMIT;
+```
 
 ### ACID
 Transactions guarantee the ACID properties to avoid the concurrency problems discussed above: 
