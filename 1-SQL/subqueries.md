@@ -11,7 +11,7 @@ as scalars or sets.
 If a subquery returns a single tuple with a single attribute value, it
 can be treated as a scalar in expressions. Suppose we want to collect
 all the stops that happened at the same location as `id = 123`. We could
-issue a query as follows, with the parethesized statement as the
+issue a query as follows, with the parenthesized statement as the
 subquery:
 
 ```sql
@@ -58,7 +58,7 @@ WHERE NOT EXISTS (
 ```
 
 In the above query, the subquery returns a set of all zips that have
-more that one stop, i.e. the `WHERE` keyword finds all the tuples that
+more than one stop, i.e. the `WHERE` keyword finds all the tuples that
 have the same zipcode as another, but with a unique ID, which is then
 used with the `NOT EXISTS` keyword to return locations of stops that do
 not have an entry in the subquery set.

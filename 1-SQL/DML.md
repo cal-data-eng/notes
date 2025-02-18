@@ -1,4 +1,4 @@
-# DML—Data Manipulation Langauge
+# DML—Data Manipulation Language
 **Last updated**: September 12, 2024
 
 Just as we want to be able to query from a relation, we also need to be able to modify the data in relation. A modification command doesn’t return the result in the same way a query does, but it changes the relational instance. Suppose we want to update a table---e.g., insert tuples, delete tuples, modify or update existing tuples.
