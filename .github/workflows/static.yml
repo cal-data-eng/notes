@@ -47,6 +47,12 @@ jobs:
       run: |
         jupyter-book build .
 
+        # Debug: Check if _build/html exists
+
+    - name: Debug Build Output
+      run: |
+        ls -R _build/html || echo " _build/html directory NOT found!"
+
     # Upload the book's HTML as an artifact
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
