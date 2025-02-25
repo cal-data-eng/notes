@@ -3,7 +3,7 @@
 
 ## DDL
 
-The _DDL_, or data defintion language, is the set of SQL commands that allow us to create and modify the _schema_ of a relation. The schema is the structure of a relation, including attribute names, types, and any described relationships between attributes and other relations.
+The _DDL_, or data definition language, is the set of SQL commands that allow us to create and modify the _schema_ of a relation. The schema is the structure of a relation, including attribute names, types, and any described relationships between attributes and other relations.
 A definition command also does not return the result in the same way a query does.
 
 Suppose we want to create, drop or alter a table.
@@ -40,7 +40,7 @@ ALTER TABLE zips
 ```
 
 ```sql
--- Delete old columns to the relation
+-- Delete old columns from the relation
 ALTER TABLE zips
     DROP area,
     DROP timezone;
