@@ -15,6 +15,7 @@ parts:
       - file: 1-SQL/views
       - file: 1-SQL/CTEs
       - file: 1-SQL/subqueries
+      - file: 1-SQL/window
       - file: 1-SQL/DML
       - file: 1-SQL/DDL
       - file: 1-SQL/keys-constraints
