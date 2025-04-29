@@ -33,9 +33,13 @@ What if a data analyst wanted us to return **just** the precipitation grouped by
 In Pandas we could do this with:
 `mmr.groupby(['Year', 'Month']).mean('Inches of Precipitation')`
 
+![Group By DataFrame](https://github.com/aldrinnnnn/notes/blob/main/5-data_prep/original_precip_df.png?raw=true)
+
 However, there's still a _lot_ of rows, one for each year and month combination. Let's try pivoting this tidy dataframe to aggregate our values. let's add `.pivot(index='Year', columns='Month')` but first we need to `reset_index()` so that we can access our Year and Month columns. 
 
 Our code is now: `mmr.groupby(['Year', 'Month']).mean('Inches of Precipitation').reset_index().pivot(index='Year', columns='Month')`
+
+![Pivoted DataFrame](https://github.com/aldrinnnnn/notes/blob/main/5-data_prep/pivoted_precip_df.png?raw=true)
 
 Success! We now have a pivot table with our year as index and months as columns with our average rainfall as our values. 
 
