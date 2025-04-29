@@ -15,7 +15,7 @@ We say **masking** occurs when an outlier influences the dispersion measure and 
 
 The simplest definition of outliers is based on the Gaussian distribution, which forms a "bell curve" defined by a mean (center of the curve) and standard deviation (spread of the curve). For a given value, we can compute its **z-score**, which is how many standard deviations it is from the mean. When the absolute value of the z-score is large, that means the value was less likely to occur according to the distribution.
 
-Using z-scores, we can easily remove outliers from our data. For example, if we remove any values with an absolute z-score larger than 2, we will keep only the values from the 2.5th percentile to the 97.5th percentile. However, this method is not robust and both center and dispersion are sensitive to the distribution of the outliers themselves.
+Using z-scores, we can easily remove outliers from our data. For example, if we remove any values with an absolute z-score larger than 2, we will keep only the values from the 2.5th percentile to the 97.5th percentile. However, this method is not robust, as both center and dispersion are sensitive to the distribution of the outliers themselves.
 
 ### Trimming
 
