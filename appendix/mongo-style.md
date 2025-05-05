@@ -19,7 +19,7 @@ For example, indenting and separating pairs of brackets:
 ```python
 db.orders.insertMany( [
    { "_id": 0, "name": "Pepperoni", "size": "small", "price": 19,
-     quantity: 10},
+     "quantity": 10},
    { "_id": 1, "name": "Pepperoni", "size": "medium", "price": 20,
      "quantity": 20},
 ] )
