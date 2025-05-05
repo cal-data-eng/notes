@@ -68,7 +68,7 @@ For example, we can take this relational schema:
 
 and combine it to become this:
 
-- product(name, category, start_year, company_name)
+- product(name, category, price, start_year, company_name)
 
 - company(name, stock_price)
 
