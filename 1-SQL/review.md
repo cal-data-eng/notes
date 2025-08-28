@@ -1,6 +1,6 @@
 # SQL Review
 
-**Last updated**: October 12, 2024
+**Last updated**: August 27, 2025 
 
 This is a review of Data 100 SQL syntax, plus more.
 
@@ -17,38 +17,6 @@ This course uses a dialect or flavor of SQL called **PostgreSQL** (also known as
 
 We draw broadly from the [PostgreSQL documentation](https://www.postgresql.org/docs/current/index.html) for much of the SQL syntax, conventions, and concepts in this course. When in doubt, clarify with the official documentation. If there is an inconsistency between the documentation and the course notes, please post on our course forums so we can update the course notes. Thanks!
 
-## SQL Query Order of Execution
-
-You have likely had some experience with other SQL dialects---perhaps duckDB, or SQLite. This note therefore starts with a quick refresher of the **SQL query structure**, to make for easy reference. The rest of this note follows with conceptual explanations and details.
-
-As a declarative language, SQL statements are not evaluated left-to-right, top-to-bottom.
-Instead, each SQL query is meant to read like English. The execution order, however, evaluates certain *clauses* in the query before other clauses in the query. Conceptually:
-
-```
-SELECT S                -- 5
-FROM R1, R2, ...        -- 1
-WHERE C1                -- 2
-GROUP BY A1, A2, ...    -- 3
-HAVING C2;              -- 4
-```
-
-Order of evaluation:
-1. `FROM`: Fetch the tables and compute the cross product of the relations `R1, R2, …`
-1. `WHERE`: For each tuple from 1, keep only those that satisfy condition `C1`
-1. `GROUP BY`: Create groups of tuples by `A1`, `A2`, etc. At this time, for each group, compute all aggregates needed for `C2` and `S` (below).
-1. `HAVING`: For each group, check if condition `C2` is satisfied.
-1. `SELECT`: Add to output based on attribute set `S`.
-
-Note that `WHERE` is therefore a row filter that happens **before** groups are made,
-whereas `HAVING` is a group filter that happens **after** groups are made.
-
-```{note}
-By convention, SQL keywords are in all caps, e.g., `SELECT *`, while attributes are in lowercase.
-```
-
-```{note}
-End queries with a semicolon.
-```
 
 ## The Relational Data Model
 
@@ -68,21 +36,26 @@ An **instance** is a specific instantiation of the relation, i.e., tuples with s
 
 In general, think relation as a table of data whose columns (i.e., attributes) are organized according to a specific relational schema. You will hear "relation" and "table" used interchangeably, though the former is more specific (as we will see when we discuss Relational Algebra). A **relational database** is a collection of relations, which are often related to each other according to some **database schema** or **relational schema**.
 
-## SELECT-FROM-WHERE (SFW)
 
-Let's start simple. Below is the `SELECT FROM WHERE` (**SFW**) query structure, the most standard SQL query structure to extract records from a relation:
+## SELECT-FROM-WHERE (SFW)
+This note starts with a quick refresher of the **SQL query structure**, to make for easy reference. The rest of this note follows with conceptual explanations and details.
+
+We’ll start with the basics. The `SELECT FROM WHERE` (**SFW**) query structure is the most standard way to extract records from a relation:
 
 ```sql
 SELECT attributes
 FROM tables
 WHERE condition about tuples in tables;
 ```
+At a high level:
 
-Remember---SQL is a declarative language! Instead of evaluating the SQL query from first to last line, it is evaluated like so:
+1. `FROM`: specifies which table(s) to query.
+1. `WHERE`: filters rows based on conditions.
+1. `SELECT`: filters for the specified attributes.
 
-1. `FROM` clause: lists the table
-1. `WHERE` clause: filters for the matching tuples
-1. `SELECT` clause: filters for the specified attributes.
+Remember---SQL is a declarative language! You describe *what* you want, not *how* to compute it. Even though queries are written in the order `SELECT → FROM → WHERE`, the database engine does not evaluate them top to bottom (we’ll return to execution order later). 
+
+Now let’s take a closer look at each of the three main clauses -- `SELECT`, `FROM`, and `WHERE`. 
 
 ### SELECT list of expressions
 
@@ -118,59 +91,65 @@ WHERE s1.age >= (
 
 Note that we alias the second stops relation.
 
+So far, we’ve focused on retrieving rows. Next, let’s see how to summarize them using aggregations.
+
 ## Aggregations
 
-We can also **aggregate** a column in a `SELECT` clause according to a particular aggregation function: `SUM`, `MIN`, `MAX`, `AVG`, `COUNT`, etc.
+Often, we don’t just want individual rows, we want summaries across many rows. SQL provides a set of aggregation functions that take a column of values and return a single result. Common examples include: `SUM`, `MIN`, `MAX`, `AVG`, `COUNT`, etc.
+
+For example, to compute the maximum and average ages in the `stops` relation:
 
 ```sql
 SELECT MAX(age), AVG(age)
 FROM stops;
 ```
 
-The above query computes the minimum and maximum values of the `age` attribute from the `stops` relation. To be more specific, the return value of the above SQL query is an unnamed relation with a single tuple; the relation schema contains two numeric types:
-
+Result:
 ```
  max | avg
 -----+------
  32  | 25.3
-
 ```
 
-The precise attribute names (above, `max` and `avg`) varies based on SQL flavor and may contain the atribute itself (e.g., `MAX(age)`, `avg(age)`, etc.).
+Note that the precise attribute names (above, `max` and `avg`) varies based on SQL flavor and may contain the atribute itself (e.g., `MAX(age)`, `avg(age)`, etc.).
 
-`COUNT(*)` uses the special asterisk symbol (`*`) to count the number of tuples.
+The `COUNT` function is commonly used to find the number of rows in a result. Using `COUNT(*)` counts all rows in the relation:
 
-```
+```sql
 SELECT COUNT(*) FROM stops;
 ```
 
-returns the number of tuples in the `stops` relation.
+This query returns the total number of tuples in the `stops` relation.
 
 ### Aggregation Examples
 
-Aggregation expression can include SQL keywords and even subqueries (we discuss subqueries in much more detail in a separate section).
+Aggregations come with some special behaviors that are important to understand, especially around `NULL` values and duplicates.
+
+#### Handling NULL
 
 **`NULL`** values are not involved in aggregation:
-The below query counts total rows, counts non-null ages, and computes average age. The first two attributes could have different values if there are NULL ages.
+The query below compares three different aggregations on the same column. It counts **all rows**, counts only the **non-null ages**, and computes the **average age** (also ignoring NULLs):
 
 ```sql
 SELECT COUNT(*), COUNT(age), AVG(age)
 FROM stops;
 ```
+If some rows have `NULL` values for `age`, then `COUNT(*)` will be larger than `COUNT(age)`.
 
-**`DISTINCT`** removes duplicates prior to aggregation. [Read more](https://www.postgresql.org/about/featurematrix/detail/392/) about how NULL values are considered.
+#### Using DISTINCT
+
+By default, aggregation functions include every row in their calculation, even if values are duplicated. Adding **`DISTINCT`** makes the aggregation operate only on unique values. [Read more](https://www.postgresql.org/about/featurematrix/detail/392/) about how NULL values are considered.
 
 ```sql
 SELECT COUNT(DISTINCT location)
 FROM stops;
 ```
 
+This query counts the number of distinct (non-null) locations in the `stops` realtion.
+
 ## Grouping
 
-In some cases, we may want to compute an aggregate for each "group" of
-tuples as opposed to an overall `COUNT`, `MAX` or `SUM`. To do so, we add a
-`GROUP BY` clause after the `SELECT-FROM-WHERE`. For example, say we
-wanted to find average and minimum ages for each location:
+So far, our aggregations have summarized across the entire table. But often, we want to break the data into categories and compute separate summaries for each one. This is where the **`GROUP BY`** clause comes in. In other words, instead of computing just a single overall `COUNT`, `MAX`, or `SUM`, we may want to compute an aggregate for each group of tuples. To do so, we add a GROUP BY clause after the `SELECT–FROM–WHERE`. For example, say we wanted to find average and minimum ages for each location:
 
 ```sql
 SELECT location, AVG(age) AS avgage, MIN (age) as minage
@@ -185,19 +164,15 @@ or being grouped, we have no way to "squish" the values down per group.
 
 Also note that `AVG` (and other aggregations) ignore null values; we discuss this more below.
 
-Postgres supports many aggregate statistics: standard deviation,
-covariance, regression slope/intercept, correlation coefficient, and
-more. Say we wanted to find the median age of stopped people:
+Postgres also supports many advanced statistical aggregates, such as standard deviation, covariance, regression, and correlation. For example, we can compute the median age with `PERCENTILE_DISC`:
 
-```
+```sql
 SELECT zip, PERCENTAGE_DISC(0.5)
 WITHIN GROUP (ORDER BY age)
 FROM stops;
 ```
 
-We can also use more sophisticated syntax in `GROUP BY`s; for example, the
-following query computes the average ages of stops across various days
-for West Oakland and Rockridge individually:
+We can also perform **conditional aggregation** by combining `CASE` expressions with aggregates. This allows us to compute multiple group-specific values in one query. For example, to compute average ages for two specific locations across different days:
 
 ```sql
 SELECT days,
@@ -207,15 +182,11 @@ FROM stops
 GROUP BY days;
 ```
 
-In the above query, we compute the averages using a `CASE` statement.
+Here, the `CASE` expression ensures that only rows matching a given location contribute to each average, while the `GROUP BY` clause organizes results by day.
 
 ### HAVING
 
-Suppose we want to filter a `GROUP BY` on some condition. We can use a
-`HAVING` clause, which typically comes after a `GROUP BY`. The `HAVING` condition
-is applied to each group, and groups not satisfying the condition are
-eliminated. For example, say we wanted to compute the locations with at
-least 30 stops:
+So far, we’ve seen how `WHERE` filters **rows before grouping**. But sometimes we want to filter entire groups after aggregation. For this, SQL provides the `HAVING` clause. The ``HAVING`` condition is applied to each group, and only groups that satisfy the condition remain in the result. For example, to find the locations with at least 30 stops:
 
 ```sql
 SELECT location, COUNT (*)
@@ -224,8 +195,9 @@ GROUP BY location
 HAVING COUNT (*) > 30;
 ```
 
-Similarly to `SELECT` clauses, each attribute mentioned in a `HAVING` clause
-must either be part of the `GROUP BY` or be aggregated.
+Here, `GROUP BY` creates one group per location, and `HAVING` filters out groups with fewer than 30 rows.
+
+Just like in the `SELECT` clause, each attribute mentioned in a `HAVING` clause must either be part of the `GROUP BY` or be aggregated.
 
 ## Symbols and Additional Keywords
 
@@ -286,13 +258,13 @@ See [Chapter 8](https://www.postgresql.org/docs/current/datatype.html) of the Po
 
 ### NULL
 
-Tuples can have `NULL` values for attributes (e.g., if missing, inapplicable to the current tuple, or unknown), which we need to take note of when performing queries. SQL uses a three-logical system, meaning that NULLs do not satisfy boolean conditions. For example, if a tuple value is `NULL`, `born < 2023` and `born >= 2023` will both evaluate to `FALSE`. This leads to some unintuitive behavior, for example:
+Tuples can have `NULL` values for attributes (e.g., if missing, inapplicable to the current tuple, or unknown), which we need to take note of when performing queries. SQL uses a three-logical system, meaning that expressions involving `NULL` may evaluate to `UNKNOWN` instead of `TRUE` or `FALSE`. For example, if a tuple value is `NULL`, `born < 2023` and `born >= 2023` will both evaluate to `UNKNOWN`. Since `UNKNOWN` conditions are treated like `FALSE` in a `WHERE` clause, the following query **excludes rows where** `born` **is `NULL`**:
 
 ```sql
 SELECT born FROM people WHERE born < 2023 OR born >= 2023;
 ```
 
-The above query will return all tuples that don't have a `NULL` born value, not all the tuples in the relation! If we want all the tuples, we need to explicitly test for `NULL`:
+To include those rows, we must check explicitly for `NULL`:
 
 ```sql
 SELECT born FROM people WHERE born < 2023 OR born IS NULL;
@@ -323,3 +295,37 @@ FROM titles;
 ```
 
 To specify distinctness on a subset of attributes, see the [DISTINCT Postgres documentation](https://www.postgresql.org/docs/current/sql-select.html#SQL-DISTINCT).
+
+## SQL Query Order of Execution
+
+We first introduced queries using the **SFW structure** (`SELECT → FROM → WHERE`). That’s the written order, which makes queries read naturally in English:
+
+ “*Select these attributes from these tables where some condition holds.*”
+
+But SQL is **declarative**: you describe what you want, not how to compute it. Behind the scenes, the database engine evaluates the clauses in a different order. Conceptually:
+
+```
+SELECT S                -- 5
+FROM R1, R2, ...        -- 1
+WHERE C1                -- 2
+GROUP BY A1, A2, ...    -- 3
+HAVING C2;              -- 4
+```
+
+Order of evaluation:
+1. `FROM`: Fetch the tables and compute the cross product of the relations `R1, R2, …`
+1. `WHERE`: For each tuple from 1, keep only those that satisfy condition `C1`
+1. `GROUP BY`: Create groups of tuples by `A1`, `A2`, etc. At this time, for each group, compute all aggregates needed for `C2` and `S` (below).
+1. `HAVING`: For each group, check if condition `C2` is satisfied.
+1. `SELECT`: Add to output based on attribute set `S`.
+
+Note that `WHERE` is therefore a row filter that happens **before** groups are made,
+whereas `HAVING` is a group filter that happens **after** groups are made.
+
+```{note}
+By convention, SQL keywords are in all caps, e.g., `SELECT *`, while attributes are in lowercase.
+```
+
+```{note}
+End queries with a semicolon (`;`).
+```
