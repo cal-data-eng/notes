@@ -1,6 +1,6 @@
 # Relational Algebra Overview
 
-**Last updated**: October 13, 2024
+**Last updated**: August 28, 2025
 
 In the last note, we briefly touched on the relational data model and
 introduced some basic SQL syntax in the `SELECT FROM WHERE` format. In
@@ -13,12 +13,12 @@ An algebra is a mathematical theory that defines formulaic operations on variabl
 
 The relational algebra theory was popularized by Edgar F. Codd's 1970 work \[1] in defining the relational model, which formed the theoretical basis for relational databases and informed the concurrent development of relational database management systems (rDBMSes).
 
-We will introduce relational algebra in the context of **set** relational algebra (set RA). This means we assume that each relation has a **set** of attributes (unordered, no duplicates) and an unordered **set** of tuples (unordered, no duplicates).
+We introduce relational algebra in the context of set relational algebra (set RA). In this setting, a relation has a **set of attribute names** (unordered, no duplicates) and its instances are sets of tuples (unordered, no duplicates).
 At the conclusion of this chapter, we extend our discussion to **bag** RA and why operations on bags are generally preferred in rDBMSes.
 
 ## Primitive RA Operations
 
-Relational algebra (RA) has six primitive operators, upon which all other complex operators are formed:
+In classical set relational algebra, there are six primitive operators from which all other operators can be derived:
 
 1. Projection
 1. Selection
@@ -39,7 +39,7 @@ We first discuss the three primitive **unary operators**, where each operator $f
 
 1. **Selection**, $\sigma_C(R)$.
 
-    The selection operator outputs a relation that contains the tuples of input relation $R$ that satisfy the row condition $C$. The row condition is defined to contain attributes with boolean expressions: $=$, $>$, $<$, $!=$, AND ($\wedge$), OR ($\vee$), NOT ($!$), etc. Because selection is a row filter, the input and output schema share the same schema, with set of attributes $\{B_1, \dots, B_m\}$.
+    The selection operator outputs a relation that contains the tuples of input relation $R$ that satisfy a predicate $C$. The predicate is defined to contain attributes with boolean expressions: $=$, $>$, $<$, $!=$, AND ($\wedge$), OR ($\vee$), NOT ($!$), etc. Because selection is a row filter, the input and output schema share the same schema, with set of attributes $\{B_1, \dots, B_m\}$.
 
 1. **Renaming**, $\rho_{S(A_1, \dots, A_m)}(R)$, equivalently $\rho_{S(B_{i_1}\rightarrow A_1, \dots, B_{i_n} \rightarrow A_n)}(R)$.
 
@@ -59,7 +59,7 @@ Suppose that we have two relations with the following schema:
 
 1. $\pi_{title\_id, primary\_title}(titles)$ outputs a relation with tuples of `titles` that are restricted to the attributes `title_id` and `primary_title`. In other words, we "drop" the other attributes `type` and `runtime_minutes`.
 
-2. $\sigma_{born > 1980}(people)$ outputs a relation with tuples of `people` that satisfy the condition where `born > 1980`.
+2. $\sigma_{born > 1980}(people)$ outputs a relation with tuples of `people` that satisfy the predicate `born > 1980`.
 
 3. $\rho_{persons(person\_id, name, birth, death)}(people)$ outputs a relation named `persons` that has the tuples of `people` but renames attributes `born` and `died` to `birth` and `death`, respectively, and keeps `person_id` and `name` unchanged.
 
@@ -77,13 +77,13 @@ Suppose that we have two relations with the following schema:
 
 ## Binary Operators: Cartesian Product, Union, and Difference
 
-We next discuss the remaining three primitive operators, which are all  **binary operators**.
-Each binary operator $f$ takes as input two operand relations $R_1$ and and $R_2$ with schemas $(A_1, \dots, A_n)$ and $B_1, \dots, B_m)$, respectively, and outputs an unnamed output relation $f(R_1, R_2)$.
+We next discuss the remaining three primitive operators, which are all **binary operators**.
+Each binary operator $f$ takes as input two operand relations $R_1$ and $R_2$ with schemas $(A_1, \dots, A_n)$ and $(B_1, \dots, B_m)$, respectively, and outputs an unnamed output relation $f(R_1, R_2)$.
 
 1. **Product** (or Cross Product, Cartesian Product), $R_1 \times R_2$.
 
     The product operator outputs a relation with tuples that associates each tuple in the left operand with
-each tuple in the right operand.  The output schema is therefore $(A_1, A_2, \dots, A_n, B_1, B_2, \dots, B_m)$. Because a relation's attributes are defined on a set, if $A_i = B_j$ for attributes $A_i \in R_1$ and $B_j \in R_2$, then the output relation renames attributes $A_i$ and $B_j$ to $R_1.A_i$ and $R_2.B_j$, respectively. If $R_1$ and $R_2$ have $n_1$ and $n_2$ rows, respectively, then the output relation has $n_1 n_2$ rows.
+each tuple in the right operand.  The output schema is therefore $(A_1, A_2, \dots, A_n, B_1, B_2, \dots, B_m)$. Because a relation's attributes are defined on a set, if $A_i = B_j$ for attributes $A_i \in R_1$ and $B_j \in R_2$, then the output relation renames attributes $A_i$ and $B_j$ to $R_1. A_i$ and $R_2.B_j$, respectively. If $R_1$ and $R_2$ have $n_1$ and $n_2$ rows, respectively, then the output relation has $n_1 n_2$ rows.
 
 1. **Union**, $R_1 \cup R_2$.
 
@@ -91,7 +91,7 @@ each tuple in the right operand.  The output schema is therefore $(A_1, A_2, \do
 
 1. **Difference**, $R_1 - R_2$.
 
-    The difference operator outputs a relation that has the set difference of rows in $R_1$ and $R_2$. In other words, $R_1 - R_2$ contains one of every tuple that is in $R_1$ but not in $R_2$ and is the empty relation if no such tuples exist. As with unions, the input relations and output relation must share the same schema.
+    The difference operator outputs a relation that has the set difference of rows in $R_1$ and $R_2$. In other words, $R_1 - R_2$ contains one of every tuple that is in $R_1$ but not in $R_2$. If no tuples are unique to $R_1$, the result is the empty relation. As with unions, the input relations and output relation must share the same schema.
 
 ```{note}
 Remember, relational algebra describes precise operations on relations, not tables in a database. While the SQL Standard (and consequently most DBMSs) are designed to conform to these rules and expectations, sometimes specific implementations (like PostgreSQL) will bend the rules of relational algebra for practical purposes. As an example, see the [Postgres docs on UNION](https://www.postgresql.org/docs/current/typeconv-union-case.html).
@@ -134,15 +134,22 @@ The natural join of crew and people would then satisfy:
 
 $\text{crew} \bowtie \text{people} = \pi_{\text{tid, pid, c, j, n, b, d}}\bigl(\rho_{\text{crew.pid} \rightarrow \text{pid}} \bigl( \sigma_{\text{crew.pid = people.pid}} (\text{crew} \times \text{people}) \bigr) \bigr)$.
 
-In special cases, the natural join reduces to other operators. Suppose we have the three relations $R(A, B), S(A, B), T(C, D)$. Then $R \bowtie S = R \cap S$, and $R \bowtie T = R \times T$.
+### Special cases
+- If $R(A,B)$ and $S(A,B)$ share identical schemas,  
+  $
+  R \bowtie S = R \cap S
+  $
+
+- If $R(A,B)$ and $T(C,D)$ have no attributes in common,  
+  $
+  R \bowtie T = R \times T
+  $
 
 ## Bag Relational Algebra
 
-Relational Algebra provides a common set of operations that can be used to compare the utility of different data systems. For example, Python pandas does not directly support theta join; only equijoin. SQL supports most operations, but implements projection with the `SELECT` keyword (and selection with the `WHERE` keyword).
+So far, we have defined relational algebra using **set semantics**: each relation is a set of tuples (no duplicates). In practice, however, many data systems (including SQL and pandas) use **bag semantics**, where both attributes and tuples are unordered collections that could contain duplicates.
 
-While we have defined relational algebra operations above using *set* relational algebra, in reality many data systems use a relational data model defined on **bags**, where both attributes and tuples are unordered collections that could contain duplicates.
-
-Operations on bags are generally easier to implement than the equivalent operations on sets, because creating a bag does not involve the added step of checking for copies, or duplicate tuples. Further more, bags are meaningful depending on the data domain; in other words, it may be meaningful for a relation to contain multiple copies of the same tuple.
+Working with bags is often easier and faster than working with sets, since the system does not need to check for and remove duplicate tuples.   Further more, bags are meaningful depending on the data domain; in other words, it may be meaningful for a relation to contain multiple copies of the same tuple.
 
 The below table is a brief comparison of bag RA and set RA operators. We define "# of occurrences" as the sum total of duplicate tuples in the output relation.
 
