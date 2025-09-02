@@ -1,12 +1,10 @@
 # Creating Tables and Views from Data
 
-**Last updated**: September 13, 2024
+**Last updated**: September 2, 2025
 
 ## Copying Data to new Tables
 
-Suppose we want the result of a SQL query to act as a new table that we
-can query. For example, the following query turns a `SELECT` statement
-into another table:
+Sometimes we want the result of a SQL query to act as a new table that we can query independently. For example, the query below takes a `SELECT` statement and uses it to create a new table:
 
 ```sql
 CREATE TABLE citation_stops AS (
@@ -16,17 +14,19 @@ CREATE TABLE citation_stops AS (
 );
 ```
 
-After running this command, we now can query `citation_stops` directly.
-But if the **base table**, in this case the `stops` table, changes (e.g.,
+After running this command, we now have a table called `citation_stops` that we can query directly, just like any other table.
+
+However, there are two important things to keep in mind:
+
+1. **No automatic updates from the base table**: if the **base table**, in this case the `stops` table, changes (e.g.,
 gets new records), we have to recreate `citation_stops` to reflect the new
 changes!
 
-Similarly, we should be careful that if we were to modify the rows of `citation_stops`, there would be no updates to our base table.
+1. **No updates back to the base table**: Similarly, if we were to modify the rows of `citation_stops`, there would be no updates to our base table.
 
 ## Creating (Virtual) Views
 
-To avoid manually recreating derived tables, we can instead define a
-**view**, as follows:
+Instead of manually recreating derived tables, we can define a **view**. A view is like a saved query that acts as a virtual table. For example:
 
 ```sql
 CREATE VIEW citation_stops AS (
@@ -35,18 +35,17 @@ CREATE VIEW citation_stops AS (
     WHERE citation = True
 );
 ```
-
-In views (also known as virtual views), outputs are not stored, and any
-time a user queries the view (i.e., `citation_stops`), the output is
-computed on demand. Think of this as a variable or as a virtual relation
-that is more convenient to query than the base table.
+Unlike a table created with `CREATE TABLE ... AS`, the results of a view (also known as virtual views) are not stored. Instead, whenever you query the view (e.g., `SELECT * FROM citation_stops;`), the database re-runs the underlying query and computes the results on demand.
+Think of this as a variable or as a virtual relation
+that is more convenient to query than the base table and always stays up to date with the base data.
 
 ## Materialized Views
 
-On the flip side, suppose we want to create a view and query it frequently.
-The naive method of creating a view might be slow because the view is
-computed on demand every time a query is run. To solve this issue, we
-can define a **materialized view**, as follows:
+So far, we’ve seen that:  
+- **Tables created with** `CREATE TABLE ... AS` store results permanently but do not update automatically.  
+- **Virtual views** (`CREATE VIEW`) stay up to date with the base tables but must be recomputed every time you query them, which can be slow for complex queries.  
+
+A middle ground is the **materialized view**. For example:
 
 ```sql
 CREATE MATERIALIZED VIEW citation_stops AS (
@@ -56,8 +55,8 @@ CREATE MATERIALIZED VIEW citation_stops AS (
 );
 ```
 
-In materialized views, outputs are stored just like they are in regular
-tables (but not like in virtual views). Materialized views are _sometimes_
+In materialized views, outputs are **stored** just like they are in regular
+tables rather than recomputed on every query (like virtual views). Materialized views are _sometimes_
 automatically updated as base tables change, but since they must be
 rematerialized frequently, they might add unnecessary overhead to base
 table updates. So, data engineers (you!) must be thoughtful about what
