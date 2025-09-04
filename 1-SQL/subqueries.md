@@ -1,10 +1,9 @@
 # Subqueries
 
-**Last updated**: September 13, 2024
+**Last updated**: September 03, 2025
 
 A parenthesized SQL query statement (a **subquery**) can be used as a
-value in various places of a larger SQL query. We could use subqueries
-as scalars or sets.
+value in various places of a larger SQL query. Subqueries can return **scalars** (single values) or **sets** (collections of tuples).
 
 ## Scalar Subqueries
 
@@ -21,6 +20,7 @@ WHERE S1.location = (
     SELECT S2.location FROM stops S2 WHERE S2.id = 123
 );
 ```
+Here, the subquery `(SELECT S2.location …)` returns a single location, and the outer query compares each stop’s location against it.
 
 Note that when using subqueries, it's important to define relations with
 relevant variables (i.e., S1 and S2) such that when accessing
