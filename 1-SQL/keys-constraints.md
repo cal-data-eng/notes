@@ -1,9 +1,11 @@
 # Keys & Constraints
 
-**Last Updated**: September 12, 2024
+**Last Updated**: September 11, 2025
 
 ## Constraints
-Constraints are relationships across data elements that the data system is required to preserve or enforce. Constraints help encode domain knowledge that the system can enforce, or act as guardrails and provide safety.
+Constraints are relationships across data elements that the data system is required to preserve or enforce. Constraints help encode domain knowledge that the system can enforce, or act as guardrails and provide safety. Constraints are checked on writes (`INSERT`, `UPDATE`, `DELETE`); if a write would violate a constraint, the statement fails and no changes are applied. 
+
+In this note we’ll discuss key constraints (`PRIMARY KEY`, `UNIQUE`), referential integrity (`FOREIGN KEY`), and column-level rules (`NOT NULL`, `DEFAULT`, `CHECK`).
 
 ### Keys
 
