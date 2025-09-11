@@ -25,7 +25,20 @@ CREATE TABLE stops(
 
 When we define a primary key, we are also defining a **constraint** on its uniqueness. For example, in the above statement, each tuple must have a unique stopID---otherwise when inserting a tuple with a duplicate stopID into the table, we'll get an error. Additionally, no attribute of a PRIMARY KEY can be NULL.
 
-There can be only **one** PRIMARY KEY (hence the name!). What if we want multiple unique keys? We can use the UNIQUE key syntax:
+There can be only **one** PRIMARY KEY (hence the name!). However, we can use multiple columns as the primary key (a composite key). In that case, the combination of those columns must be unique, and none of them can be NULL.
+
+```sql
+CREATE TABLE enrollments (
+  student_id INTEGER,
+  course_id  INTEGER,
+  term       CHAR(6),
+
+  PRIMARY KEY (student_id, course_id, term)
+);
+```
+This enforces that the combination of `(student_id, course_id, term)` is unique for each row, and none of those columns may be `NULL`.
+
+What if we want multiple unique keys? We can use the UNIQUE key syntax:
 
 ```sql
 CREATE TABLE stops (
@@ -42,7 +55,11 @@ CREATE TABLE stops (
 );
 ```
 
-Here, there are effectively 3 unique keys: stopID, personID, stopTime. UNIQUE keys can be null-valued. We could also declare attributes to have default values or not be null, e.g.,:
+Here, there are effectively 3 unique keys: stopID, personID, stopTime. 
+
+How PRIMARY KEY differs from UNIQUE: a table can have many UNIQUE constraints but only one PRIMARY KEY; PRIMARY KEY columns are implicitly NOT NULL, while UNIQUE columns may be NULL.
+ 
+We could also declare attributes to have default values or not be null, e.g.,:
 
 ```sql
 CREATE TABLE stops(
@@ -61,7 +78,7 @@ CREATE TABLE stops(
 
 This gives us, so far, multiple different kinds of constraints---**uniqueness** via PRIMARY KEY or UNIQUE, and attribute-based constraints (DEFAULT, NOT NULL).
 
-The final constraint type we'll cover is **FOREIGN KEY**. Referential integrity is ensuring that records do not violate the constraints defined between tables. A foreign key maintains the referential integrity of your data, by restricting record insertion based on whether an attribute value in one table exists in another table.
+The final constraint type we'll cover is **FOREIGN KEY**. Referential integrity is ensuring that records do not violate the constraints defined between tables, i.e., every reference in a “child” table must point to an existing row in a “parent” table. A foreign key maintains the referential integrity of your data, by restricting record insertion based on whether an attribute value in one table exists in another table.
 
 Suppose we have two tables, an `actors` table and a `cast_info` table. We'll have actor IDs in the `cast_info` table, but we want them to reference the actor IDs in the `actor` table. We can declare this constraint as follows:
 
