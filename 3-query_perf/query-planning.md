@@ -57,7 +57,7 @@ Let us examine properties of union and joins through sets (no duplicates).
 
 - Cascading: $\sigma_{C\: AND\: C'}(R) = \sigma_C(\sigma_{C'}(R))$
 - Distributive with union: $\sigma_{C}(R \cup S) = \sigma_C(R) \cup \sigma_{C}(S)$
-- Predicate Pushdown:  $\sigma_{C}(R \bowtie S) = \sigma_D(\sigma_E(R)) \bowtie \sigma_F(S))$
+- Predicate Pushdown:  $\sigma_{C}(R \bowtie S) = \sigma_D(\sigma_E(R) \bowtie \sigma_F(S))$
 
 For selection, a simplifying law called predicate pushdown is important to know. This rule states that the predicate can be applied before / after `SELECT` without impacting the final result. The performance implication of this rule is that the earlier we process selections, the more we reduce data "at source", and the less we need to manipulate later for more expensive operations (e.g. joins). There is also a similar simplifying law for projection called projection pushdown.
 
