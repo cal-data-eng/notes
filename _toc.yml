@@ -34,6 +34,7 @@ parts:
         - file: 3-query_perf/indexes
         - file: 3-query_perf/query-planning
         - file: 3-query_perf/rules_of_thumb
+        - file: 3-query_perf/schemas
   - caption: Data Modeling
     numbered: True
     chapters:
