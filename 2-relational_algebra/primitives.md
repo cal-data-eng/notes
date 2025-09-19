@@ -161,3 +161,7 @@ The below table is a brief comparison of bag RA and set RA operators. We define 
 | Union | Add # of occurrences | Faster than sets |
 | Difference | Subtract # of occurrences | Roughly as fast
 | Renaming | - | - | Unchanged |
+
+## Helpful Resource: Visualizing Relational Algebra
+
+Understanding relational algebra and SQL becomes much easier when you can visualize how each operator transforms its input relations. Here’s a [helpful resource](https://dbis-uibk.github.io/relax/landing). 
