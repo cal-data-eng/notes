@@ -8,7 +8,7 @@ For now, we cover precisely one extended RA operator, the grouping/aggregation o
 
 ## Grouping and Aggregation
 
-Suppose we had input relation $R$ with schema $(C_1, \dots, C_n)$. The output relation resulting from grouping on attributes $(B_1, \dots, B_n)$ where $\{B_1, \dots, B_n\} \subset \{C_1, \dots, C_n\}$ and computing aggregations $agg_1, \dots, agg_k$ can be written as $\gamma_{A_1, \dots, A_n, agg_1, \dots, agg_k}(R)$. By convention, the grouped attributes come first, followed by the aggregations. Yes, it's unwieldy. Good times.
+Suppose we had input relation $R$ with schema $(C_1, \dots, C_n)$. The output relation resulting from grouping on attributes $(B_1, \dots, B_n)$ where $\{B_1, \dots, B_n\} \subset \{C_1, \dots, C_n\}$ and computing aggregations $agg_1, \dots, agg_k$ can be written as $\gamma_{B_1, \dots, B_n, agg_1, \dots, agg_k}(R)$. By convention, the grouped attributes come first, followed by the aggregations. Yes, it's unwieldy. Good times.
 
 ## SQL query to Relational Algebra
 
