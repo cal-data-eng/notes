@@ -1,4 +1,4 @@
-(structure:index)=
+(structure:transactions-index)=
 # Transactions
 When updating our DB system, we need to consider two main features:
 **Concurrency Control**:

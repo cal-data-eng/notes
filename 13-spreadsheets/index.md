@@ -1,4 +1,4 @@
-(structure:index)=
+(structure:spreadsheets=index)=
 # Spreadsheets
 So far, we've seen relational, matrix, and dataframe data models with
 rigid requirements (fixed, atomic, etc.), and we've also seen
