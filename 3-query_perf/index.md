@@ -1,4 +1,4 @@
-(structure:index)=
+(structure:performance-index)=
 # Query Performance
 
 ```{tableofcontents}

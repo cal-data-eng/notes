@@ -1,0 +1,85 @@
+version: 1
+project:
+  title: Data 101 Course Notes
+  authors:
+    - name: Data 101 Staff
+  github: cal-data-eng/notes
+  bibliography:
+    - references.bib
+  numbering:
+    title: true
+  exports:
+    - format: pdf
+      template: plain_latex_book
+      output: exports/book.pdf
+  toc:
+    - file: overview.md
+    - file: 1-SQL/index.md
+      children:
+        - file: 1-SQL/review.md
+        - file: 1-SQL/strings.md
+        - file: 1-SQL/truncation.md
+        - file: 1-SQL/views.md
+        - file: 1-SQL/CTEs.md
+        - file: 1-SQL/subqueries.md
+        - file: 1-SQL/window.md
+        - file: 1-SQL/DML.md
+        - file: 1-SQL/DDL.md
+        - file: 1-SQL/keys-constraints.md
+    - file: 2-relational_algebra/index.md
+      children:
+        - file: 2-relational_algebra/primitives.md
+        - file: 2-relational_algebra/extended.md
+    - file: 3-query_perf/index.md
+      children:
+        - file: 3-query_perf/indexes.md
+        - file: 3-query_perf/query-planning.md
+        - file: 3-query_perf/rules_of_thumb.md
+        - file: 3-query_perf/schemas.md
+    - file: 4-data_modeling/index.md
+      children:
+        - file: 4-data_modeling/data_models.md
+        - file: 4-data_modeling/ER_diagrams.md
+    - file: 5-data_prep/index.md
+      children:
+        - file: 5-data_prep/structural.md
+        - file: 5-data_prep/granularity.md
+        - file: 5-data_prep/outliers.md
+        - file: 5-data_prep/imputation.md
+    - file: 6-semi_data/index.md
+      children:
+        - file: 6-semi_data/semistructured.md
+        - file: 6-semi_data/mongodb.md
+    - file: 12-sampling/index.md
+      children:
+        - file: 12-sampling/sampling.md
+    - file: 7-transactions/index.md
+      children:
+        - file: 7-transactions/transactions.md
+    - file: 8-parallel_computing/index.md
+      children:
+        - file: 8-parallel_computing/parallel_distributed_computing.md
+    - file: 9-data_pipelines/index.md
+      children:
+        - file: 9-data_pipelines/data-pipelines.md
+    - file: 10-BI/index.md
+      children:
+        - file: 10-BI/BI.md
+    - file: 11-graph_db/index.md
+      children:
+        - file: 11-graph_db/property_graph.md
+        - file: 11-graph_db/triplestores.md
+        - file: 11-graph_db/ontologies.md
+    - file: 13-spreadsheets/index.md
+      children:
+        - file: 13-spreadsheets/spreadsheets.md
+    - title: Appendix
+      children:
+        - file: appendix/sql-style.md
+        - file: appendix/mongo-style.md
+site:
+  options:
+    logo: data101-logo.png
+    folders: true
+    hide_authors: true
+  template: book-theme

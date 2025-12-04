@@ -1,4 +1,4 @@
-(structure:index)=
+(structure:graph-db-index)=
 # Graph Databases
 ### Many-to-many databases in the real world
 

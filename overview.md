@@ -1,5 +1,6 @@
 ---
 title: Data 101 Course Notes
+numbering: false
 ---
 
 # Overview

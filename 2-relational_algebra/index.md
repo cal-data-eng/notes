@@ -1,4 +1,4 @@
-(structure:index)=
+(structure:relational-alg-index)=
 # Relational Algebra
 
 ```{tableofcontents}
