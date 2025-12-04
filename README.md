@@ -1,4 +1,7 @@
 # Data 101 Course Notes
+
+[![Jupyter Book (via myst) GitHub Pages Deploy](https://github.com/cal-data-eng/notes/actions/workflows/deploy.yml/badge.svg)](https://github.com/cal-data-eng/notes/actions/workflows/deploy.yml) [![Accessibility Checks](https://github.com/cal-data-eng/notes/actions/workflows/a11y.yml/badge.svg)](https://github.com/cal-data-eng/notes/actions/workflows/a11y.yml)
+
 ## [View Online at https://data101.org/notes/][notes]
 
 This repository contains notes and resources for the [Data 101][data101] course.
