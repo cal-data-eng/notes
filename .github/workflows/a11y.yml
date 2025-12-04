@@ -18,8 +18,11 @@ jobs:
         with:
           node-version: '20'
     
-      - name: Install Axe CLI and HTTP Server
+      - name: Installs
         run: npm install -g jupyter-book @axe-core/cli http-server
+
+      - name: Sync Chrome Driver Version
+        run: npx browser-driver-manager install chrome
           
       - name: Build Jupyter Book
         run: jupyter-book build --html
