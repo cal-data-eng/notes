@@ -79,6 +79,7 @@ project:
         - file: appendix/mongo-style.md
 site:
   options:
+    favicon: data101-logo.png
     logo: data101-logo.png
     folders: true
     hide_authors: true
