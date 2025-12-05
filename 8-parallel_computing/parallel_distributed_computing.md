@@ -10,7 +10,7 @@ Three different paradigms of these computing resources are:
 
 ### Partitioning Strategies
 
-We partition the data, and put each piece in different disks, assuming
+We partition the data, and place each piece in different disks, assuming
 that all those disks may be accessed by different worker nodes or
 computers. How we separate/partition our data depends on the data model
 itself:
@@ -33,8 +33,7 @@ patterns.
     skew if there are some partitioning attribute ranges that are very popular (from either standpoint: data or access).
 
 
-2.  Hash-based partitioning: Pick a field. Pick a processor for a tuple
-    by hashing with this field. Somewhat susceptible to skew if there are some partitioning attribute ranges that are very popular (from either standpoint: data or access).
+2.  Hash-based partitioning: Pick a field. Pick a processor for a tuple by hashing this field. Somewhat susceptible to skew if there are specific attribute values that are very popular (i.e., "heavy hitters" or duplicates), though it generally handles range skew better than range-based partitioning.
 
 
 3.  Round-robin partitioning: Hash tuple $i$ to processor $i\%n$. Not
@@ -78,7 +77,7 @@ A communications break within a distributed system—a lost connection between t
 
 **CA**: consistency and availability. 
 ❌ This is impossible in a network with partitions.
-Network and hardware failures mean a partition can disappear or become disconnected.
+This is practically impossible in a distributed network. Network and hardware failures mean a partition can occur at any time; therefore, a distributed system must generally choose between CP and AP.
 
 
 ## MapReduce
@@ -126,3 +125,18 @@ The process is split into the following stages:
 - `Map`: Tells each worker machine to count the words in its documents.
 - `Shuffle`: Groups/sorts pairs based on the word to efficiently group by keys.
 - `Reduce`: Tells the manager machine to sum up the counts for each word.
+
+#### Python Pseudo-code
+```python
+# Map Function: Processes one document
+# Input: (doc_id, text_content)
+def map(doc_id, text):
+    for word in text.split():
+        emit(word, 1)
+
+# Reduce Function: Processes all counts for a specific word
+# Input: (word, list_of_counts) e.g., ("apple", [1, 1, 1, ...])
+def reduce(word, counts):
+    total_count = sum(counts)
+    emit(word, total_count)
+```
