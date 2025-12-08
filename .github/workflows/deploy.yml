@@ -32,6 +32,10 @@ jobs:
         run: npm install -g jupyter-book
       - name: Build HTML Assets
         run: jupyter-book build --html
+      - name: Generate redirects
+        run: |
+          uv run https://raw.githubusercontent.com/pancakereport/jb1-redirect-generator/main/generate_redirects.py \
+            --base-url https://data101.org/notes/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
