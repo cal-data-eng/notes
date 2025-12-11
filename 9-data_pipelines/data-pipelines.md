@@ -13,7 +13,7 @@ We must consider the following 4 things when designing data pipelines to automat
 3. How do you automate the work?
 4. How do you maintain quality and handle exceptions?
 
-### Data Arrival
+## Data Arrival
 
 We have two ways of thinking about data arrival: push and pull.
 
@@ -34,7 +34,7 @@ person or software
 -   On receipt of an event. (E.g. from pub-sub or MQ systems or slack or
     email or really anything)
 
-### Actions Upon Data Arrival
+## Actions Upon Data Arrival
 
 When the data arrives, there are a myriad number of things you can and
 should do.
@@ -57,7 +57,7 @@ should do.
 This is not strictly data transformation, because we have human input
 along the way in this process.
 
-### Automating the Work
+## Automating the Work
 
 Data pipelines are automated with many, many systems. These include
 workflow systems to manage processes, dataflow systems to manage data

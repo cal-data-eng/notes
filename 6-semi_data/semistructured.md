@@ -70,7 +70,7 @@ redundancy especially if multiple relations are related. The way we
 might choose to represent this data in JSON format is by nesting the
 related information.
 
-#### teams 
+**teams**
 
 | name      | state |
 |-----------|-------|
@@ -78,7 +78,7 @@ related information.
 | Celtics   | MA    |
 | Lakers    | CA    |
 
-#### players 
+**players**
 
 | name           | age | team     | position      |
 |----------------|-----|----------|---------------|
@@ -87,7 +87,7 @@ related information.
 | Jaylen Brown   | 25  | Celtics  | forward       |
 | LeBron James   | 37  | Lakers   | forward       |
 
-#### JSON Representation
+### JSON Representation
 
 ```json
 {

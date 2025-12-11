@@ -34,7 +34,7 @@ Note, because we are in cell model form, rows and columns are
 equivalent! We can have columns correspond to "records" and rows to
 "attributes".
 
-# Basic Spreadsheet Functions
+## Basic Spreadsheet Functions
 
 Within spreadsheets, we can take advantage and utilize standard
 mathematical and statistical functions, including PEMDAS, average, SUM,
@@ -58,7 +58,7 @@ cell.
 Inserting/deleting rows and columns will (usually) not break
 relative/absolute referencing!
 
-# XLOOKUP
+## XLOOKUP
 
 In 2019, Microsoft deprecated VLOOKUP and implemented XLOOKUP as an
 improved version for lookups. The X stands for different directions:
@@ -85,9 +85,9 @@ XLOOKUP follows these steps:
 The syntax is as follows:
 `=XLOOKUP(lookup_value, lookup_array, return_array, , [match_mode], [search_mode])`
 
-# HCI Research and Direct Manipulation
+## HCI Research and Direct Manipulation
 
-## Popularity of Spreadsheets
+### Popularity of Spreadsheets
 
 Why are spreadsheets so popular?
 
@@ -99,7 +99,7 @@ users. Most importantly perhaps, the user interface of spreadsheets
 supports direct manipulation, which is easy to use, flexible, and
 provides immediate feedback.
 
-## Direct Manipulation
+### Direct Manipulation
 
 Direct manipulation (coined by Shneiderman in 1982) user interfaces have
 three properties:
@@ -126,7 +126,7 @@ Direct manipulation is applicable far beyond just spreadsheets. We see
 direct manipulation in using a steering wheel to drive a car, smartphone
 screens, document/word editing, and so much more in daily life!
 
-# Scalability Challenges
+## Scalability Challenges
 
 Spreadsheets are slow and struggle with scalability. Spreadsheets can't
 handle large datasets, oftentimes this is when the dataset has more than
@@ -147,7 +147,7 @@ management system) handling optimizations across cells:
 -   Formulae often recomputed from scratch when one single value
     changes!
 
-# Spreadsheet Data Model, Recap
+## Spreadsheet Data Model, Recap
 
 **Spreadsheet Data**
 

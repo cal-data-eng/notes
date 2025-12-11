@@ -1,6 +1,6 @@
 (structure:graph-db-index)=
 # Graph Databases
-### Many-to-many databases in the real world
+## Many-to-many databases in the real world
 
 **Social network datasets**
 - A follows B, A is a friend of B

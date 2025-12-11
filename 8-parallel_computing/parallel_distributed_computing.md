@@ -3,13 +3,13 @@
 
 **Last Updated:** December 13th, 2024
 
-### Parallel Computation Architecture
+## Parallel Computation Architecture
 Three different paradigms of these computing resources are:
 - Shared Memory: Multiple cores accessing shared memory and disk.
 - Shared Nothing: Multiple commodity nodes each with their own memory and disk. A manager node will coordinate with worker nodes, with each worker responsible for a piece of the data. In a sense, each of the worker nodes will work on their own data on their own machine, do their task, and then hand it back to the manager. 
 - Shared Disk: Worker nodes have their own memory and may have a local disk as a cache. Each may be responsible for a piece of data from a shared disk.
 
-### Partitioning Strategies
+## Partitioning Strategies
 
 We partition the data, and place each piece in different disks, assuming
 that all those disks may be accessed by different worker nodes or
@@ -41,7 +41,7 @@ patterns.
     susceptible to skew since work is equally divided, but there is more
     work involved since all partitions need to be consulted.
 
-### Partitioned Operators and Pipelining
+## Partitioned Operators and Pipelining
 
 Now that we have partitioned the data across multiple computers or
 nodes, how do we actually access information from them? The work happens

@@ -9,7 +9,7 @@ Examples of when you might want to use a window function:
 - Determine the rank within a group
 - Compare current row values to previous/next ones
 
-### Basic Syntax
+## Basic Syntax
 
 ```sql
 <window or agg_func> OVER (
@@ -25,7 +25,8 @@ The syntax can consist of 3 ingredients:
   - If omitted entirely, the default frame is:
     - `ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING` (if no `ORDER BY` is specified).
     - `ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW` (if `ORDER BY` is specified).
-### Example
+
+## Example
 ```sql
 SELECT name, department, salary,
        RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS dept_rank
@@ -33,7 +34,7 @@ FROM employees;
 ```
 This query ranks employees within each department by salary. The higher the salary, the better the rank (1 = highest).
 
-### ROWS vs. RANGE
+## ROWS vs. RANGE
 These two keywords define the frame of rows to include around the current row.
 
 - ROWS: Refers to a specific number of physical rows based on position (e.g., 2 before and 2 after)
@@ -57,7 +58,7 @@ SUM(sales) OVER (
 This includes all rows that have the same or greater `sale_amount` as the current row.
 
 
-### Common Window Functions
+## Common Window Functions
 | Function          | Description                                                  |
 |-------------------|--------------------------------------------------------------|
 | `RANK()`          | Assigns a rank to each row within the partition. If multiple rows have the same value, they receive the same rank, and the next rank(s) are skipped |
@@ -68,7 +69,7 @@ This includes all rows that have the same or greater `sale_amount` as the curren
 | `PERCENT_RANK()`  | Relative rank as a fraction between 0 and 1                  |
 | `NTH_VALUE(expr, n)` | Returns the value of expr at position n in the window     |
 
-### The WINDOW clause
+## The WINDOW clause
 
 If you're applying multiple window functions using the same partition/order structure, don't repeat yourself! Use the `WINDOW` clause to define the logic once:
 

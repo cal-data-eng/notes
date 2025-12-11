@@ -3,12 +3,12 @@
 
 **Last Updated:** December 4th, 2024
 
- A transaction is a sequence of multiple actions to be executed as "a unit of work". From SQL view, a transaction is in the form of: 
+A transaction is a sequence of multiple actions to be executed as "a unit of work". From SQL view, a transaction is in the form of: 
 - Begin transaction 
 - equence of SQL statements
 - End transaction
 
-### Classic Example: Bank Transfer
+## Classic Example: Bank Transfer
 Imagine moving $1,000 from one account (1111) to another (9999). This involves two updates:
 1. **Debit** $1,000 from account 1111.
 2. **Credit** $1,000 to account 9999.
@@ -38,7 +38,7 @@ UPDATE savings
 COMMIT;
 ```
 
-### ACID
+## ACID
 Transactions guarantee the ACID properties to avoid the concurrency problems discussed above: 
 
 - **Atomicity**: “All or nothing” nature of a transaction. Either all operations of a transaction are executed or none are.

@@ -73,7 +73,6 @@ Joins are often the hardest part in the query process and optimization since the
 
  We will now explore three different ways to join using example tables R and S.
 
-
 **Nested Loop Joins.** The nested loop join is straightforward: for every tuple of R and S, check if it matches. If it does, add it to the output! There are variants of this method, including index-nested loop which uses an index in the "inner" loop to look up only blocks of S that can match the k blocks of R.
 
 **Sort-Merge Joins.** This method involves two phases. The first phase is the sort phase: sort portions of R on the join attribute, and write out the sorted runs of blocks. Do the same thing for S. The second phase is the merge phase: merge and match tuples across the runs from the first phase by walking down the runs in sorted order. There are also variants that can use indexes and take advantage of relations that are already sorted.

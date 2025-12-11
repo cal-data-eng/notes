@@ -3,7 +3,7 @@
 
 **Last Updated:** December 5th, 2025
 
-### Why Use Approximation?
+## Why Use Approximation?
 **Pros**
 - Faster Queries: Approximation methods are optimized for speed, enabling quick results during exploratory analysis.
 - Human-Scale Exploration: Results are delivered at the speed of thought, allowing analysts to iterate faster.
@@ -14,17 +14,17 @@
 - Uncertainty: Hard to quantify and interpret errors in estimates.
 - Setup Costs: Techniques like sketches have materialization overhead.
 
-### What Can We Do Instead?
+## What Can We Do Instead?
 - Start with approximation and perform Exploratory Data Analysis (EDA) using tools like Jupyter Notebook.
 - Scale back up to the full dataset for testing or validation after the initial exploration.
 
-### When to Use Database Pipeline Sampling?
+## When to Use Database Pipeline Sampling?
 
 - Perform sampling as close to the data scanning stage as possible.
 - This reduces the volume of data flowing through the pipeline, improving throughput.
 - Think of it as similar to **selection pushdown**: reducing rows early to minimize downstream computation.
 
-### Database Sampling Drawbacks
+## Database Sampling Drawbacks
 - Requires selecting the "right" sampling probability (e.g., for Bernoulli sampling).
 - Cannot control the exact output size.
 - Sampling is performed during the initial scan and cannot adjust for data attributes (e.g., stratified sampling).
