@@ -65,7 +65,7 @@ Dates and times are some of the trickiest things to get right. Partially because
 
 You may make a lot of assumptions about how dates and times work in your life today, but many of these assumptions are not guaranteed to be true. Not everywhere observes daylight savings time, for example. And while we often think timezones are hour long blocks, there are some 15 minute timezone boundaries!
 
-```{info}
+```{admonition} Info:
 Some background on dates and times.
 
 * **Date**: A `date` is 24 hour period in time. Typically we format these a `YYYY-MM-DD`, largest to smallest which makes it easy to sort dates.
