@@ -81,6 +81,7 @@ site:
   options:
     favicon: data101-logo.png
     logo: data101-logo.png
+    logo_text: "Data 101 Course Notes"
     folders: true
     hide_authors: true
   template: book-theme
