@@ -1,3 +1,4 @@
+(ra-operators)=
 # Relational Algebra Overview
 
 **Last updated**: August 28, 2025

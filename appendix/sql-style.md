@@ -1,8 +1,5 @@
 # SQL Style Guide
 
-```{tableofcontents}
-```
-
 Like all programming languages, SQL is incredibly flexible. However, following some best practices will keep your code easier to follow, and your database easier to maintain.
 
 ```{note}

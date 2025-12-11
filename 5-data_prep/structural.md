@@ -1,3 +1,4 @@
+(structural)=
 # Structural
 
 **Last Updated:** October 6th, 2024

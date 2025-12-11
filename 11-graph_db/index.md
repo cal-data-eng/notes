@@ -21,5 +21,6 @@ These (and more) motivate models of networked data, i.e., models of **graph data
 
 >Graphs consists of nodes, edges, and properties (of nodes or edges).
 
-```{tableofcontents}
-```
+* [](#property-graphs)
+* [](#triplestores)
+* [](#ontologies)

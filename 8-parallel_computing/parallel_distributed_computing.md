@@ -1,6 +1,7 @@
-**Last Updated:** December 13th, 2024
+(parallel-dist-comp)=
+# Parallel and Distributed Computing
 
-## Parallel and Distributed Computing
+**Last Updated:** December 13th, 2024
 
 ### Parallel Computation Architecture
 Three different paradigms of these computing resources are:

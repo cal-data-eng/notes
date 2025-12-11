@@ -1,3 +1,4 @@
+(semistructured)=
 # Semistructured Data
 
 **Last Updated:** November 4th, 2024

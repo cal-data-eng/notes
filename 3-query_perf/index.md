@@ -1,5 +1,7 @@
 (structure:performance-index)=
 # Query Performance
 
-```{tableofcontents}
-```
+* [](#indexes)
+* [](#query-planning)
+* [](#rules-of-thumb)
+* [](#schemas)

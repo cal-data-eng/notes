@@ -1,5 +1,7 @@
 (structure:data-prep-index)=
 # Data Preparation
 
-```{tableofcontents}
-```
+* [](#structural)
+* [](#numerical-granularity)
+* [](#outliers)
+* [](#imputation)

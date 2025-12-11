@@ -1,6 +1,8 @@
+(ontologies)=
+# Ontologies
+
 **Last Updated:** December 13th, 2024
 
-# Ontologies
 **Ontologies**, also known as **knowledge bases**, encode general-purpose real-world information.
 - E.g., cat is a type of feline, and felines are a type of animal, while cars are a type of vehicle.
 - As the name suggests, ontologies are represented in a tree structure.

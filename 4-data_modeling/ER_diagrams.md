@@ -1,3 +1,4 @@
+(er-diagrams)=
 # Entity Relationship(ER) Diagrams
 
 **Last updated**: October 28, 2024

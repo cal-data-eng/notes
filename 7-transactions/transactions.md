@@ -1,8 +1,8 @@
+(xaction)=
 # Transactions
 
 **Last Updated:** December 4th, 2024
 
-## Transactions
  A transaction is a sequence of multiple actions to be executed as "a unit of work". From SQL view, a transaction is in the form of: 
 - Begin transaction 
 - equence of SQL statements

@@ -1,3 +1,4 @@
+(query-planning)=
 # Query Planning
 
 **Last updated**: October 13, 2024

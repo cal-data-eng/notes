@@ -1,6 +1,8 @@
+(samp)=
+# Database Sampling
+
 **Last Updated:** December 5th, 2025
 
-# Database Sampling
 ### Why Use Approximation?
 **Pros**
 - Faster Queries: Approximation methods are optimized for speed, enabling quick results during exploratory analysis.

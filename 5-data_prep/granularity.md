@@ -1,3 +1,4 @@
+(numerical-granularity)=
 # Numerical, Granularity
 
 **Last Updated:** October 6th, 2024

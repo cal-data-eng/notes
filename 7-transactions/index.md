@@ -12,5 +12,4 @@ app failure, DB engine failure, HW failure…
 
 To understand these features, we need to introduce the concept of **transactions**.
 
-```{tableofcontents}
-```
+* [](#xaction)

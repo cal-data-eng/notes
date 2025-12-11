@@ -1,3 +1,4 @@
+(rules-of-thumb)=
 # Rules of Thumb
 
 **Last Updated**: September 29, 2024

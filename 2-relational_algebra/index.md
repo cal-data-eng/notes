@@ -1,5 +1,5 @@
 (structure:relational-alg-index)=
 # Relational Algebra
 
-```{tableofcontents}
-```
+* [](#ra-operators)
+* [](#extended-ra-operators)

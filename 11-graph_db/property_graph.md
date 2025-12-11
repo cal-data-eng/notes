@@ -1,6 +1,8 @@
+(property-graphs)=
+# Property Graphs
+
 **Last Updated:** December 13th, 2024
 
-# Property Graphs
 **Nodes**
 - variety of types of entities
 - variety of properties per node

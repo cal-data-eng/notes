@@ -1,6 +1,8 @@
+(bi)=
+# Business Intelligence (BI)
+
 **Last Updated:** December 13th, 2024
 
-# Business Intelligence (BI)
 Business Intelligence (BI) focuses on analyzing data to make better business decisions. It often uses a data warehouse, which is the result of an ELT (Extract, Load, Transform) process. BI tools allow managers or analysts to easily generate reports, analyze trends, and build spreadsheets, all without needing to know where the data is stored or how it's processed behind the scenes.
 
 BI involves two key technologies: **OLAP (OnLine Analytical Processing)** and **OLTP (OnLine Transaction Processing)**. These systems handle and process data differently (We focus on OLAP in this course):

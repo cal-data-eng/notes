@@ -1,6 +1,8 @@
+(triplestores)=
+# Triplestores/RDFs
+
 **Last Updated:** December 13th, 2024
 
-# Triplestores/RDFs
 Triplestores are database systems built for **semantic queries**.
 
 - All data entities are represented as triples: (subject, predicate, object)

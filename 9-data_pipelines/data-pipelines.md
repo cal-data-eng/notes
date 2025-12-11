@@ -1,6 +1,8 @@
+(data-op-pipelines)=
+# Data Operations and Pipelines
+
 **Last Updated:** December 13th, 2024
 
-## Data Operations and Pipelines
 > According to [Wikipedia]((https://en.wikipedia.org/wiki/DataOps)), a set of practices, processes and technologies that combines an integrated and process-oriented perspective on data with automation and methods from agile software engineering to improve quality, speed, and collaboration and promote a culture of continuous improvement in the area of data analytics. 
 
 In simpler terms, **data operations** encompass all the tasks needed to prepare raw data for more complex computations, such as machine learning or advanced data analysis. This includes steps like cleaning, transforming, and organizing the data so it becomes usable. And a **data pipeline** specifies the sequence of **operations** needed to process data.
