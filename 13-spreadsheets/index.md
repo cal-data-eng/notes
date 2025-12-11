@@ -11,5 +11,4 @@ or 800 million people, and dates back to 1969, about as old as
 databases. There are many use cases for spreadsheets, ranging from
 professional, personal, and even here in education.
 
-```{tableofcontents}
-```
+* [](#spreadsheet)

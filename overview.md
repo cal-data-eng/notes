@@ -13,10 +13,7 @@ This repository is updated semi-weekly and is meant to be used *in addition to* 
 
 Chapters are bundled by topic, not by lecture number. This means that content can appear out of order compared to what is presented in lecture. We will try to indicate this where possible.
 
-Navigate with the sidebar or with the links below:
-
-```{tableofcontents}
-```
+Navigate with the sidebar!
 
 ## Course Acknowledgments
 

@@ -1,6 +1,8 @@
+(spreadsheet)=
+# The Spreadsheet Data Model
+
 **Last Updated:** December 13th, 2024
 
-# The Spreadsheet Data Model
 A Spreadsheet Workbook comprises many sheets. Each of these sheets have
 cells, and a spreadsheet is structured around those cells.
 
